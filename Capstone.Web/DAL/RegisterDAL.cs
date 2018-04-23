@@ -1,5 +1,6 @@
 ﻿using Capstone.Web.DAL.Interfaces;
 using Capstone.Web.Models;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -37,6 +38,16 @@ namespace Capstone.Web.DAL
     
             }
                 return check;
+        }
+
+        public User GetCurrentUser(string email)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                User result = conn.QueryFirstOrDefault<User>("Select * FROM users WHERE email = @emailValue", new { emailValue = email });
+                return result;
+            }
         }
     }
 }

@@ -7,6 +7,13 @@ namespace Capstone.Web.DAL
 {
     public class LoginDAL
     {
+        private string connectionString;
 
+        public LoginDAL(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+
+        
     }
 }

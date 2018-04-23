@@ -9,11 +9,11 @@ using System.Web;
 
 namespace Capstone.Web.DAL
 {
-    public class RegisterDAL : IRegisterDAL
+    public class UserSQLDAL : IUserDAL
     {
         private string connectionString;
 
-        public RegisterDAL(string connectionString)
+        public UserSQLDAL(string connectionString)
         {
             this.connectionString = connectionString;
         }

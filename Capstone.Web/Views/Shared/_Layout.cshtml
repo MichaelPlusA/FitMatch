@@ -24,15 +24,19 @@
         </div>
         <ul class="nav">
             <li class="nav-item expand-nav">
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link" href="@Url.Action("Login", "User")">Login</a>
             </li>
             <li class="nav-item expand-nav">
-                <a class="nav-link" href="#">Register</a>
+                <a class="nav-link" href="@Url.Action("Register", "User")">Register</a>
             </li>
         </ul>
     </header>
-    <div>
+    <div class="container-fluid">
         @RenderBody()
     </div>
+
+    <footer class="menu-main">
+        <div class="copyright"> Copyright @DateTime.Now.Year WOM LLC.</div>
+    </footer>
 </body>
 </html>

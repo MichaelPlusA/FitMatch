@@ -49,5 +49,10 @@ namespace Capstone.Web.DAL
                 return result;
             }
         }
+
+        public User GetUser(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

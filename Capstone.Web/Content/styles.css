@@ -9,6 +9,12 @@
     .menu-main ul {
         padding-left: 10px;
     }
+
+.copyright {
+    color: #fff;
+    padding-left: 10px;
+    font-size: 0.9rem;
+}
 /*Logo*/
 .brand-container {
     padding: 10px;
@@ -33,7 +39,7 @@
     }
 
         .brand-container a:hover {
-            color: #8cc63f;
+            color: #C2EE6C;
             text-decoration: none;
         }
 
@@ -47,7 +53,7 @@
 
 .brand-name {
     font-size: 0.8125em;
-    text-indent: 3px;
+    text-align: center;
     display: block;
 }
 
@@ -101,3 +107,251 @@
     background-size: 100% 0%;
     background-position: 50% 0%;
 }
+
+/* Landing Page ==========================================================*/
+
+/*SVG*/
+.svg-container {
+    width: 50%;
+}
+.path, .path1, .path2, .path3, .path4, .path5, .fill1, .fill2, .fill3, .fill4 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+    stroke-width: 2.5;
+    stroke: #C2EE6C;
+    fill: none;
+}
+
+
+.path {
+    stroke-miterlimit: 10;
+    stroke-width: 2.5;
+    -webkit-animation: dash 5s linear forwards;
+    /*-webkit-animation: fill 2s linear forwards;*/
+}
+
+@-webkit-keyframes fill {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes dash {
+    from {
+        stroke-dashoffset: 1100;
+    }
+     
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Login ================================================================*/
+
+#login {
+
+}
+
+#login a {
+    text-decoration: none;
+    color: #1ab188;
+    transition: .5s ease;
+}
+
+    #login a:hover {
+        color: #179b77;
+    }
+
+#login .form {
+    background: rgba(19, 35, 47, 0.9);
+    padding: 40px;
+    max-width: 600px;
+    margin: 40px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+
+
+/* Reqistration =========================================================*/
+#registration {
+
+}
+
+    #registration a {
+        text-decoration: none;
+        color: #1ab188;
+        transition: .5s ease;
+    }
+
+        #registration a:hover {
+            color: #179b77;
+        }
+
+    #registration .form {
+        background: rgba(19, 35, 47, 0.9);
+        padding: 40px;
+        max-width: 600px;
+        margin: 40px auto;
+        border-radius: 4px;
+        box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    }
+
+    #registration .tab-group {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 40px 0;
+    }
+
+        #registration .tab-group:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        #registration .tab-group li a {
+            display: block;
+            text-decoration: none;
+            padding: 15px;
+            background: rgba(160, 179, 176, 0.25);
+            color: #a0b3b0;
+            font-size: 20px;
+            float: left;
+            width: 50%;
+            text-align: center;
+            cursor: pointer;
+            transition: .5s ease;
+        }
+
+            #registration .tab-group li a:hover {
+                background: #179b77;
+                color: #ffffff;
+            }
+
+        #registration .tab-group .active a {
+            background: #C2EE6C;
+            color: #ffffff;
+        }
+
+    #registration .tab-content > div:last-child {
+        display: none;
+    }
+
+    #registration h1, #login h1 {
+        text-align: center;
+        color: #ffffff;
+        font-weight: 300;
+        margin: 0 0 40px;
+    }
+
+    #registration label, #login label {
+        position: absolute;
+        -webkit-transform: translateY(6px);
+        transform: translateY(6px);
+        left: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        transition: all 0.25s ease;
+        -webkit-backface-visibility: hidden;
+        pointer-events: none;
+        font-size: 22px;
+    }
+
+        #registration label .req, #login label .req {
+            margin: 2px;
+            color: #C2EE6C;
+        }
+
+        #registration label.active, #login label.active {
+            -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+            left: 2px;
+            font-size: 14px;
+        }
+
+            #registration label.active .req, #login label.active .req {
+                opacity: 0;
+            }
+
+        #registration label.highlight, #login label.highlight {
+            color: #ffffff;
+        }
+
+    #registration input, #registration textarea, #login input, #login textarea {
+        font-size: 22px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 5px 10px;
+        background: none;
+        background-image: none;
+        border: 1px solid #a0b3b0;
+        color: #ffffff;
+        border-radius: 0;
+        transition: border-color .25s ease, box-shadow .25s ease;
+    }
+
+        #registration input:focus, #registration textarea:focus, #login input:focus, #login textarea:focus {
+            outline: 0;
+            border-color: #C2EE6C;
+        }
+
+    #registration textarea, #login textarea {
+        border: 2px solid #C2EE6C;
+        resize: vertical;
+    }
+
+    #registration .field-wrap, #login .field-wrap {
+        position: relative;
+        margin-bottom: 40px;
+    }
+
+    #registration .top-row:after, #login .top-row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    #registration .top-row > div, #login .top-row > div {
+        float: left;
+        width: 48%;
+        margin-right: 4%;
+    }
+
+        #registration .top-row > div:last-child, #login .top-row > div:last-child {
+            margin: 0;
+        }
+
+    #registration .button, #login .button {
+        border: 0;
+        outline: none;
+        border-radius: 0;
+        padding: 15px 0;
+        font-size: 2rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        background: #7F97B8;
+        color: #ffffff;
+        transition: all 0.5s ease;
+        -webkit-appearance: none;
+    }
+
+        #registration .button:hover, #registration .button:focus, #login .button:hover, #login .button:focus {
+            background: #C2EE6C;
+        }
+
+    #registration .button-block, #login .button-block {
+        display: block;
+        width: 100%;
+    }
+
+    #registration .forgot, #login .forgot {
+        margin-top: -20px;
+        text-align: right;
+    }

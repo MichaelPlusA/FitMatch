@@ -10,6 +10,6 @@ namespace Capstone.Web.DAL.Interfaces
     interface IUserDAL
     {
         bool RegisterUser(User newUser);
-        User GetUser(string email);
+        User GetCurrentUser(string email);
     }
 }

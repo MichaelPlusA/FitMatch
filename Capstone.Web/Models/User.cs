@@ -17,10 +17,11 @@ namespace Capstone.Web.Models
         public string Password { get; set; }
 
         [Required(ErrorMessage = "First Name is required")]
-        public string FirstName { get; set; }
+        public string First_Name { get; set; }
 
         [Required(ErrorMessage = "Last Name is required")]
-        public string LastName { get; set; }
-        public string Location { get; set; }
+        public string Last_Name { get; set; }
+        public string User_Location { get; set; }
+        public string Salt { get; set; }
     }
 }

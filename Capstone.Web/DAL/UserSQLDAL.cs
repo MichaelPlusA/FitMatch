@@ -20,19 +20,24 @@ namespace Capstone.Web.DAL
 
         public bool RegisterUser(User newUser)
         {
-            string RegisterUserSQL = "INSERT INTO user_info (email, password, first_name, last_name, user_location) VALUES (@email, @password, @FirstName, @LastName, @Location)";
+            string RegisterUserSQL = "INSERT INTO user_info (email, password, first_name, last_name, user_location, salt) VALUES (@email, @password, @FirstName, @LastName, @Location, @salt)";
             bool check;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 
+                newUser.User_Location = "test";
+                newUser.Salt = "very salty";
+
                 SqlCommand cmd = new SqlCommand(RegisterUserSQL, conn);
                 cmd.Parameters.AddWithValue("@Email", newUser.Email);
                 cmd.Parameters.AddWithValue("@UserID", newUser.UserID);
-                cmd.Parameters.AddWithValue("@Location", newUser.Location);
-                cmd.Parameters.AddWithValue("@FirstName", newUser.FirstName);
-                cmd.Parameters.AddWithValue("@LastName", newUser.LastName);
+                cmd.Parameters.AddWithValue("@Location", newUser.User_Location);
+                cmd.Parameters.AddWithValue("@FirstName", newUser.First_Name);
+                cmd.Parameters.AddWithValue("@LastName", newUser.Last_Name);
+                cmd.Parameters.AddWithValue("@password", newUser.Password);
+                cmd.Parameters.AddWithValue("@salt", newUser.Salt);
 
                 check = cmd.ExecuteNonQuery() > 0 ? true : false;
     
@@ -45,7 +50,7 @@ namespace Capstone.Web.DAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                User result = conn.QueryFirstOrDefault<User>("Select * FROM users WHERE email = @emailValue", new { emailValue = email });
+                User result = conn.QueryFirstOrDefault<User>("Select email, password, salt, first_name, last_name, user_location FROM user_info WHERE email = @emailValue", new { emailValue = email });
                 return result;
             }
         }

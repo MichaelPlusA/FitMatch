@@ -12,7 +12,7 @@ namespace Capstone.Web.Controllers
 {
     public class UserController : Controller
     {
-        private IUserDAL userDal;
+        private readonly IUserDAL userDal;
 
         public UserController(IUserDAL dal)
         {

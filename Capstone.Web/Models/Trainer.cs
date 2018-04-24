@@ -13,5 +13,6 @@ namespace Capstone.Web.Models
         public int YearsExp { get; set; }
         public string Philosophy { get; set; }
         public string Background { get; set; } //Brief - Ex.) Former NBA Player
+        public List<string> Certifications { get; set; }
     }
 }

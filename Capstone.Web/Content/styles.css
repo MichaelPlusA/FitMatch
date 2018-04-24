@@ -1,0 +1,103 @@
+﻿body {
+}
+
+/* Menu ============================================================= */
+.menu-main {
+    background-color: #393939;
+}
+
+    .menu-main ul {
+        padding-left: 10px;
+    }
+/*Logo*/
+.brand-container {
+    padding: 10px;
+    background-color: #393939;
+}
+
+    .brand-container a {
+        color: white;
+        display: inline-block;
+        -moz-transition-property: all;
+        -o-transition-property: all;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -moz-transition-duration: 0.2s;
+        -o-transition-duration: 0.2s;
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+        -moz-transition-timing-function: ease-in;
+        -o-transition-timing-function: ease-in;
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+    }
+
+        .brand-container a:hover {
+            color: #8cc63f;
+            text-decoration: none;
+        }
+
+.brand-initials {
+    font-size: 3.0625em;
+    font-weight: 700;
+    font-style: normal;
+    display: block;
+    line-height: 42px;
+}
+
+.brand-name {
+    font-size: 0.8125em;
+    text-indent: 3px;
+    display: block;
+}
+
+/*Navigation*/
+
+
+
+.nav-item { /*Base color of blue-gray (#7F97B8)*/
+    border-top: 4px solid #7F97B8;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    margin-right: 0.25rem;
+    background-image: linear-gradient(#7F97B8, #7F97B8);
+    background-repeat: no-repeat;
+    transition: background-size .5s, color .5s;
+    -webkit-transition: background-size .5s, color .5s;
+    -moz-transition: background-size .5s, background-color .5s;
+}
+
+    .nav-item a { /*Base color of blue-gray (#7F97B8)*/
+        color: #7F97B8;
+    }
+
+    .nav-item:nth-child(2) { /*Neon Green (#C2EE6C)*/
+        border-top: 4px solid #C2EE6C;
+        background-image: linear-gradient(#C2EE6C, #C2EE6C);
+    }
+
+        .nav-item:nth-child(2) a { /*Neon Green (#C2EE6C)*/
+            color: #C2EE6C;
+        }
+
+    .nav-item:nth-child(3) { /*White*/
+        border-top: 4px solid #FFF;
+        background-image: linear-gradient(#FFF, #FFF);
+    }
+
+        .nav-item:nth-child(3) a { /*White*/
+            color: #FFF;
+        }
+
+    .nav-item:hover {
+        background-size: 100% 100%;
+    }
+
+        .nav-item:hover a {
+            color: #393939;
+        }
+
+.expand-nav {
+    background-size: 100% 0%;
+    background-position: 50% 0%;
+}

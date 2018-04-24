@@ -28,7 +28,7 @@ namespace Capstone.Web.Controllers
                 return View("Login", model);
             }
 
-            User user = userDal.GetUser(model.Email);
+            User user = userDal.GetCurrentUser(model.Email);
 
             //if user does not exist or password is wrong
             if(user == null || user.Password != model.Password)

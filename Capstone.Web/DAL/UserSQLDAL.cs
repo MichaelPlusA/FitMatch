@@ -20,7 +20,7 @@ namespace Capstone.Web.DAL
 
         public bool RegisterUser(User newUser)
         {
-            string RegisterUserSQL = "";
+            string RegisterUserSQL = "INSERT INTO user_info (username, password) VALUES (@email, @password, @FirstName, @LastName, @Location)";
             bool check;
 
             using (SqlConnection conn = new SqlConnection(connectionString))

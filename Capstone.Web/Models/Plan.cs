@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Capstone.Web.Models
 {
-    public class WorkoutPlan
+    public class Plan
     {
     }
 }

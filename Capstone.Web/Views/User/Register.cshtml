@@ -7,7 +7,7 @@
                 <div id="signup">
                     <h1>Sign Up for Free</h1>
 
-                    <form action="/" method="post">
+                    <form action="~/Controllers/User/Register" method="post">
 
                         <div class="top-row">
                             <div class="field-wrap">
@@ -39,29 +39,21 @@
                             </label>
                             <input type="text" required autocomplete="off" />
                         </div>
-                        <div class="field-wrap">
-                            <input type="checkbox" name="is-trainer" id="is-trainer">
-                            <label for="is-trainer">Are you registering as a profesional trainer?</label>
-
-                            <div class="reveal-if-active">
-                                Other stuff.
-                            </div>
-                        </div>
-
-                            <button type="submit" class="button button-block">Get Started</button>
-
-                    <div class="field-wrap">
-                        <label>
-                            Set A Password<span class="req">*</span>
-                        </label>
-                        <input type="password" required autocomplete="off" />
                     </div>
+                    <div class="field-wrap">
+                        <input type="checkbox" name="is-trainer" id="is-trainer">
+                        <label for="is-trainer">Are you registering as a profesional trainer?</label>
 
+                        <div class="reveal-if-active">
+                            Other stuff.
+                        </div>
+                    </div>
                     <button type="submit" class="button button-block">Get Started</button>
-
+            </form>
         </div> <!-- /form -->
 
     </div>
+</div>
 <script>
     var FormStuff = {
 

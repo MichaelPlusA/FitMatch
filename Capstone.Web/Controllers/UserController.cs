@@ -14,6 +14,11 @@ namespace Capstone.Web.Controllers
     {
         private IUserDAL userDal;
 
+        public UserController(IUserDAL dal)
+        {
+            userDal = dal;
+        }
+
         // GET: User
         public ActionResult Login()
         {

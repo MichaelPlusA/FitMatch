@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Capstone.Web.DAL.Interfaces
 {
-    interface IUserDAL
+    public interface IUserDAL
     {
         bool RegisterUser(User newUser);
         User GetCurrentUser(string email);

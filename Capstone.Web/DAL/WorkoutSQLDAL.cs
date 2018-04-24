@@ -37,25 +37,25 @@ namespace Capstone.Web.DAL
             return check;
         }
 
-        public List<Exercise> GetAllExercises()
-        {
-            string GetAllExercisesDAL = "";
+        //public List<Exercise> GetAllExercises()
+        //{
+        //    string GetAllExercisesDAL = "";
 
-            List<Exercise> exercises = new List<Exercise>();
+        //    List<Exercise> exercises = new List<Exercise>();
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(//)
-            }
-        }
+        //    using (SqlConnection conn = new SqlConnection(connectionString))
+        //    {
+        //        conn.Open();
+        //        SqlCommand cmd = new SqlCommand(//)
+        //    }
+        //}
 
-        public Exercise GetExerciseFromReader(SqlDataReader reader)
-        {
-            Exercise exercise = new Exercise()
-            {
+        //public Exercise GetExerciseFromReader(SqlDataReader reader)
+        //{
+        //    Exercise exercise = new Exercise()
+        //    {
 
-            };
-        }
+        //    };
+        //}
     }
 }

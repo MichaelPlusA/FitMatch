@@ -1,43 +1,27 @@
-﻿$('#registration .form').find('input, textarea').on('keyup blur focus', function (e) {
+﻿var FormStuff = {
 
-    var $this = $(this),
-        label = $this.prev('label');
+    init: function () {
+        this.applyConditionalRequired();
+        this.bindUIActions();
+    },
 
-    if (e.type === 'keyup') {
-        if ($this.val() === '') {
-            label.removeClass('active highlight');
-        } else {
-            label.addClass('active highlight');
-        }
-    } else if (e.type === 'blur') {
-        if ($this.val() === '') {
-            label.removeClass('active highlight');
-        } else {
-            label.removeClass('highlight');
-        }
-    } else if (e.type === 'focus') {
+    bindUIActions: function () {
+        $("input[type='radio'], input[type='checkbox']").on("change", this.applyConditionalRequired);
+    },
 
-        if ($this.val() === '') {
-            label.removeClass('highlight');
-        }
-        else if ($this.val() !== '') {
-            label.addClass('highlight');
-        }
+    applyConditionalRequired: function () {
+
+        $(".require-if-active").each(function () {
+            var el = $(this);
+            if ($(el.data("require-pair")).is(":checked")) {
+                el.prop("required", true);
+            } else {
+                el.prop("required", false);
+            }
+        });
+
     }
 
-});
+};
 
-$('#registration .tab a').on('click', function (e) {
-
-    e.preventDefault();
-
-    $(this).parent().addClass('active');
-    $(this).parent().siblings().removeClass('active');
-
-    target = $(this).attr('href');
-
-    $('.tab-content > div').not(target).hide();
-
-    $(target).fadeIn(600);
-
-});
+FormStuff.init();

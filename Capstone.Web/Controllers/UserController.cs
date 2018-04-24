@@ -44,7 +44,18 @@ namespace Capstone.Web.Controllers
             }
 
             return RedirectToAction("Index", "Home");
-           
+        }
+
+        public ActionResult Register()
+        {
+            return View("Register");
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterViewModel user)
+        {
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

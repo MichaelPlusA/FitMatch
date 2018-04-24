@@ -203,46 +203,7 @@
         box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
     }
 
-    #registration .tab-group {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 40px 0;
-    }
-
-        #registration .tab-group:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        #registration .tab-group li a {
-            display: block;
-            text-decoration: none;
-            padding: 15px;
-            background: rgba(160, 179, 176, 0.25);
-            color: #a0b3b0;
-            font-size: 20px;
-            float: left;
-            width: 50%;
-            text-align: center;
-            cursor: pointer;
-            transition: .5s ease;
-        }
-
-            #registration .tab-group li a:hover {
-                background: #179b77;
-                color: #ffffff;
-            }
-
-        #registration .tab-group .active a {
-            background: #C2EE6C;
-            color: #ffffff;
-        }
-
-    #registration .tab-content > div:last-child {
-        display: none;
-    }
-
+   
     #registration h1, #login h1 {
         text-align: center;
         color: #ffffff;
@@ -300,6 +261,16 @@
             outline: 0;
             border-color: #C2EE6C;
         }
+
+#registration [type="radio"]:checked ~ &,
+#registration [type="checkbox"]:checked ~ & {
+    opacity: 1;
+    max-height: 100px;
+    padding: 10px 20px;
+    transform: scale(1);
+    overflow: visible;
+}
+
 
     #registration textarea, #login textarea {
         border: 2px solid #C2EE6C;

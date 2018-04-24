@@ -12,11 +12,11 @@ namespace Capstone.Web.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IUserDAL userDal;
+        private IUserDAL _dal;
 
         public UserController(IUserDAL dal)
         {
-            userDal = dal;
+            _dal = dal;
         }
 
         // GET: User
@@ -33,7 +33,7 @@ namespace Capstone.Web.Controllers
                 return View("Login", model);
             }
 
-            User user = userDal.GetCurrentUser(model.Email);
+            User user = _dal.GetCurrentUser(model.Email);
 
             //if user does not exist or password is wrong
             if(user == null || user.Password != model.Password)
@@ -57,8 +57,9 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(RegisterViewModel user)
+        public ActionResult Register(User user)
         {
+            bool isAdded = _dal.RegisterUser(user);
 
             return RedirectToAction("Index", "Home");
         }

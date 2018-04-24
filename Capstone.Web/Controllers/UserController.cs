@@ -54,6 +54,7 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel user)
         {
+
             return RedirectToAction("Index", "Home");
         }
     }

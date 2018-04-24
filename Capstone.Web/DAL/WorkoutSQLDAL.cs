@@ -37,6 +37,8 @@ namespace Capstone.Web.DAL
             return check;
         }
 
+
+
         //public List<Exercise> GetAllExercises()
         //{
         //    string GetAllExercisesDAL = "";

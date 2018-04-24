@@ -27,13 +27,17 @@ namespace Capstone.Web.DAL
             {
                 conn.Open();
 
-                newUser.User_Location = "test";
+                //newUser.User_Location = "test";
                 newUser.Salt = "very salty";
 
                 SqlCommand cmd = new SqlCommand(RegisterUserSQL, conn);
                 cmd.Parameters.AddWithValue("@Email", newUser.Email);
                 cmd.Parameters.AddWithValue("@UserID", newUser.UserID);
-                cmd.Parameters.AddWithValue("@Location", newUser.User_Location);
+                SqlParameter locationParam = cmd.Parameters.AddWithValue("@Location", newUser.User_Location);
+                if(newUser.User_Location == null)
+                {
+                    locationParam.Value = DBNull.Value;
+                }
                 cmd.Parameters.AddWithValue("@FirstName", newUser.First_Name);
                 cmd.Parameters.AddWithValue("@LastName", newUser.Last_Name);
                 cmd.Parameters.AddWithValue("@password", newUser.Password);

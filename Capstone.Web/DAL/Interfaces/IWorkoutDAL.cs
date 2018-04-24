@@ -5,7 +5,8 @@ using System.Web;
 
 namespace Capstone.Web.DAL.Interfaces
 {
-    public class IWorkoutDAL
+    public interface IWorkoutDAL
     {
+        bool AddExercise(string name, string description, string videoLink, string type);
     }
 }

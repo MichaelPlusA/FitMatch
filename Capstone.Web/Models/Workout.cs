@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Capstone.Web.Models
 {
-    public class Workout : Plan
+    public class Workout
     {
         public List<CardioExercise> RunningAndStuff { get; set; }
         public List<StrengthExercise> GetBig { get; set; }

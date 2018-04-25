@@ -18,30 +18,13 @@ namespace Capstone.Web.DAL
             this.connectionString = connectionString;
         }
 
-        #region jon
-        public bool CreateTrainerProfile(Trainer trainMaster)
-        {
-            bool check;
-            string createProfileSQL = "";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-
-                SqlCommand cmd = new SqlCommand(createProfileSQL, conn);
-                cmd.Parameters.AddWithValue("@", trainMaster.First_Name);
-                cmd.Parameters.AddWithValue("@", trainMaster.Last_Name);
-                cmd.Parameters.AddWithValue("@", trainMaster.Email);
-                cmd.Parameters.AddWithValue("@", trainMaster.Password);
-                cmd.Parameters.AddWithValue("@", trainMaster.Salt);
-                cmd.Parameters.AddWithValue("@", trainMaster.)
-
-
-
-            }
-        }
-        #endregion
-
+        /// <summary>
+        /// Search for trainer(s) by last name (required) and first name (optional), calls the DB for users with trainer IDs- PC
+        /// </summary>
+        /// <param name="trainerFirstName"></param>
+        /// <param name="trainerLastName"></param>
+        /// <returns></returns>
         public List<User> TrainerProfileSearchName(string trainerFirstName, string trainerLastName)
         {
             List<User> SearchList = new List<User>();
@@ -81,6 +64,11 @@ namespace Capstone.Web.DAL
             return SearchList;
         }
 
+        /// <summary>
+        /// Search for trainer(s) by price per hour, calls the DB for users with trainer IDs and joins trainer table - PC
+        /// </summary>
+        /// <param name="pricePerHour"></param>
+        /// <returns></returns>
         public List<User> TrainerProfileSearchPrice (int pricePerHour)
         {
             List<User> SearchList = new List<User>();
@@ -111,6 +99,11 @@ namespace Capstone.Web.DAL
             return SearchList;
         }
 
+        /// <summary>
+        /// Helper method to create user objects from the DB - PC
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
         private User MapRowToUser(SqlDataReader reader)
         {
             return new User()

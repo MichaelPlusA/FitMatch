@@ -146,6 +146,8 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TraineeController.cs" />
+    <Compile Include="Controllers\TrainerController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\Interfaces\IProfileDAL.cs" />
     <Compile Include="DAL\Interfaces\IUserDAL.cs" />
@@ -180,7 +182,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
-    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Trainee\Search.cshtml" />
+    <Content Include="Views\Trainer\Profile.cshtml" />
+    <Content Include="Views\Trainee\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

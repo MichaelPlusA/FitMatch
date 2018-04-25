@@ -18,6 +18,7 @@ namespace Capstone.Web.DAL
             this.connectionString = connectionString;
         }
 
+        //non-trainer registration function
         public bool RegisterUser(User newUser)
         {
             string RegisterUserSQL = "INSERT INTO user_info (email, password, first_name, last_name, user_location, salt) VALUES (@email, @password, @FirstName, @LastName, @Location, @salt)";
@@ -46,6 +47,7 @@ namespace Capstone.Web.DAL
                 return check;
         }
 
+        //trainer registration function
         public bool CreateTrainer(Trainer trainMaster)
         {
             bool check;
@@ -83,6 +85,7 @@ namespace Capstone.Web.DAL
             return check;
         }
 
+        //login function
         public User GetCurrentUser(string email)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

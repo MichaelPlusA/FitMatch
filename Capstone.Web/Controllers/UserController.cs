@@ -47,7 +47,7 @@ namespace Capstone.Web.Controllers
                 FormsAuthentication.SetAuthCookie(user.Email, true);
                 Session[SessionKeys.Email] = user.Email;
                 Session[SessionKeys.UserID] = user.UserID;
-                Session[SessionKeys.TrainerID] = user.Trainer_ID;
+                Session[SessionKeys.Trainer_ID] = user.Trainer_ID;
             }
 
             if(user.Trainer_ID == null)

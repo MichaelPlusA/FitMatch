@@ -220,7 +220,7 @@
         transition: all 0.25s ease;
         -webkit-backface-visibility: hidden;
         pointer-events: none;
-        font-size: 22px;
+        font-size: 1.375rem;
     }
 
         #registration label .req, #login label .req {
@@ -232,7 +232,7 @@
             -webkit-transform: translateY(50px);
             transform: translateY(50px);
             left: 2px;
-            font-size: 14px;
+            font-size: 0.875rem;
         }
 
             #registration label.active .req, #login label.active .req {
@@ -247,7 +247,6 @@
         font-size: 22px;
         display: block;
         width: 100%;
-        height: 100%;
         padding: 5px 10px;
         background: none;
         background-image: none;
@@ -262,14 +261,7 @@
             border-color: #C2EE6C;
         }
 
-#registration [type="radio"]:checked ~ &,
-#registration [type="checkbox"]:checked ~ & {
-    opacity: 1;
-    max-height: 100px;
-    padding: 10px 20px;
-    transform: scale(1);
-    overflow: visible;
-}
+
 
 
     #registration textarea, #login textarea {
@@ -326,3 +318,6 @@
         margin-top: -20px;
         text-align: right;
     }
+
+    /*Check Box*/
+

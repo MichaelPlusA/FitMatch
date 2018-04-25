@@ -12,6 +12,7 @@ namespace Capstone.Web.Models
         public double PricePerHour { get; set; }
         public int YearsExp { get; set; }
         public string Philosophy { get; set; }
+        public string ClientSuccessStories { get; set; }
         public List<string> Certifications { get; set; }
     }
 }

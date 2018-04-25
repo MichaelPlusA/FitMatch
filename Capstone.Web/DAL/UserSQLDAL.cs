@@ -91,7 +91,7 @@ namespace Capstone.Web.DAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                User result = conn.QueryFirstOrDefault<User>("Select email, password, salt, first_name, last_name, user_location FROM user_info WHERE email = @emailValue", new { emailValue = email });
+                User result = conn.QueryFirstOrDefault<User>("Select email, password, salt, first_name, last_name, user_location, trainer_id FROM user_info WHERE email = @emailValue", new { emailValue = email });
                 return result;
             }
         }

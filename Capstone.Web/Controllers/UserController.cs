@@ -47,10 +47,15 @@ namespace Capstone.Web.Controllers
                 FormsAuthentication.SetAuthCookie(user.Email, true);
                 Session[SessionKeys.Email] = user.Email;
                 Session[SessionKeys.UserID] = user.UserID;
-                Session[SessionKeys.TrainerID] = user.TrainerID;
+                Session[SessionKeys.TrainerID] = user.Trainer_ID;
             }
 
-            return RedirectToAction("Index", "Home");
+            if(user.Trainer_ID == null)
+            {
+                return RedirectToAction("Index", "Trainee");
+            }
+
+            return RedirectToAction("Index", "Trainer");
         }
 
         public ActionResult Register()

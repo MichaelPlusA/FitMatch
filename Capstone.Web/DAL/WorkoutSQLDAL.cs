@@ -19,7 +19,8 @@ namespace Capstone.Web.DAL
 
         public bool AddExercise(string name, string description, string videoLink, string type)
         {
-            string AddExerciseDAL = "";
+            //this is not finished
+            string AddExerciseDAL = "INSERT INTO exercises (exercise_name, exercise_description, vide_link, trainer_id) VALUES (@name, @description, @videolink, @type)";
             bool check;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -38,27 +39,45 @@ namespace Capstone.Web.DAL
             return check;
         }
 
+        public bool AddWorkout(Workout Moves)
+        {
+            //workouts might need a exerciseID in the SQL table
+            //this is not done
+            string AddWorkoutDAL = "INSERT INTO workout (workout_name, additional_notes, plan_id)";
+            bool check;
 
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
 
-        //public List<Exercise> GetAllExercises()
-        //{
-        //    string GetAllExercisesDAL = "";
+                SqlCommand cmd = new SqlCommand(AddWorkoutDAL, conn);
+                cmd.Parameters.AddWithValue("@", Moves.GetBig);
+                cmd.Parameters.AddWithValue("@", Moves.RunningAndStuff);
 
-        //    List<Exercise> exercises = new List<Exercise>();
+                check = cmd.ExecuteNonQuery() > 0 ? true : false;
+            }
 
-        //    using (SqlConnection conn = new SqlConnection(connectionString))
-        //    {
-        //        conn.Open();
-        //        SqlCommand cmd = new SqlCommand(//)
-        //    }
-        //}
+            return check;
+        }
 
-        //public Exercise GetExerciseFromReader(SqlDataReader reader)
-        //{
-        //    Exercise exercise = new Exercise()
-        //    {
+        public bool AddPlan(Plan insertPlan)
+        {
+            string AddPlanDAL = "INSERT INTO workout_plan (trainer_id, trainee_id, plan_notes) VALUES (@trainer_id, @trainee_id, @plan_notes)";
+            bool check;
 
-        //    };
-        //}
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(AddPlanDAL, conn);
+                cmd.Parameters.AddWithValue("@trainee_id", insertPlan.ForTrainee);
+                cmd.Parameters.AddWithValue("@trainer_id", insertPlan.ByTrainer);
+                cmd.Parameters.AddWithValue("@plan_notes", insertPlan.Notes);
+
+                check = cmd.ExecuteNonQuery() > 0 ? true : false;
+            }
+
+            return check;
+        }
     }
 }

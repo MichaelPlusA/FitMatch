@@ -52,7 +52,7 @@ namespace Capstone.Web.DAL
         {
             bool check;
             string createProfileSQL = "INSERT INTO trainer (email, password, salt, first_name, last_name, user_location, price_per_hour, certifications, experience, client_success_stories, exercise_philosophy, additional_notes) " +
-                "VALUES (@email, @password, @salt, @first_name, @last_name, @user_location, @certifications, @experience, @client_success_stories, @exercise_philosophy, @additional_notes);";
+                "VALUES (@email, @password, @salt, @first_name, @last_name, @user_location, @certifications, @experience, @client_success_stories, @exercise_philosophy, @additional_notes)";
 
             string updateUser = "UPDATE user_info set trainer_id = @mostRecent where email = @email2";
 

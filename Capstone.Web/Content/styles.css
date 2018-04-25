@@ -321,3 +321,30 @@
 
     /*Check Box*/
 
+
+/* CUSTOM CHECKBOX */
+.checkbox {
+    width: 100% !important;
+}
+.checkbox-label {
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.25s ease;
+    -webkit-backface-visibility: hidden;
+    pointer-events: none;
+    font-size: 1.375rem;
+    margin-left: 2%;
+}
+input[type=checkbox] {
+    display: inline-block;
+    position: relative;
+    border: 2px solid white;
+    height: 100%;
+    display:inline !important;
+}
+.padd-LR-0 {
+    padding-left: 0;
+    padding-right: 0;
+}
+.padd-R-0 {
+    padding-right: 0;
+}

@@ -31,11 +31,7 @@ namespace Capstone.Web.DAL
                 SqlCommand cmd = new SqlCommand(RegisterUserSQL, conn);
                 cmd.Parameters.AddWithValue("@Email", newUser.Email);
                 cmd.Parameters.AddWithValue("@UserID", newUser.UserID);
-                SqlParameter locationParam = cmd.Parameters.AddWithValue("@Location", newUser.User_Location);
-                if(newUser.User_Location == null)
-                {
-                    locationParam.Value = DBNull.Value;
-                }
+                cmd.Parameters.AddWithValue("@Location", newUser.User_Location);
                 cmd.Parameters.AddWithValue("@FirstName", newUser.First_Name);
                 cmd.Parameters.AddWithValue("@LastName", newUser.Last_Name);
                 cmd.Parameters.AddWithValue("@password", newUser.Password);
@@ -48,38 +44,41 @@ namespace Capstone.Web.DAL
         }
 
         //trainer registration function
-        public bool CreateTrainer(Trainer trainMaster)
+        public bool RegisterUser(Trainer trainMaster)
         {
             bool check;
-            string createProfileSQL = "INSERT INTO trainer (email, password, salt, first_name, last_name, user_location, price_per_hour, certifications, experience, client_success_stories, exercise_philosophy, additional_notes) " +
-                "VALUES (@email, @password, @salt, @first_name, @last_name, @user_location, @certifications, @experience, @client_success_stories, @exercise_philosophy, @additional_notes)";
 
-            string updateUser = "UPDATE user_info set trainer_id = @mostRecent where email = @email2";
+            string CreateUserSQL = "INSERT INTO user_info (email, password, salt, trainer_id, first_name, last_name) " +
+                "VALUES (@email, @password, @salt, @first_name, @trainer_id, @last_name)";
+
+            string createProfileSQL = "INSERT INTO trainer (price_per_hour, certifications, experience, client_success_stories, exercise_philosophy, additional_notes) " +
+                "VALUES (@price_per_hour, @certifications, @experience, @client_success_stories, @exercise_philosophy, @additional_notes)";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand(createProfileSQL, conn);
+                SqlCommand cmd2 = new SqlCommand(createProfileSQL, conn);
+                
+                cmd2.Parameters.AddWithValue("@price_per_hour", trainMaster.PricePerHour);
+                cmd2.Parameters.AddWithValue("@exercise_philosophy", trainMaster.Philosophy);
+                cmd2.Parameters.AddWithValue("@additional_notes", trainMaster.Additional_notes);
+                cmd2.Parameters.AddWithValue("@experience", trainMaster.YearsExp);
+                cmd2.Parameters.AddWithValue("@certifications", trainMaster.Certifications);
+                cmd2.Parameters.AddWithValue("@client_success_stories", trainMaster.ClientSuccessStories);
+
+                int mostRecent = (int)(cmd2.ExecuteScalar()); 
+
+                SqlCommand cmd = new SqlCommand(CreateUserSQL, conn);
                 cmd.Parameters.AddWithValue("@email", trainMaster.Email);
                 cmd.Parameters.AddWithValue("@password", trainMaster.Password);
                 cmd.Parameters.AddWithValue("@salt", trainMaster.Salt);
                 cmd.Parameters.AddWithValue("@first_name", trainMaster.First_Name);
                 cmd.Parameters.AddWithValue("@last_name", trainMaster.Last_Name);
-                cmd.Parameters.AddWithValue("@user_location", trainMaster.User_Location);
-                cmd.Parameters.AddWithValue("@exercise_philosophy", trainMaster.Philosophy);
-                cmd.Parameters.AddWithValue("@price_per_hour", trainMaster.PricePerHour);
-                cmd.Parameters.AddWithValue("@additional_notes", trainMaster.Additional_notes);
-                cmd.Parameters.AddWithValue("@experience", trainMaster.YearsExp);
-                cmd.Parameters.AddWithValue("@certifications", trainMaster.Certifications);
-                cmd.Parameters.AddWithValue("@client_success_stories", trainMaster.ClientSuccessStories);
+                cmd.Parameters.AddWithValue("@trainer_id", mostRecent);
 
                 check = cmd.ExecuteNonQuery() > 0 ? true : false;
-                int mostRecent = Convert.ToInt32(cmd.ExecuteScalar());
-
-                SqlCommand cmd2 = new SqlCommand(updateUser, conn);
-                cmd2.Parameters.AddWithValue("@mostRecent", mostRecent);
-                cmd2.Parameters.AddWithValue("@email2", trainMaster.Email);
+                   
             }
 
             return check;

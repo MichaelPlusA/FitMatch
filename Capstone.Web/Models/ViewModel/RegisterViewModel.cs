@@ -20,5 +20,14 @@ namespace Capstone.Web.Models.ViewModel
 
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
+
+        public bool Is_trainer { get; set; } = false;
+
+        public string Additional_notes { get; set; } //Lengthy
+        public double PricePerHour { get; set; } = 0.0;
+        public int YearsExp { get; set; } = 0;
+        public string Philosophy { get; set; } = "";
+        public string ClientSuccessStories { get; set; } = "";
+        public string Certifications { get; set; } = "";
     }
 }

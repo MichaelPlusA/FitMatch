@@ -66,23 +66,40 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel user)
         {
-            User newUser = new User(user);
-            bool isAdded = _dal.RegisterUser(newUser);
-
-            if(isAdded)
+            if(user.Is_trainer)
             {
-                LoginViewModel loginVM = new LoginViewModel()
-                {
-                    Email = user.Email,
-                    Password = user.Password,
-                };
+                Trainer newtrainer = new Trainer(user);
+                bool isAdded = _dal.RegisterUser(newtrainer);
 
-                // TODO: redirect to logged in home page
-                return Login(loginVM);
+                if(isAdded)
+                {
+                    LoginToAccount(newtrainer);
+                }
+            } 
+            else
+            {
+                User newUser = new User(user);
+                bool isAdded = _dal.RegisterUser(newUser);
+
+                if (isAdded)
+                {
+                    LoginToAccount(newUser);
+                }
             }
 
             return View("Register");
-        
+        }
+
+        private ActionResult LoginToAccount(User user)
+        {
+            LoginViewModel loginVM = new LoginViewModel()
+            {
+                Email = user.Email,
+                Password = user.Password,
+            };
+
+            // TODO: redirect to logged in home page
+            return Login(loginVM);
         }
     }
 }

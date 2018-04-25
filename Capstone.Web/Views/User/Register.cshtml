@@ -39,18 +39,11 @@
                             </label>
                             <input type="password" name="Password" required autocomplete="off" />
                         </div>
-                   
-                <div class="field-wrap">
-                    <input type="checkbox" name="is-trainer" id="is-trainer">
-                    <label for="is-trainer">Are you registering as a profesional trainer?</label>
-
-                    <div class="reveal-if-active">
-                        Other stuff.
-                    </div>
-                </div>
 
 
-                            <button type="submit" class="button button-block">Get Started</button>
+
+
+                        <button type="submit" class="button button-block">Get Started</button>
 
                     </form>
 
@@ -62,32 +55,47 @@
     </div>
 
 <script>
-    var FormStuff = {
+    $('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
-        init: function () {
-            this.applyConditionalRequired();
-            this.bindUIActions();
-        },
+        var $this = $(this),
+            label = $this.prev('label');
 
-        bindUIActions: function () {
-            $("input[type='radio'], input[type='checkbox']").on("change", this.applyConditionalRequired);
-        },
+        if (e.type === 'keyup') {
+            if ($this.val() === '') {
+                label.removeClass('active highlight');
+            } else {
+                label.addClass('active highlight');
+            }
+        } else if (e.type === 'blur') {
+            if ($this.val() === '') {
+                label.removeClass('active highlight');
+            } else {
+                label.removeClass('highlight');
+            }
+        } else if (e.type === 'focus') {
 
-        applyConditionalRequired: function () {
-
-            $(".require-if-active").each(function () {
-                var el = $(this);
-                if ($(el.data("require-pair")).is(":checked")) {
-                    el.prop("required", true);
-                } else {
-                    el.prop("required", false);
-                }
-            });
-
+            if ($this.val() === '') {
+                label.removeClass('highlight');
+            }
+            else if ($this.val() !== '') {
+                label.addClass('highlight');
+            }
         }
 
-    };
+    });
 
-    FormStuff.init();
+    $(document).ready(function () {
+        $('input[type="checkbox"]').click(function () {
+            if ($(this).attr("value") == "checkbox") {
+                $("#reveal-if-active").toggle();
+            }
+        });
+    });
+
+    //$('#checkbox-trainer').change(function () {
+    //    $(this).next('reveal-if-active').toggle();
+    //});
+
+
 </script>
 

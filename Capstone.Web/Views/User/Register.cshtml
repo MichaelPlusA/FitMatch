@@ -42,20 +42,68 @@
                         <div class="field-wrap">
                             <div class="row">
                                 <div class="col-sm-1 col-md-1 col-lg-1 padd-R-0">
-                                    <input class="checkbox" type="checkbox" name="is-trainer" />
+                                    <input class="checkbox" type="checkbox" name="is-trainer" data-toggle="collapse" href="#is-trainer-active" role="button" aria-expanded="false" aria-controls="collapseExample" />
                                 </div>
                                 <div class="col-sm-10 col-md-10 col-lg-10 padd-LR-0">
                                     <span class="checkbox-label">Register as a Trainer?</span>
-                                    </div>
                                 </div>
-
-
                             </div>
 
+                        </div>
+                        <div class="field-wrap">
+                            <div class="row">
+                                <div class="collapse" id="is-trainer-active">
+                                    <div class="card card-body card-dark">
+                                        <div class="top-row">
+                                            <div class="field-wrap">
+                                                <label>
+                                                    <span class="req">$</span>Price Per Hour
+                                                </label>
+                                                <input type="text" name="price_per_hour" autocomplete="off" />
+                                            </div>
+
+
+                                            <div class="field-wrap">
+                                                <label>
+                                                    Certification
+                                                </label>
+                                                <input type="text" name="certifications" autocomplete="off" />
+                                            </div>
+                                        </div>
+                                        <div class="field-wrap">
+                                            <label class="lrg-label">
+                                                Experience
+                                            </label>
+                                            <textarea class="form-control" id="experience" rows="3"></textarea>
+                                        </div>
+                                        <div class="field-wrap">
+                                            <label class="lrg-label">
+                                                Client Success Stories
+                                            </label>
+                                            <textarea class="form-control" id="client_success_stories" rows="3"></textarea>
+                                        </div>
+                                        <div class="field-wrap">
+                                            <label class="lrg-label">
+                                                Exercise Philosophy
+                                            </label>
+                                            <textarea class="form-control" id="exercise_philosophy" rows="3"></textarea>
+                                        </div>
+                                        <div class="field-wrap">
+                                            <label class="x-lrg-label">
+                                                Other Notes
+                                            </label>
+                                            <textarea class="form-control" id="additional_notes" rows="5"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
 
-                        <button type="submit" class="button button-block">Get Started</button>
+
+                                <button type="submit" class="button button-block">Get Started</button>
 
                     </form>
 
@@ -95,19 +143,7 @@
         }
 
     });
-
-    $(document).ready(function () {
-        $('input[type="checkbox"]').click(function () {
-            if ($(this).attr("value") == "checkbox") {
-                $("#reveal-if-active").toggle();
-            }
-        });
-    });
-
-    //$('#checkbox-trainer').change(function () {
-    //    $(this).next('reveal-if-active').toggle();
-    //});
-
+    
 
 </script>
 

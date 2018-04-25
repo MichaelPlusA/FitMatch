@@ -34,9 +34,10 @@ namespace Capstone.Web.Controllers
             }
 
             User user = _dal.GetCurrentUser(model.Email);
+            bool isValidPassword = user.isValidPassword(model.Password);
 
             //if user does not exist or password is wrong
-            if(user == null || user.Password != model.Password)
+            if(user == null || !isValidPassword)
             {
                 ModelState.AddModelError("invalid credentials", "An invalid username or password was entered");
                 return View("Login", model);
@@ -46,6 +47,7 @@ namespace Capstone.Web.Controllers
                 FormsAuthentication.SetAuthCookie(user.Email, true);
                 Session[SessionKeys.Email] = user.Email;
                 Session[SessionKeys.UserID] = user.UserID;
+                Session[SessionKeys.TrainerID] = user.TrainerID;
             }
 
             return RedirectToAction("Index", "Home");
@@ -57,11 +59,25 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(User user)
+        public ActionResult Register(RegisterViewModel user)
         {
-            bool isAdded = _dal.RegisterUser(user);
+            User newUser = new User(user);
+            bool isAdded = _dal.RegisterUser(newUser);
 
-            return RedirectToAction("Index", "Home");
+            if(isAdded)
+            {
+                LoginViewModel loginVM = new LoginViewModel()
+                {
+                    Email = user.Email,
+                    Password = user.Password,
+                };
+
+                // TODO: redirect to logged in home page
+                return Login(loginVM);
+            }
+
+            return View("Register");
+        
         }
     }
 }

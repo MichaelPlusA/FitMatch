@@ -78,6 +78,7 @@ namespace Capstone.Web.DAL
                         SearchList.Add(userToAdd);
                     }
                 }
+
             }
             return SearchList;
         }

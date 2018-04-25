@@ -34,9 +34,9 @@ namespace Capstone.Web.DAL
                 cmd.Parameters.AddWithValue("@", trainMaster.Email);
                 cmd.Parameters.AddWithValue("@", trainMaster.Password);
                 cmd.Parameters.AddWithValue("@", trainMaster.Salt);
-                cmd.Parameters.AddWithValue("@", trainMaster.)
+                cmd.Parameters.AddWithValue("@", trainMaster.) 
 
-               
+
             }
         }
         #endregion

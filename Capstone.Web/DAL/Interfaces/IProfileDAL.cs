@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Capstone.Web.DAL.Interfaces
 {
-    interface IProfileDAL
+    public interface IProfileDAL
     {
     }
 }

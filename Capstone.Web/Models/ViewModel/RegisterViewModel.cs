@@ -10,10 +10,10 @@ namespace Capstone.Web.Models.ViewModel
     public class RegisterViewModel
     {
         [Required(ErrorMessage = "First Name is required")]
-        public string FirstName { get; set; }
+        public string First_Name { get; set; }
 
         [Required(ErrorMessage = "Last Name is required")]
-        public string LastName { get; set; }
+        public string Last_Name { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }

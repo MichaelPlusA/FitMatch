@@ -28,7 +28,7 @@ namespace Capstone.Web.DAL
                 conn.Open();
 
                 //newUser.User_Location = "test";
-                newUser.Salt = "very salty";
+                //newUser.Salt = "very salty";
 
                 SqlCommand cmd = new SqlCommand(RegisterUserSQL, conn);
                 cmd.Parameters.AddWithValue("@Email", newUser.Email);
@@ -57,11 +57,6 @@ namespace Capstone.Web.DAL
                 User result = conn.QueryFirstOrDefault<User>("Select email, password, salt, first_name, last_name, user_location FROM user_info WHERE email = @emailValue", new { emailValue = email });
                 return result;
             }
-        }
-
-        public User GetUser(string email)
-        {
-            throw new NotImplementedException();
         }
     }
 }

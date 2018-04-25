@@ -27,9 +27,6 @@ namespace Capstone.Web.DAL
             {
                 conn.Open();
 
-                //newUser.User_Location = "test";
-                //newUser.Salt = "very salty";
-
                 SqlCommand cmd = new SqlCommand(RegisterUserSQL, conn);
                 cmd.Parameters.AddWithValue("@Email", newUser.Email);
                 cmd.Parameters.AddWithValue("@UserID", newUser.UserID);

@@ -47,6 +47,7 @@ namespace Capstone.Web.Controllers
                 FormsAuthentication.SetAuthCookie(user.Email, true);
                 Session[SessionKeys.Email] = user.Email;
                 Session[SessionKeys.UserID] = user.UserID;
+                Session[SessionKeys.TrainerID] = user.TrainerID;
             }
 
             return RedirectToAction("Index", "Home");
@@ -63,8 +64,20 @@ namespace Capstone.Web.Controllers
             User newUser = new User(user);
             bool isAdded = _dal.RegisterUser(newUser);
 
-            // TODO: redirect to logged in home page
-            return RedirectToAction("Index", "Home");
+            if(isAdded)
+            {
+                LoginViewModel loginVM = new LoginViewModel()
+                {
+                    Email = user.Email,
+                    Password = user.Password,
+                };
+
+                // TODO: redirect to logged in home page
+                return Login(loginVM);
+            }
+
+            return View("Register");
+        
         }
     }
 }

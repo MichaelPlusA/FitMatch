@@ -31,6 +31,7 @@ namespace Capstone.Web
             string connectionString = ConfigurationManager.ConnectionStrings["TrainerMatch"].ConnectionString; ; //TODO: Insert Connection String to your database
 
             kernel.Bind<IUserDAL>().To<UserSQLDAL>().WithConstructorArgument("connectionString", connectionString);
+            kernel.Bind<IProfileDAL>().To<ProfileSQLDAL>().WithConstructorArgument("connectionString", connectionString);
 
             return kernel;
         }

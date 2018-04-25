@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+<form action="/Home/Search" method="get">
+    <label>Search Type</label>
+    <select name="SearchType">
+        <option value="name">Name</option>
+        <option value="email">Email</option>
+    </select>
+    <input type="type" name="SearchString" />
+    <button type="submit">Search</button>
+</form>

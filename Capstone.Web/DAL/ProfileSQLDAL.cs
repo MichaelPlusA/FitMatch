@@ -1,4 +1,5 @@
-﻿using Capstone.Web.Models;
+﻿using Capstone.Web.DAL.Interfaces;
+using Capstone.Web.Models;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace Capstone.Web.DAL
 {
-    public class ProfileSQLDAL
+    public class ProfileSQLDAL : IProfileDAL
     {
 
         private string connectionString;

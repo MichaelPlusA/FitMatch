@@ -1,4 +1,63 @@
 ﻿@using Capstone.Web.Models
 @model Trainer
 
-@Model.Price_Per_Hour
+<h1>Edit your profile</h1>
+<form action="/Trainer/SuccessfulEdit" method="get">
+    <div class="field-wrap">
+
+        <div class="row">
+            <div class="card card-body card-dark">
+                <div class="top-row">
+                    <div class="field-wrap">
+                        <label>
+                            <span class="req">$</span>Price Per Hour
+                        </label>
+                        <input type="text" name="Price_Per_Hour" value="@Model.Price_Per_Hour" autocomplete="off" />
+                    </div>
+                    <div class="field-wrap">
+                        <label>
+                            Certification
+                        </label>
+                        <input type="text" name="Certifications" value="@Model.Certifications" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="field-wrap">
+                    <label class="lrg-label">
+                        Years of Experience
+                    </label>
+                    <input name="YearsExp" id="experience" value="@Model.YearsExp" rows="3">
+                </div>
+                <div class="field-wrap">
+                    <label class="lrg-label">
+                        Client Success Stories
+                    </label>
+                    <textarea class="form-control" name="Client_Success_Stories" id="client_success_stories" rows="3">@Model.Client_Success_Stories</textarea>
+                </div>
+                <div class="field-wrap">
+                    <label class="lrg-label">
+                        Exercise Philosophy
+                    </label>
+                    <textarea class="form-control" name="exercise_philosophy" id="exercise_philosophy" rows="3">@Model.exercise_Philosophy</textarea>
+                </div>
+                <div class="field-wrap">
+                    <label class="x-lrg-label">
+                        Other Notes
+                    </label>
+                    <textarea class="form-control" name="Additional_notes" id="additional_notes" rows="5">@Model.Additional_notes</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="field-wrap">
+        <div class="row">
+            <div class="col-sm-1 col-md-1 col-lg-1 padd-R-0">
+                <input class="checkbox" type="checkbox" value="true" name="searchable"/>
+            </div>
+            <div class="col-sm-10 col-md-10 col-lg-10 padd-LR-0">
+                <span class="checkbox-label">Make Profile Public?</span>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="button button-block">Update</button>
+</form>

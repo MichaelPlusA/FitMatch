@@ -20,6 +20,7 @@ namespace Capstone.Web.Models
         public string Client_Success_Stories { get; set; } = "";
         public List<string> ListCertifications { get; set; } = new List<string>();
         public string Certifications { get; set; }
+        public bool Searchable { get; set; }
 
         public Trainer(RegisterViewModel user)
         {
@@ -44,19 +45,5 @@ namespace Capstone.Web.Models
         {
 
         }
-
-        public Trainer(Trainer user)
-        {
-            First_Name = user.First_Name;
-            Last_Name = user.Last_Name;
-            this.Email = user.Email;
-            Additional_notes = user.Additional_notes;
-            Price_Per_Hour = user.Price_Per_Hour;
-            YearsExp = user.YearsExp;
-            exercise_Philosophy = user.exercise_Philosophy;
-            Client_Success_Stories = user.Client_Success_Stories;
-            ListCertifications = user.ListCertifications;
-        }
-
     }
 }

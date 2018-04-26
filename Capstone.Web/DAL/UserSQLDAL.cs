@@ -46,7 +46,7 @@ namespace Capstone.Web.DAL
         //trainer registration function
         public bool RegisterUser(Trainer trainMaster)
         {
-            string delimitedCerts = DelimitedList(trainMaster.Certifications);
+            string delimitedCerts = DelimitedList(trainMaster.ListCertifications);
 
             bool check;
 
@@ -93,6 +93,16 @@ namespace Capstone.Web.DAL
             {
                 conn.Open();
                 User result = conn.QueryFirstOrDefault<User>("Select email, password, salt, first_name, last_name, user_location, trainer_id FROM user_info WHERE email = @emailValue", new { emailValue = email });
+                return result;
+            }
+        }
+
+        public Trainer GetTrainer(int? ID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                Trainer result = conn.QueryFirstOrDefault<Trainer>("Select trainer_id, price_per_hour, experience, client_success_stories, exercise_philosophy, certifications, additional_notes FROM trainer WHERE trainer_id = @trainerID", new { trainerID = ID });
                 return result;
             }
         }

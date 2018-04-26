@@ -8,7 +8,7 @@
 }
 else
 {
-    <h1>Welcome Trainer @((string)Session[SessionKeys.Email])!</h1>
+    <h1>Welcome Trainer @((string)Session[SessionKeys.First_Name])!</h1>
 }
 
 @using Capstone.Web.Models
@@ -31,7 +31,7 @@ else
 
             <br />
 
-            <b>Exercise Philosophy:</b> @Model.exercise_Philosophy
+            <b>Exercise Philosophy:</b> @Model.Philosophy
 
             <br />
 
@@ -39,7 +39,7 @@ else
 
             <br />
 
-            <b>Client Reviews:</b> @Model.Client_Success_Stories
+            <b>Client Reviews:</b> @Model.ClientSuccessStories
 
             <br />
         </div>

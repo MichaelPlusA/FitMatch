@@ -234,6 +234,14 @@
             left: 2px;
             font-size: 0.875rem;
         }
+    #registration .lrg-label.active {
+        -webkit-transform: translateY(120px);
+        transform: translateY(120px);
+    }
+    #registration .x-lrg-label.active {
+        -webkit-transform: translateY(180px);
+        transform: translateY(180px);
+    }
 
             #registration label.active .req, #login label.active .req {
                 opacity: 0;
@@ -319,7 +327,9 @@
         text-align: right;
     }
 
-    /*Check Box*/
+.card-dark {
+    background-color: rgba(19, 35, 47, 0.9);
+}
 
 
 /* CUSTOM CHECKBOX */
@@ -347,4 +357,16 @@ input[type=checkbox] {
 }
 .padd-R-0 {
     padding-right: 0;
+}
+
+/*Responsive Text*/
+
+@media only screen and (max-width: 768px) {
+    #registration label, #login label {
+        font-size: 0.8rem;
+    }
+
+    .checkbox-label {
+        font-size: 0.8rem;
+    }
 }

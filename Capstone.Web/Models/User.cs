@@ -11,10 +11,12 @@ namespace Capstone.Web.Models
 {
     public class User
     {
+        public int UserID { get; set; }
+
         private const int SALT_LENGTH = 12;
 
-        public int UserID { get; set; }
-        public int? TrainerID { get; set; }
+        public int User_ID { get; set; }
+        public int? Trainer_ID { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string First_Name { get; set; }

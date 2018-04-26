@@ -186,6 +186,10 @@
     <Content Include="Views\Trainee\Search.cshtml" />
     <Content Include="Views\Trainer\Profile.cshtml" />
     <Content Include="Views\Trainee\Profile.cshtml" />
+    <Content Include="Views\Trainee\Index.cshtml" />
+    <Content Include="Views\Trainer\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutTrainee.cshtml" />
+    <Content Include="Views\Shared\_LayoutTrainer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

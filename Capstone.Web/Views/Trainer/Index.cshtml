@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTrainer.cshtml";
+}
+
+@if (Session[SessionKeys.Email] == null)
+{
+    <h2>Welcome!</h2>
+}
+else
+{
+    <h2>Welcome Trainer @((string)Session[SessionKeys.Email])!</h2>
+}

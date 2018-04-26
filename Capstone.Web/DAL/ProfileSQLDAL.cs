@@ -65,11 +65,6 @@ namespace Capstone.Web.DAL
             return SearchList;
         }
 
-        /// <summary>
-        /// Search for trainer(s) by price per hour, calls the DB for users with trainer IDs and joins trainer table - PC
-        /// </summary>
-        /// <param name="pricePerHour"></param>
-        /// <returns></returns>
         public List<User> TrainerProfileSearchPrice (int pricePerHour)
         {
             List<User> SearchList = new List<User>();
@@ -100,11 +95,6 @@ namespace Capstone.Web.DAL
             return SearchList;
         }
 
-        /// <summary>
-        /// Helper method to create user objects from the DB - PC
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns></returns>
         private User MapRowToUser(SqlDataReader reader)
         {
             return new User()

@@ -19,6 +19,12 @@ namespace Capstone.Web.DAL
             this.connectionString = connectionString;
         }
 
+        /// <summary>
+        /// Search for trainer(s) by last name (required) and first name (optional), calls the DB for users with trainer IDs- PC
+        /// </summary>
+        /// <param name="trainerFirstName"></param>
+        /// <param name="trainerLastName"></param>
+        /// <returns></returns>
         public List<User> TrainerProfileSearchName(string trainerFirstName, string trainerLastName)
         {
             List<User> SearchList = new List<User>();

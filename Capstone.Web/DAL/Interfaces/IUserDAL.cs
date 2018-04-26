@@ -11,6 +11,7 @@ namespace Capstone.Web.DAL.Interfaces
     {
         bool RegisterUser(User newUser);
         User GetCurrentUser(string email);
-        bool CreateTrainer(Trainer trainMaster);
+        bool RegisterUser(Trainer trainMaster);
+        Trainer GetTrainer(int? ID);
     }
 }

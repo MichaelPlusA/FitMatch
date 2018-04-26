@@ -122,8 +122,8 @@ namespace Capstone.Web.DAL
         public bool UpdateTrainer(Trainer update)
         {
             bool check;
-            string UpdateTrainerSQL = "UPATE trainer SET price_per_hour = @price_per_hour, certifications = @certifications, experience = @experience, " +
-                "client_success_stories = @client_success_stories, exercise_philosophy = @exercise_philosophy, @additional_notes = additional_notes WHERE trainer_id = @trainer_id";
+            string UpdateTrainerSQL = "UPDATE trainer SET price_per_hour = @price_per_hour, certifications = @certifications, experience = @experience, " +
+                "client_success_stories = @client_success_stories, exercise_philosophy = @exercise_philosophy, additional_notes = @additional_notes WHERE trainer_id = @trainer_id";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {

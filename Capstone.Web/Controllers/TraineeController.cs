@@ -23,8 +23,13 @@ namespace Capstone.Web.Controllers
             return View();
         }
 
+        public ActionResult Search()
+        {
+            return View("Search");
+        }
+
         [HttpGet]
-        public ActionResult Search(string firstName, string lastName, double price)
+        public ActionResult SearchResult(string firstName, string lastName, double price)
         {
             List<User> users = null;
 

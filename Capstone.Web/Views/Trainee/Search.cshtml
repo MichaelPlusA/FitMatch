@@ -1,10 +1,10 @@
 ﻿@{
     ViewBag.Title = "Search";
 }
-
 <h2>Search</h2>
-
-<form action="/Home/Search" method="get">
+<div>@Model</div>
+@*<form action="/Trainee/SearchResult" method="get">*@
+<div>
     <label>Search Type</label>
     <select name="SearchType" id="SearchTypeID">
         <option value="name">Name</option>
@@ -12,8 +12,9 @@
         <option value="location">Location</option>
     </select>
     <input type="text" id="searchString" name="SearchString" />
-    <button type="submit" name="searchButton">Search</button>
-</form>
+    <button name="searchButton">Search</button>
+</div>
+@*</form>*@
 
 <div class="container">
     <table class="table table-striped">

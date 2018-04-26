@@ -21,9 +21,9 @@ function refreshSearchTable(searchResults) {
 
         tr.append(searchCell);
 
-        var firstNameCell = $("<td>").text(result.firstName);
-        var lastNameCell = $("<td>").text(result.lastName);
-        var emailCell = $("<td>").text(result.email);
+        var firstNameCell = $("<td>").text(result.First_Name.val);
+        var lastNameCell = $("<td>").text(result.Last_Name.val);
+        var emailCell = $("<td>").text(result.Email.val);
 
         tr.append(firstNameCell);
         tr.append(lastNameCell);

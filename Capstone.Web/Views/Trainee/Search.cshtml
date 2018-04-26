@@ -8,8 +8,11 @@
     <label>Search Type</label>
     <select name="SearchType">
         <option value="name">Name</option>
-        <option value="email">Email</option>
+        <option value="Price Per Hour">Price Per Hour</option>
+        <option value="Location">Location</option>
     </select>
-    <input type="text" name="SearchString" />
-    <button type="submit">Search</button>
+    <input type="text" id="searchString" name="SearchString" />
+    <button type="submit" name="searchButton">Search</button>
 </form>
+
+<table id="searchTable"></table>

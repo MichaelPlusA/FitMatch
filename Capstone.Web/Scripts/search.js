@@ -1,8 +1,6 @@
 ﻿$(document).ready(function () {
-    $("radioObject[name='search'").on("click", function () {
-        var lastName = $("#lastName").text();
-        var firstName = $("#firstName").text();
-        var price = $("#pricePerHour").text();
+    $("button[name='searchButton'").on("click", function () {
+        var searchString = $("#searchString").text();
 
         const root = "/API/Search/";
 
@@ -11,12 +9,10 @@
             url: root,
             method: "GET",
             data: {
-                "firstName": firstName,
-                "lastName": lastName,
-                "price": price
+                "searchString": searchString
             }
         }).done(function (data) {
-            $("#resultField").html();
+            $("#searchTable").append(data);
         })
     })
 }

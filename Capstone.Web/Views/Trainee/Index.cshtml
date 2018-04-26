@@ -2,6 +2,9 @@
     Layout = "~/Views/Shared/_LayoutTrainee.cshtml";
 }
 
+@using Capstone.Web.Models
+
+@model List<Plan>
 
 
 @if (Session[SessionKeys.Email] == null)
@@ -14,15 +17,17 @@ else
 {
     <br />
     <h2>Welcome Trainee!</h2>
+    <br />
 }
 
+@foreach (var plan in Model) { }
 <div class="jumbotron dark-back">
     <div class="row">
         <div class="col-md-6">
             <h1 class="plan-header">Plan One</h1>
         </div>
         <div class="col-md-6">
-            <button class="btn btn-trainer btn-1 btn-1c">Trainer : Some Name</button>
+            <button class="btn btn-trainer btn-1 btn-1c">Trainer : Trainer Name</button>
         </div>
         
     </div>

@@ -40,5 +40,12 @@ namespace Capstone.Web.Controllers
 
             return Redirect("/User/Login");
         }
+
+        public ActionResult SuccessfulEdit(Trainer edited)
+        {
+            edited.Trainer_ID = ((int)Session[SessionKeys.Trainer_ID]);
+            bool EditTrainer = _dal.UpdateTrainer(edited);
+            return Redirect("/Trainer/Index");
+        }
     }
 }

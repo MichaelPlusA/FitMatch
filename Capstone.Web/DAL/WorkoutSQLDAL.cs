@@ -62,7 +62,7 @@ namespace Capstone.Web.DAL
 
         public bool AddPlan(Plan insertPlan)
         {
-            string AddPlanDAL = "INSERT INTO workout_plan (trainer_id, trainee_id, plan_notes) VALUES (@trainer_id, @trainee_id, @plan_notes)";
+            string AddPlanDAL = "INSERT INTO workout_plan (trainer_id, trainee_id, plan_notes, plan_name) VALUES (@trainer_id, @trainee_id, @plan_notes, @plan_name)";
             bool check;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -70,6 +70,7 @@ namespace Capstone.Web.DAL
                 conn.Open();
 
                 SqlCommand cmd = new SqlCommand(AddPlanDAL, conn);
+                cmd.Parameters.AddWithValue("@plan_name", insertPlan.PlanName);
                 cmd.Parameters.AddWithValue("@trainee_id", insertPlan.ForTrainee);
                 cmd.Parameters.AddWithValue("@trainer_id", insertPlan.ByTrainer);
                 cmd.Parameters.AddWithValue("@plan_notes", insertPlan.Notes);

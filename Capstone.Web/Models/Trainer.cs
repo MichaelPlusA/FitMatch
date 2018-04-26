@@ -20,6 +20,7 @@ namespace Capstone.Web.Models
         public string Client_Success_Stories { get; set; } = "";
         public List<string> ListCertifications { get; set; } = new List<string>();
         public string Certifications { get; set; }
+        public bool Searchable { get; set; }
 
         public Trainer(RegisterViewModel user)
         {

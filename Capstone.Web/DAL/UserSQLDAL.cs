@@ -123,7 +123,7 @@ namespace Capstone.Web.DAL
         {
             bool check;
             string UpdateTrainerSQL = "UPDATE trainer SET price_per_hour = @price_per_hour, certifications = @certifications, experience = @experience, " +
-                "client_success_stories = @client_success_stories, exercise_philosophy = @exercise_philosophy, additional_notes = @additional_notes WHERE trainer_id = @trainer_id";
+                "client_success_stories = @client_success_stories, exercise_philosophy = @exercise_philosophy, additional_notes = @additional_notes, searchable = @searchable WHERE trainer_id = @trainer_id";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -136,6 +136,7 @@ namespace Capstone.Web.DAL
                 cmd.Parameters.AddWithValue("@client_success_stories", update.Client_Success_Stories);
                 cmd.Parameters.AddWithValue("@exercise_philosophy", update.exercise_Philosophy);
                 cmd.Parameters.AddWithValue("@additional_notes", update.Additional_notes);
+                cmd.Parameters.AddWithValue("@searchable", update.Searchable);
                 cmd.Parameters.AddWithValue("@trainer_id", update.Trainer_ID);
 
                 check = cmd.ExecuteNonQuery() > 0 ? true : false;

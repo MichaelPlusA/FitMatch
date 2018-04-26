@@ -103,5 +103,16 @@ namespace Capstone.Web.Controllers
             // TODO: redirect to logged in home page
             return Login(loginVM);
         }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Remove(SessionKeys.First_Name);
+            Session.Remove(SessionKeys.Email);
+            Session.Remove(SessionKeys.Trainer_ID);
+            Session.Remove(SessionKeys.UserID);
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

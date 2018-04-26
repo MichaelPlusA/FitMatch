@@ -19,33 +19,6 @@ namespace Capstone.Web.DAL
             this.connectionString = connectionString;
         }
 
-<<<<<<< HEAD
-=======
-        #region jon
-        //public bool CreateTrainerProfile(Trainer trainMaster)
-        //{
-        //    bool check;
-        //    string createProfileSQL = "";
-
-        //    using (SqlConnection conn = new SqlConnection(connectionString))
-        //    {
-        //        conn.Open();
-
-        //        SqlCommand cmd = new SqlCommand(createProfileSQL, conn);
-        //        cmd.Parameters.AddWithValue("@", trainMaster.First_Name);
-        //        cmd.Parameters.AddWithValue("@", trainMaster.Last_Name);
-        //        cmd.Parameters.AddWithValue("@", trainMaster.Email);
-        //        cmd.Parameters.AddWithValue("@", trainMaster.Password);
-        //        cmd.Parameters.AddWithValue("@", trainMaster.Salt);
-        //        cmd.Parameters.AddWithValue("@", trainMaster.)
-
-
-
-        //    }
-        //}
-        #endregion
->>>>>>> 51a5ed4fe11a7e5ca628e3c5a8ee15f4d41b2133
-
         /// <summary>
         /// Search for trainer(s) by last name (required) and first name (optional), calls the DB for users with trainer IDs- PC
         /// </summary>

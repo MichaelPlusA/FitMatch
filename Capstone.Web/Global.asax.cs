@@ -32,6 +32,7 @@ namespace Capstone.Web
 
             kernel.Bind<IUserDAL>().To<UserSQLDAL>().WithConstructorArgument("connectionString", connectionString);
             kernel.Bind<IProfileDAL>().To<ProfileSQLDAL>().WithConstructorArgument("connectionString", connectionString);
+            kernel.Bind<IWorkoutDAL>().To<WorkoutSQLDAL>().WithConstructorArgument("connectionString", connectionString);
 
             return kernel;
         }

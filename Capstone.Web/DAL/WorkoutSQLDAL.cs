@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using Dapper;
 
 namespace Capstone.Web.DAL
 {
@@ -79,6 +80,44 @@ namespace Capstone.Web.DAL
             }
 
             return check;
+        }
+
+        public List<Plan> GetPlans(int traineeID)
+        {
+            List<Plan> PlanList = new List<Plan>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string SQL_Plans = "SELECT * from workout_plan WHERE trainee_id = @trainee_ID";
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(SQL_Plans, conn))
+                {
+                    cmd.Parameters.AddWithValue("@trainee_ID", traineeID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+
+                    while (reader.Read())
+                    {
+                        Plan planToAdd = MapRowToPlan(reader);
+
+                        PlanList.Add(planToAdd);
+                    }
+                }
+            }
+            return PlanList;
+        }
+
+        private Plan MapRowToPlan(SqlDataReader reader)
+        {
+            return new Plan()
+            {
+                ByTrainer = Convert.ToInt32(reader["trainer_id"]),
+                ForTrainee = Convert.ToInt32(reader["trainee_id"]),
+                PlanName = Convert.ToString(reader["plan_name"]),
+                Notes = Convert.ToString(reader["plan_notes"]),
+            };
         }
     }
 }

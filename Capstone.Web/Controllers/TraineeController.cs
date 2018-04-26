@@ -12,15 +12,22 @@ namespace Capstone.Web.Controllers
     {
         private IProfileDAL _dal;
 
-        public TraineeController(IProfileDAL dal)
+        private IWorkoutDAL _dalWorkout;
+
+        public TraineeController(IProfileDAL dal, IWorkoutDAL dalWork)
         {
             _dal = dal;
+            _dalWorkout = dalWork;
         }
 
         // GET: Trainee
         public ActionResult Index()
         {
-            return View();
+            int ID = (int)Session[SessionKeys.UserID];
+
+            List<Plan> plans = _dalWorkout.GetPlans(ID);
+
+            return View(plans);
         }
 
         public ActionResult Search()

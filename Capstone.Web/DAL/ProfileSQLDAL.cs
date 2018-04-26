@@ -99,7 +99,7 @@ namespace Capstone.Web.DAL
         {
             return new User()
             {
-                UserID = Convert.ToInt32(reader["user_id"]),
+                User_ID = Convert.ToInt32(reader["user_id"]),
                 First_Name = Convert.ToString(reader["first_name"]),
                 Last_Name = Convert.ToString(reader["last_name"]),
                 Email = Convert.ToString(reader["email"]),

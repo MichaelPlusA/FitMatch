@@ -18,7 +18,8 @@ namespace Capstone.Web.Models
         public int YearsExp { get; set; } = 0;
         public string Philosophy { get; set; } = "";
         public string ClientSuccessStories { get; set; } = "";
-        public List<string> Certifications { get; set; } = new List<string>();
+        public List<string> ListCertifications { get; set; } = new List<string>();
+        public string Certifications { get; set; }
 
         public Trainer(RegisterViewModel user)
         {
@@ -30,13 +31,18 @@ namespace Capstone.Web.Models
             YearsExp = user.YearsExp;
             Philosophy = user.Philosophy;
             ClientSuccessStories = user.ClientSuccessStories;
-            Certifications = user.Certifications;
+            ListCertifications = user.ListCertifications;
 
             byte[] saltString = Security.GenerateSalt(SALT_LENGTH);
 
             Salt = Convert.ToBase64String(saltString);
 
             Password = Security.Hash(user.Password, saltString);
+        }
+
+        public Trainer()
+        {
+
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     $("button[name='searchButton'").on("click", function () {
         var searchString = $("#searchString").text();
+        var searchType = $("#searchType").val();
 
         const root = "/API/Search/";
 
@@ -9,7 +10,8 @@
             url: root,
             method: "GET",
             data: {
-                "searchString": searchString
+                "searchString": searchString,
+                "searchType": searchType
             }
         }).done(function (data) {
             $("#searchTable").append(data);

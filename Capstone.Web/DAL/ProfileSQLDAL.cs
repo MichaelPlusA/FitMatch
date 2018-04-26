@@ -29,7 +29,7 @@ namespace Capstone.Web.DAL
         {
             List<User> SearchList = new List<User>();
 
-            string SQLSearchString = "select first_name, last_name, email, trainer_id from user_info where first_name LIKE '%@first_name%' and last_name like '%@last_name%'";
+            string SQLSearchString = "select first_name, last_name, email, trainer_id from user_info where first_name LIKE @first_name and last_name like @last_name";
 
             SQLSearchString += " and trainer_id IS NOT NULL";
 
@@ -39,9 +39,9 @@ namespace Capstone.Web.DAL
 
                 using (SqlCommand cmd = new SqlCommand(SQLSearchString, conn))
                 {
-                    cmd.Parameters.AddWithValue("@last_name", trainerLastName);
+                    cmd.Parameters.AddWithValue("@last_name", "%" + trainerLastName + "%");
 
-                    cmd.Parameters.AddWithValue("@first_name", trainerFirstName);
+                    cmd.Parameters.AddWithValue("@first_name", "%" + trainerFirstName + "%");
 
 
                     SqlDataReader reader = cmd.ExecuteReader();

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace Capstone.Web.Controllers
 {
@@ -23,21 +24,28 @@ namespace Capstone.Web.Controllers
             return View();
         }
 
-        public ActionResult Search()
+        public ActionResult Search(string json)
         {
-            return View("Search");
+            return View("Search", (object)json);
         }
 
         [HttpGet]
-        public ActionResult SearchResult(string firstName, string lastName, double price)
+        public ActionResult SearchResult(string searchString, string searchType)
         {
             List<User> users = null;
 
-            if (!string.IsNullOrEmpty(lastName))
+            //if (!string.IsNullOrEmpty(lastName))
+            //{
+            //    //users = _dal.TrainerProfileSearchName();
+            //}
+
+            if (searchType.Equals("price"))
             {
-                //users = _dal.TrainerProfileSearchName();
+                int price = Convert.ToInt32(searchString);
+                users = _dal.TrainerProfileSearchPrice(price);
             }
-            return View("Search");
+
+            return Json(users, JsonRequestBehavior.AllowGet);
         }
     }
 }

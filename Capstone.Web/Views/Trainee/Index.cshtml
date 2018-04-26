@@ -1,13 +1,89 @@
-﻿@{ 
+﻿@{
     Layout = "~/Views/Shared/_LayoutTrainee.cshtml";
 }
 
+
+
 @if (Session[SessionKeys.Email] == null)
 {
+    <br />
     <h2>Welcome!</h2>
+    <br />
 }
 else
 {
-    <h2>Welcome Trainee @((string)Session[SessionKeys.Email])!</h2>
+    <br />
+    <h2>Welcome Trainee!</h2>
 }
 
+<div class="jumbotron dark-back">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="plan-header">Plan One</h1>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-trainer btn-1 btn-1c">Trainer : Some Name</button>
+        </div>
+        
+    </div>
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">
+                        Workout A
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseFour" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseTwo">
+                        Workout B
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+                        Workout C
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseSix" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                    <div class="row">- Exercise</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!--End Jumbotron-->

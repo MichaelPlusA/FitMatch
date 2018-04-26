@@ -14,10 +14,10 @@ namespace Capstone.Web.Models
 
         public int Rating { get; set; } = 0; //not part of MVP, for future use. Scale of 1-5
         public string Additional_notes { get; set; } = ""; //Lengthy
-        public double PricePerHour { get; set; } = 0;
+        public double Price_Per_Hour { get; set; } = 0;
         public int YearsExp { get; set; } = 0;
-        public string Philosophy { get; set; } = "";
-        public string ClientSuccessStories { get; set; } = "";
+        public string exercise_Philosophy { get; set; } = "";
+        public string Client_Success_Stories { get; set; } = "";
         public List<string> ListCertifications { get; set; } = new List<string>();
         public string Certifications { get; set; }
 
@@ -27,10 +27,10 @@ namespace Capstone.Web.Models
             Last_Name = user.Last_Name;
             this.Email = user.Email;
             Additional_notes = user.Additional_notes;
-            PricePerHour = user.PricePerHour;
+            Price_Per_Hour = user.PricePerHour;
             YearsExp = user.YearsExp;
-            Philosophy = user.Philosophy;
-            ClientSuccessStories = user.ClientSuccessStories;
+            exercise_Philosophy = user.Philosophy;
+            Client_Success_Stories = user.ClientSuccessStories;
             ListCertifications = user.ListCertifications;
 
             byte[] saltString = Security.GenerateSalt(SALT_LENGTH);
@@ -43,6 +43,19 @@ namespace Capstone.Web.Models
         public Trainer()
         {
 
+        }
+
+        public Trainer(Trainer user)
+        {
+            First_Name = user.First_Name;
+            Last_Name = user.Last_Name;
+            this.Email = user.Email;
+            Additional_notes = user.Additional_notes;
+            Price_Per_Hour = user.Price_Per_Hour;
+            YearsExp = user.YearsExp;
+            exercise_Philosophy = user.exercise_Philosophy;
+            Client_Success_Stories = user.Client_Success_Stories;
+            ListCertifications = user.ListCertifications;
         }
 
     }

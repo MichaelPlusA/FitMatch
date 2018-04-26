@@ -45,11 +45,19 @@
                     </label>
                     <textarea class="form-control" name="Additional_notes" id="additional_notes" rows="5">@Model.Additional_notes</textarea>
                 </div>
-
             </div>
         </div>
     </div>
 
+    <div class="field-wrap">
+        <div class="row">
+            <div class="col-sm-1 col-md-1 col-lg-1 padd-R-0">
+                <input class="checkbox" type="checkbox" value="true" name="searchable"/>
+            </div>
+            <div class="col-sm-10 col-md-10 col-lg-10 padd-LR-0">
+                <span class="checkbox-label">Make Profile Public?</span>
+            </div>
+        </div>
+    </div>
     <button type="submit" class="button button-block">Update</button>
-
 </form>

@@ -18,6 +18,7 @@ namespace Capstone.Web.Controllers
         {
             _dal = dal;
         }
+        
 
         // GET: User
         public ActionResult Login()
@@ -30,6 +31,7 @@ namespace Capstone.Web.Controllers
         {
             if(!ModelState.IsValid)
             {
+                //model.PlansList = _dalWorkout.GetPlan(model.UserID);
                 return View("Login", model);
             }
 
@@ -46,7 +48,7 @@ namespace Capstone.Web.Controllers
             {
                 FormsAuthentication.SetAuthCookie(user.Email, true);
                 Session[SessionKeys.Email] = user.Email;
-                Session[SessionKeys.UserID] = user.UserID;
+                Session[SessionKeys.UserID] = user.User_ID;
                 Session[SessionKeys.Trainer_ID] = user.Trainer_ID;
                 Session[SessionKeys.First_Name] = user.First_Name;
             }
@@ -57,6 +59,7 @@ namespace Capstone.Web.Controllers
                 return RedirectToAction("Index", "Trainer");      
             }
 
+            
             return RedirectToAction("Index", "Trainee");
         }
 

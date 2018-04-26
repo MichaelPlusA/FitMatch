@@ -13,5 +13,9 @@ namespace Capstone.Web.Models.ViewModel
 
         [Required(ErrorMessage = "Please enter password")]
         public string Password { get; set; }
+
+        public List<Plan> PlansList { get; set; } = new List<Plan>();
+
+        public int UserID { get; set; }
     }
 }

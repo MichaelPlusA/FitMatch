@@ -11,7 +11,6 @@ namespace Capstone.Web.Models
 {
     public class User
     {
-        public int UserID { get; set; }
 
         private const int SALT_LENGTH = 12;
 

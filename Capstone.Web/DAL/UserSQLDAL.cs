@@ -60,12 +60,12 @@ namespace Capstone.Web.DAL
 
                 SqlCommand cmd2 = new SqlCommand(createProfileSQL, conn);
                 
-                cmd2.Parameters.AddWithValue("@price_per_hour", trainMaster.PricePerHour);
-                cmd2.Parameters.AddWithValue("@exercise_philosophy", trainMaster.Philosophy);
+                cmd2.Parameters.AddWithValue("@price_per_hour", trainMaster.Price_Per_Hour);
+                cmd2.Parameters.AddWithValue("@exercise_philosophy", trainMaster.exercise_Philosophy);
                 cmd2.Parameters.AddWithValue("@additional_notes", trainMaster.Additional_notes);
                 cmd2.Parameters.AddWithValue("@experience", trainMaster.YearsExp);
                 cmd2.Parameters.AddWithValue("@certifications", trainMaster.Certifications);
-                cmd2.Parameters.AddWithValue("@client_success_stories", trainMaster.ClientSuccessStories);
+                cmd2.Parameters.AddWithValue("@client_success_stories", trainMaster.Client_Success_Stories);
 
                 int mostRecent = (int)(cmd2.ExecuteScalar()); 
 
@@ -91,6 +91,16 @@ namespace Capstone.Web.DAL
             {
                 conn.Open();
                 User result = conn.QueryFirstOrDefault<User>("Select email, password, salt, first_name, last_name, user_location, trainer_id FROM user_info WHERE email = @emailValue", new { emailValue = email });
+                return result;
+            }
+        }
+
+        public Trainer GetTrainer(int? ID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                Trainer result = conn.QueryFirstOrDefault<Trainer>("Select * FROM trainer WHERE trainer_id = @trainerID", new { trainerID = ID});
                 return result;
             }
         }

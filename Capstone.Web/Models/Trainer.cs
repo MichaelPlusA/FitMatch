@@ -14,10 +14,10 @@ namespace Capstone.Web.Models
 
         public int Rating { get; set; } //not part of MVP, for future use. Scale of 1-5
         public string Additional_notes { get; set; } //Lengthy
-        public double PricePerHour { get; set; }
+        public double Price_Per_Hour { get; set; }
         public int YearsExp { get; set; }
-        public string Philosophy { get; set; }
-        public string ClientSuccessStories { get; set; }
+        public string exercise_Philosophy { get; set; }
+        public string Client_Success_Stories { get; set; }
         public string Certifications { get; set; }
 
         public Trainer(RegisterViewModel user)
@@ -26,10 +26,10 @@ namespace Capstone.Web.Models
             Last_Name = user.Last_Name;
             this.Email = user.Email;
             Additional_notes = user.Additional_notes;
-            PricePerHour = user.PricePerHour;
+            Price_Per_Hour = user.PricePerHour;
             YearsExp = user.YearsExp;
-            Philosophy = user.Philosophy;
-            ClientSuccessStories = user.ClientSuccessStories;
+            exercise_Philosophy = user.Philosophy;
+            Client_Success_Stories = user.ClientSuccessStories;
             Certifications = user.Certifications;
 
             byte[] saltString = Security.GenerateSalt(SALT_LENGTH);
@@ -37,6 +37,11 @@ namespace Capstone.Web.Models
             Salt = Convert.ToBase64String(saltString);
 
             Password = Security.Hash(user.Password, saltString);
+        }
+
+        public Trainer()
+        {
+
         }
 
     }

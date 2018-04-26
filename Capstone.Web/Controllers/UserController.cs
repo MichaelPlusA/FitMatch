@@ -50,12 +50,13 @@ namespace Capstone.Web.Controllers
                 Session[SessionKeys.Trainer_ID] = user.Trainer_ID;
             }
 
-            if(user.Trainer_ID == null)
+            if(user.Trainer_ID != null)
             {
-                return RedirectToAction("Index", "Trainee");
+                
+                return RedirectToAction("Index", "Trainer");      
             }
 
-            return RedirectToAction("Index", "Trainer");
+            return RedirectToAction("Index", "Trainee");
         }
 
         public ActionResult Register()

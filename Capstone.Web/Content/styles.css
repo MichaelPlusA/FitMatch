@@ -8,6 +8,7 @@
 
     .menu-main ul {
         padding-left: 10px;
+        padding-right: 10px;
     }
 
 .copyright {
@@ -479,6 +480,7 @@ input[type=checkbox] {
 .btn-1c:hover,
 .btn-1c:active {
     background-color: #C2EE6C;
+    color: #393939;
 }
 
     .btn-1c:hover:after,

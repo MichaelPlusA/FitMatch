@@ -62,12 +62,12 @@ namespace Capstone.Web.DAL
 
                 SqlCommand cmd2 = new SqlCommand(createProfileSQL, conn);
                 
-                cmd2.Parameters.AddWithValue("@price_per_hour", trainMaster.PricePerHour);
-                cmd2.Parameters.AddWithValue("@exercise_philosophy", trainMaster.Philosophy);
+                cmd2.Parameters.AddWithValue("@price_per_hour", trainMaster.Price_Per_Hour);
+                cmd2.Parameters.AddWithValue("@exercise_philosophy", trainMaster.exercise_Philosophy);
                 cmd2.Parameters.AddWithValue("@additional_notes", trainMaster.Additional_notes);
                 cmd2.Parameters.AddWithValue("@experience", trainMaster.YearsExp);
                 cmd2.Parameters.AddWithValue("@certifications", delimitedCerts);
-                cmd2.Parameters.AddWithValue("@client_success_stories", trainMaster.ClientSuccessStories);
+                cmd2.Parameters.AddWithValue("@client_success_stories", trainMaster.Client_Success_Stories);
 
                 int mostRecent = (int)(cmd2.ExecuteScalar()); 
 
@@ -97,7 +97,7 @@ namespace Capstone.Web.DAL
             }
         }
 
-        public Trainer GetTrainer(int? ID)
+        public Trainer GetTrainer(int ID)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -117,6 +117,31 @@ namespace Capstone.Web.DAL
             }
 
             return delimitedList;
+        }
+
+        public bool UpdateTrainer(Trainer update)
+        {
+            bool check;
+            string UpdateTrainerSQL = "UPATE trainer SET price_per_hour = @price_per_hour, certifications = @certifications, experience = @experience, " +
+                "client_success_stories = @client_success_stories, exercise_philosophy = @exercise_philosophy, @additional_notes = additional_notes WHERE trainer_id = @trainer_id";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(UpdateTrainerSQL, conn);
+                cmd.Parameters.AddWithValue("@price_per_hour", update.Price_Per_Hour);
+                cmd.Parameters.AddWithValue("@certifications", update.Certifications);
+                cmd.Parameters.AddWithValue("@experience", update.YearsExp);
+                cmd.Parameters.AddWithValue("@client_success_stories", update.Client_Success_Stories);
+                cmd.Parameters.AddWithValue("@exercise_philosophy", update.exercise_Philosophy);
+                cmd.Parameters.AddWithValue("@additional_notes", update.Additional_notes);
+                cmd.Parameters.AddWithValue("@trainer_id", update.Trainer_ID);
+
+                check = cmd.ExecuteNonQuery() > 0 ? true : false;
+            }
+
+            return check;
         }
     }
 }

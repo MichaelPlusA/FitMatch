@@ -28,5 +28,17 @@ namespace Capstone.Web.Controllers
 
             return Redirect("/User/Login");
         }
+
+        public ActionResult EditTrainer()
+        {
+            if (Session[SessionKeys.Trainer_ID] != null)
+            {
+                Trainer EditTrainer = _dal.GetTrainer((int)Session[SessionKeys.Trainer_ID]);
+                int placeholder = ((int)Session[SessionKeys.Trainer_ID]);
+                return View("EditTrainer", EditTrainer);
+            }
+
+            return Redirect("/User/Login");
+        }
     }
 }

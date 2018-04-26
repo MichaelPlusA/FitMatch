@@ -23,11 +23,11 @@ namespace Capstone.Web.Models.ViewModel
 
         public bool Is_trainer { get; set; } = false;
 
-        public string Additional_notes { get; set; } //Lengthy
+        public string Additional_notes { get; set; } = "";
         public double PricePerHour { get; set; } = 0.0;
         public int YearsExp { get; set; } = 0;
         public string Philosophy { get; set; } = "";
         public string ClientSuccessStories { get; set; } = "";
-        public string Certifications { get; set; } = "";
+        public List<string> Certifications { get; set; } = new List<string>();
     }
 }

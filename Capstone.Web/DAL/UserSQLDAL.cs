@@ -46,13 +46,15 @@ namespace Capstone.Web.DAL
         //trainer registration function
         public bool RegisterUser(Trainer trainMaster)
         {
+            string delimitedCerts = DelimitedList(trainMaster.Certifications);
+
             bool check;
 
             string CreateUserSQL = "INSERT INTO user_info (email, password, salt, trainer_id, first_name, last_name) " +
-                "VALUES (@email, @password, @salt, @first_name, @trainer_id, @last_name)";
+                "VALUES (@email, @password, @salt, @trainer_id, @first_name, @last_name)";
 
             string createProfileSQL = "INSERT INTO trainer (price_per_hour, certifications, experience, client_success_stories, exercise_philosophy, additional_notes) " +
-                "VALUES (@price_per_hour, @certifications, @experience, @client_success_stories, @exercise_philosophy, @additional_notes)";
+                "OUTPUT inserted.trainer_id VALUES (@price_per_hour, @certifications, @experience, @client_success_stories, @exercise_philosophy, @additional_notes)";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -60,12 +62,12 @@ namespace Capstone.Web.DAL
 
                 SqlCommand cmd2 = new SqlCommand(createProfileSQL, conn);
                 
-                cmd2.Parameters.AddWithValue("@price_per_hour", trainMaster.Price_Per_Hour);
-                cmd2.Parameters.AddWithValue("@exercise_philosophy", trainMaster.exercise_Philosophy);
+                cmd2.Parameters.AddWithValue("@price_per_hour", trainMaster.PricePerHour);
+                cmd2.Parameters.AddWithValue("@exercise_philosophy", trainMaster.Philosophy);
                 cmd2.Parameters.AddWithValue("@additional_notes", trainMaster.Additional_notes);
                 cmd2.Parameters.AddWithValue("@experience", trainMaster.YearsExp);
-                cmd2.Parameters.AddWithValue("@certifications", trainMaster.Certifications);
-                cmd2.Parameters.AddWithValue("@client_success_stories", trainMaster.Client_Success_Stories);
+                cmd2.Parameters.AddWithValue("@certifications", delimitedCerts);
+                cmd2.Parameters.AddWithValue("@client_success_stories", trainMaster.ClientSuccessStories);
 
                 int mostRecent = (int)(cmd2.ExecuteScalar()); 
 
@@ -95,14 +97,16 @@ namespace Capstone.Web.DAL
             }
         }
 
-        public Trainer GetTrainer(int? ID)
+        private string DelimitedList (List<string> list)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            string delimitedList = "";
+
+            foreach(string item in list)
             {
-                conn.Open();
-                Trainer result = conn.QueryFirstOrDefault<Trainer>("Select * FROM trainer WHERE trainer_id = @trainerID", new { trainerID = ID});
-                return result;
+                delimitedList += item + "|";
             }
+
+            return delimitedList;
         }
     }
 }

@@ -6,13 +6,25 @@
 
 <form action="/Home/Search" method="get">
     <label>Search Type</label>
-    <select name="SearchType">
+    <select name="SearchType" id="SearchTypeID">
         <option value="name">Name</option>
-        <option value="Price Per Hour">Price Per Hour</option>
-        <option value="Location">Location</option>
+        <option value="price">Price Per Hour</option>
+        <option value="location">Location</option>
     </select>
     <input type="text" id="searchString" name="SearchString" />
     <button type="submit" name="searchButton">Search</button>
 </form>
 
-<table id="searchTable"></table>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email Address</th>
+            </tr>
+        </thead>
+        <tbody id="searchTable"></tbody>
+    </table>
+</div>

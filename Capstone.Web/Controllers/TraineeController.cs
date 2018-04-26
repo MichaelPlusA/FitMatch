@@ -29,14 +29,20 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult SearchResult(string firstName, string lastName, double price)
+        public ActionResult SearchResult(string searchString, string searchType)
         {
             List<User> users = null;
 
-            if (!string.IsNullOrEmpty(lastName))
+            //if (!string.IsNullOrEmpty(lastName))
+            //{
+            //    //users = _dal.TrainerProfileSearchName();
+            //}
+
+            if (searchType.Equals("price"))
             {
-                //users = _dal.TrainerProfileSearchName();
+
             }
+
             return View("Search");
         }
     }

@@ -9,7 +9,8 @@ namespace Capstone.Web.DAL.Interfaces
 {
     public interface IProfileDAL
     {
-        List<User> TrainerProfileSearchName(string trainerFirstName, string trainerLastName);
+        List<User> TrainerProfileSearchPartialName(string name);
+        List<User> TrainerProfileSearchFullName(string firstName, string lastName);
         List<User> TrainerProfileSearchPrice(int pricePerHour);
     }
 }

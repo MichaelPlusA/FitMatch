@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace Capstone.Web.Controllers
 {
@@ -23,9 +24,9 @@ namespace Capstone.Web.Controllers
             return View();
         }
 
-        public ActionResult Search()
+        public ActionResult Search(string json)
         {
-            return View("Search");
+            return View("Search", (object)json);
         }
 
         [HttpGet]
@@ -40,10 +41,11 @@ namespace Capstone.Web.Controllers
 
             if (searchType.Equals("price"))
             {
-
+                int price = Convert.ToInt32(searchString);
+                users = _dal.TrainerProfileSearchPrice(price);
             }
 
-            return View("Search");
+            return Json(users, JsonRequestBehavior.AllowGet);
         }
     }
 }

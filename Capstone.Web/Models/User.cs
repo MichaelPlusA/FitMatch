@@ -22,6 +22,7 @@ namespace Capstone.Web.Models
         public string Last_Name { get; set; }
         public string User_Location { get; set; }
         public string Salt { get; set; }
+        public double Price_Per_Hour { get; set; }
 
         public User()
         {

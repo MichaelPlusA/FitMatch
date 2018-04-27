@@ -29,14 +29,14 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            //if(!ModelState.IsValid)
-            //{
-            //    //model.PlansList = _dalWorkout.GetPlan(model.UserID);
-            //    return View("Login", model);
-            //}
 
             User user = _dal.GetCurrentUser(model.Email);
-            bool isValidPassword = user.isValidPassword(model.Password);
+            bool isValidPassword = false;
+            
+            if (user != null)
+            {
+                isValidPassword = user.isValidPassword(model.Password);
+            }
 
             //if user does not exist or password is wrong
             if(user == null || !isValidPassword)
@@ -69,7 +69,14 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel user)
         {
-            if(user.Is_trainer)
+            User check = _dal.GetCurrentUser(user.Email);
+            if (check != null)
+            {
+                ModelState.AddModelError("username - exists", "That email address is not available");
+                return View("Register", user);
+            }
+
+            if (user.Is_trainer)
             {
                 Trainer newtrainer = new Trainer(user);
                 bool isAdded = _dal.RegisterUser(newtrainer);

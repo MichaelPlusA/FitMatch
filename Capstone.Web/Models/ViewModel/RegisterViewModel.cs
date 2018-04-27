@@ -20,6 +20,10 @@ namespace Capstone.Web.Models.ViewModel
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
 
+        [Required]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
+        public string ConfirmPassword { get; set; }
+
         public bool Is_trainer { get; set; } = false;
 
         public string Additional_notes { get; set; } = "";

@@ -102,7 +102,7 @@ namespace Capstone.Web.DAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                Trainer result = conn.QueryFirstOrDefault<Trainer>("Select trainer_id, price_per_hour, experience, client_success_stories, exercise_philosophy, certifications, additional_notes FROM trainer WHERE trainer_id = @trainerID", new { trainerID = ID });
+                Trainer result = conn.QueryFirstOrDefault<Trainer>("Select trainer_id, price_per_hour, experience, searchable, client_success_stories, exercise_philosophy, certifications, additional_notes FROM trainer WHERE trainer_id = @trainerID", new { trainerID = ID });
                 return result;
             }
         }
@@ -138,6 +138,25 @@ namespace Capstone.Web.DAL
                 cmd.Parameters.AddWithValue("@additional_notes", update.Additional_notes);
                 cmd.Parameters.AddWithValue("@searchable", update.Searchable);
                 cmd.Parameters.AddWithValue("@trainer_id", update.Trainer_ID);
+
+                check = cmd.ExecuteNonQuery() > 0 ? true : false;
+            }
+
+            return check;
+        }
+
+        public bool SwitchAccess(int trainerID, string flipBit)
+        {
+            bool check;
+            string AccessTrainerSQL = "UPDATE trainer SET searchable = @flipBit WHERE trainer_id = @trainerID";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(AccessTrainerSQL, conn);
+                cmd.Parameters.AddWithValue("@trainerID", trainerID);
+                cmd.Parameters.AddWithValue("@flipbit", flipBit);
 
                 check = cmd.ExecuteNonQuery() > 0 ? true : false;
             }

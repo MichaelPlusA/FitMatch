@@ -80,8 +80,8 @@ namespace Capstone.Web.Controllers
                 {
                     LoginViewModel loginVM = new LoginViewModel()
                     {
-                        Email = newtrainer.Email,
-                        Password = newtrainer.Password
+                        Email = user.Email,
+                        Password = user.Password
                     };
 
                     // TODO: redirect to logged in home page
@@ -97,8 +97,8 @@ namespace Capstone.Web.Controllers
                 {
                     LoginViewModel loginVM = new LoginViewModel()
                     {
-                        Email = newUser.Email,
-                        Password = newUser.Password,
+                        Email = user.Email,
+                        Password = user.Password,
                     };
 
                     // TODO: redirect to logged in home page
@@ -107,18 +107,6 @@ namespace Capstone.Web.Controllers
             }
 
             return View("Register");
-        }
-
-        private ActionResult LoginToAccount(User user)
-        {
-            LoginViewModel loginVM = new LoginViewModel()
-            {
-                Email = user.Email,
-                Password = user.Password,
-            };
-
-            // TODO: redirect to logged in home page
-            return Login(loginVM);
         }
 
         public ActionResult Logout()

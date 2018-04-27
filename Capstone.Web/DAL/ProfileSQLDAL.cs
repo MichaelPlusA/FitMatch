@@ -62,7 +62,8 @@ namespace Capstone.Web.DAL
         {
             List<User> SearchList = new List<User>();
 
-            string SQLSearchString = "select first_name, last_name, email, trainer_id from user_info where first_name LIKE '%@name%' or last_name like '%@name%'";
+            string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id, user_location, trainer.price_per_hour from user_info" +
+                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE first_name LIKE '%@name%' or last_name like '%@name%'";
 
             SQLSearchString += " and trainer_id IS NOT NULL";
 
@@ -93,7 +94,7 @@ namespace Capstone.Web.DAL
         {
             List<User> SearchList = new List<User>();
 
-            string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id from user_info" +
+            string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id, user_location, trainer.price_per_hour from user_info" +
                 " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE price_per_hour <= @price_per_hour";
 
             SQLSearchString += " and user_info.trainer_id IS NOT NULL";
@@ -126,7 +127,9 @@ namespace Capstone.Web.DAL
                 First_Name = Convert.ToString(reader["first_name"]),
                 Last_Name = Convert.ToString(reader["last_name"]),
                 Email = Convert.ToString(reader["email"]),
-                Trainer_ID = Convert.ToInt32(reader["trainer_id"])
+                Trainer_ID = Convert.ToInt32(reader["trainer_id"]),
+                User_Location = Convert.ToString(reader["user_location"]),
+                Price_Per_Hour = Convert.ToInt32(reader["price_per_hour"])
             };
         }
     }

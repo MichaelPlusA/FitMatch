@@ -26,11 +26,15 @@ function refreshSearchTable(searchResults) {
         var firstNameCell = $("<td>").text(result.First_Name);
         var lastNameCell = $("<td>").text(result.Last_Name);
         var emailCell = $("<td>").text(result.Email);
-        var priceCell = $("<td>").text(result.Price);
+        var priceCell = $("<td>").text(result.Price_Per_Hour);
+        var locationCell = $("<td>").text(result.User_Location);
+        
 
         tr.append(firstNameCell);
         tr.append(lastNameCell);
         tr.append(emailCell);
+        tr.append(priceCell);
+        tr.append(locationCell);
 
 
         $("#searchTable").append(tr);

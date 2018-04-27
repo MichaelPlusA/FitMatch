@@ -52,7 +52,7 @@ namespace Capstone.Web.Models
 
             string hashedInput = Security.Hash(password, saltString);
 
-            if(Password.Equals(password))
+            if(Password.Equals(hashedInput))
             {
                 isValid = true;
             }

@@ -64,9 +64,9 @@ namespace Capstone.Web.DAL
             List<User> SearchList = new List<User>();
 
             string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id, user_location, trainer.price_per_hour from user_info" +
-                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE first_name LIKE '%@name%' or last_name like '%@name%' and searchable = 1";
+                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE first_name LIKE @name or last_name like @name and searchable = 1";
 
-            SQLSearchString += " and trainer_id IS NOT NULL";
+            SQLSearchString += " and user_info.trainer_id IS NOT NULL";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -74,8 +74,7 @@ namespace Capstone.Web.DAL
 
                 using (SqlCommand cmd = new SqlCommand(SQLSearchString, conn))
                 {
-                    cmd.Parameters.AddWithValue("@name", name);
-
+                    cmd.Parameters.AddWithValue("@name", "%" + name + "%");
 
                     SqlDataReader reader = cmd.ExecuteReader();
 

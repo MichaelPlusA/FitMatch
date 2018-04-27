@@ -51,7 +51,7 @@
 
             var tr = $("<tr>");
             var searchCell = $("<td>")
-            var profileURL = "trainee/search/" + result.Trainer_ID
+            var profileURL = "/trainee/trainerprofile/" + result.Trainer_ID
 
             tr.append(searchCell);
 

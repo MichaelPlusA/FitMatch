@@ -47,10 +47,10 @@
                     </label>
                     <input type="password" name="Password" required autocomplete="off" />
                 </div>
-
+                <div style="color:white;">@Html.ValidationMessageFor(m => m.ConfirmPassword)</div>
                 <div class="field-wrap">
                     <label>
-                        Confirm Password - @Html.ValidationMessage("passwords - no match")<span class="req">*</span>
+                        Confirm Password<span class="req">*</span>
                     </label>
                     <input type="password" name="Confirm Password" required autocomplete="off" />
                 </div>

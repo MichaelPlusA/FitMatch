@@ -44,6 +44,7 @@ namespace Capstone.Web.Controllers
         public ActionResult SuccessfulEdit(Trainer edited)
         {
             edited.Trainer_ID = ((int)Session[SessionKeys.Trainer_ID]);
+            edited.User_ID = ((int)Session[SessionKeys.UserID]);
             bool EditTrainer = _dal.UpdateTrainer(edited);
             return Redirect("/Trainer/Index");
         }

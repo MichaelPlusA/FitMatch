@@ -36,7 +36,12 @@ namespace Capstone.Web.Controllers
             //}
 
             User user = _dal.GetCurrentUser(model.Email);
-            bool isValidPassword = user.isValidPassword(model.Password);
+            bool isValidPassword = false;
+            
+            if (user != null)
+            {
+                isValidPassword = user.isValidPassword(model.Password);
+            }
 
             //if user does not exist or password is wrong
             if(user == null || !isValidPassword)

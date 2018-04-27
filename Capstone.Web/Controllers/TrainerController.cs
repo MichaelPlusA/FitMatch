@@ -47,5 +47,12 @@ namespace Capstone.Web.Controllers
             bool EditTrainer = _dal.UpdateTrainer(edited);
             return Redirect("/Trainer/Index");
         }
+
+        public ActionResult ChangeAccess(string access)
+        {
+            int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
+            bool TrainerAccess = _dal.SwitchAccess(trainerID, access);
+            return Redirect("/Trainer/Index");
+        }
     }
 }

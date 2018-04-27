@@ -33,6 +33,7 @@ namespace Capstone.Web.Models
             First_Name = user.First_Name;
             Last_Name = user.Last_Name;
             this.Email = user.Email;
+            User_Location = user.User_Location;
 
             byte[] saltString = Security.GenerateSalt(SALT_LENGTH);
 

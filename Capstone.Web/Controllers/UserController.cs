@@ -78,7 +78,14 @@ namespace Capstone.Web.Controllers
 
                 if(isAdded)
                 {
-                    LoginToAccount(newtrainer);
+                    LoginViewModel loginVM = new LoginViewModel()
+                    {
+                        Email = newtrainer.Email,
+                        Password = newtrainer.Password
+                    };
+
+                    // TODO: redirect to logged in home page
+                    return Login(loginVM);
                 }
             } 
             else

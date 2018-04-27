@@ -90,7 +90,7 @@ namespace Capstone.Web.DAL
             return SearchList;
         }
 
-        public List<User> TrainerProfileSearchPrice (int pricePerHour)
+        public List<User> TrainerProfileSearchPrice (double pricePerHour)
         {
             List<User> SearchList = new List<User>();
 
@@ -106,6 +106,36 @@ namespace Capstone.Web.DAL
                 using (SqlCommand cmd = new SqlCommand(SQLSearchString, conn))
                 {
                     cmd.Parameters.AddWithValue("@price_per_hour", pricePerHour);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        User userToAdd = MapRowToUser(reader);
+
+                        SearchList.Add(userToAdd);
+                    }
+                }
+            }
+            return SearchList;
+        }
+
+        public List<User> TrainerProfileSearchLocation(int location)
+        {
+            List<User> SearchList = new List<User>();
+
+            string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id, user_location, trainer.price_per_hour from user_info" +
+                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE user_location = @location";
+
+            SQLSearchString += " and user_info.trainer_id IS NOT NULL";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(SQLSearchString, conn))
+                {
+                    cmd.Parameters.AddWithValue("@location", location);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 

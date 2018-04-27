@@ -43,18 +43,30 @@ namespace Capstone.Web.Controllers
         public ActionResult SearchResult(string searchString, string searchType)
         {
             List<User> users = null;
-            
-            if(searchType.Equals("name"))
+
+            if (searchType.Equals("name"))
             {
                 string[] names = searchString.Split();
-                users = _dal.TrainerProfileSearchFullName(names[0], names[1]);
+                if (names.Length > 1)
+                {
+                    users = _dal.TrainerProfileSearchFullName(names[0], names[1]);
+                }
+                else if (names.Length == 1)
+                {
+                    users = _dal.TrainerProfileSearchPartialName(names[0]);
+                }
             }
             else if (searchType.Equals("price"))
             {
                 int price = Convert.ToInt32(searchString);
                 users = _dal.TrainerProfileSearchPrice(price);
             }
-
+            else if (searchType.Equals("location"))
+            {
+                int location = Convert.ToInt32(searchString);
+                users = _dal.TrainerProfileSearchLocation(location);
+            }
+                
             return Json(users, JsonRequestBehavior.AllowGet);
         }
 

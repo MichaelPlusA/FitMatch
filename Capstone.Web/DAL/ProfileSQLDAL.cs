@@ -29,9 +29,10 @@ namespace Capstone.Web.DAL
         {
             List<User> SearchList = new List<User>();
 
-            string SQLSearchString = "select first_name, last_name, email, trainer_id from user_info where first_name LIKE @first_name and last_name like @last_name";
+            string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id, user_location, trainer.price_per_hour FROM user_info " +
+                "JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE first_name LIKE @first_name and last_name like @last_name and user_info.trainer_id IS NOT NULL and searchable = 1 ";
 
-            SQLSearchString += " and trainer_id IS NOT NULL";
+            //SQLSearchString += " JOIN trainer on user_info.trainer_id = trainer.trainer_id and user.trainer_id IS NOT NULL and searchable = 1";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {

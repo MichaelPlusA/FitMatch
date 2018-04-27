@@ -16,9 +16,8 @@ namespace Capstone.Web.Models.ViewModel
         public string Last_Name { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
-
-        [Required(ErrorMessage = "Password is required")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
 
         public bool Is_trainer { get; set; } = false;

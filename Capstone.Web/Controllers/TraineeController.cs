@@ -15,10 +15,13 @@ namespace Capstone.Web.Controllers
 
         private IWorkoutDAL _dalWorkout;
 
-        public TraineeController(IProfileDAL dal, IWorkoutDAL dalWork)
+        private IUserDAL _dalUser;
+
+        public TraineeController(IProfileDAL dal, IWorkoutDAL dalWork, IUserDAL dalUser)
         {
             _dal = dal;
             _dalWorkout = dalWork;
+            _dalUser = dalUser;
         }
 
         // GET: Trainee
@@ -53,6 +56,18 @@ namespace Capstone.Web.Controllers
             }
 
             return Json(users, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult TrainerProfile(string id)
+        {
+            if(id == null)
+            {
+                return Redirect("/Trainee/Search");
+            }
+
+            Trainer Searchedtrainer = _dalUser.GetTrainer(Convert.ToInt32(id));
+            return View("TrainerProfile", Searchedtrainer);
+            
         }
     }
 }

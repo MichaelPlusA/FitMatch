@@ -12,5 +12,6 @@ namespace Capstone.Web.DAL.Interfaces
         List<User> TrainerProfileSearchPartialName(string name);
         List<User> TrainerProfileSearchFullName(string firstName, string lastName);
         List<User> TrainerProfileSearchPrice(double pricePerHour);
+        List<User> TrainerProfileSearchLocation(int location);
     }
 }

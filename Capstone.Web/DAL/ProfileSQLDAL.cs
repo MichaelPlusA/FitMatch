@@ -29,9 +29,10 @@ namespace Capstone.Web.DAL
         {
             List<User> SearchList = new List<User>();
 
-            string SQLSearchString = "select first_name, last_name, email, trainer_id from user_info where first_name LIKE @first_name and last_name like @last_name";
+            string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id, user_location, trainer.price_per_hour FROM user_info " +
+                "JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE first_name LIKE @first_name and last_name like @last_name and user_info.trainer_id IS NOT NULL and searchable = 1 ";
 
-            SQLSearchString += " and trainer_id IS NOT NULL";
+            //SQLSearchString += " JOIN trainer on user_info.trainer_id = trainer.trainer_id and user.trainer_id IS NOT NULL and searchable = 1";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -63,9 +64,9 @@ namespace Capstone.Web.DAL
             List<User> SearchList = new List<User>();
 
             string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id, user_location, trainer.price_per_hour from user_info" +
-                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE first_name LIKE '%@name%' or last_name like '%@name%'";
+                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE first_name LIKE @name or last_name like @name and searchable = 1";
 
-            SQLSearchString += " and trainer_id IS NOT NULL";
+            SQLSearchString += " and user_info.trainer_id IS NOT NULL";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -73,8 +74,7 @@ namespace Capstone.Web.DAL
 
                 using (SqlCommand cmd = new SqlCommand(SQLSearchString, conn))
                 {
-                    cmd.Parameters.AddWithValue("@name", name);
-
+                    cmd.Parameters.AddWithValue("@name", "%" + name + "%");
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -90,12 +90,12 @@ namespace Capstone.Web.DAL
             return SearchList;
         }
 
-        public List<User> TrainerProfileSearchPrice (int pricePerHour)
+        public List<User> TrainerProfileSearchPrice (double pricePerHour)
         {
             List<User> SearchList = new List<User>();
 
             string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id, user_location, trainer.price_per_hour from user_info" +
-                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE price_per_hour <= @price_per_hour";
+                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE price_per_hour <= @price_per_hour and searchable = 1";
 
             SQLSearchString += " and user_info.trainer_id IS NOT NULL";
 
@@ -106,6 +106,36 @@ namespace Capstone.Web.DAL
                 using (SqlCommand cmd = new SqlCommand(SQLSearchString, conn))
                 {
                     cmd.Parameters.AddWithValue("@price_per_hour", pricePerHour);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        User userToAdd = MapRowToUser(reader);
+
+                        SearchList.Add(userToAdd);
+                    }
+                }
+            }
+            return SearchList;
+        }
+
+        public List<User> TrainerProfileSearchLocation(int location)
+        {
+            List<User> SearchList = new List<User>();
+
+            string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id, user_location, trainer.price_per_hour from user_info" +
+                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE user_location = @location and searchable = 1";
+
+            SQLSearchString += " and user_info.trainer_id IS NOT NULL";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(SQLSearchString, conn))
+                {
+                    cmd.Parameters.AddWithValue("@location", location);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 

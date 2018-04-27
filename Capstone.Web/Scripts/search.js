@@ -2,7 +2,6 @@
     var inputText = "<input type='text' id='searchString' name='SearchString' />"
     var inputInt = "<input type='number' id='searchString' name='SearchString' />"
 
-
     $("button[name='searchButton'").on("click", function (event) {
         var searchString = $("#searchString").val();
         var searchType = $("#SearchTypeID").val();
@@ -24,9 +23,9 @@
                     console.log(this.text);
                     $(inputInt).insertBefore("button");
                 }
-                else if (this.text == "Location") {
+                else if (this.text == "Area Code") {
                     $("input[name='SearchString']").remove();
-                    $(inputInt).val("area code").insertBefore("button");
+                    $(inputInt).insertBefore("button");
                 }
                 else if (this.text == "Name") {
                     $("input[name='SearchString']").remove();
@@ -52,7 +51,7 @@
 
             var tr = $("<tr>");
             var searchCell = $("<td>")
-            var profileURL = "trainerprofile/" + result.Trainer_ID
+            var profileURL = "trainee/search/" + result.Trainer_ID
 
             tr.append(searchCell);
 

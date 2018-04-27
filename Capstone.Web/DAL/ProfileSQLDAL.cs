@@ -63,7 +63,7 @@ namespace Capstone.Web.DAL
             List<User> SearchList = new List<User>();
 
             string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id, user_location, trainer.price_per_hour from user_info" +
-                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE first_name LIKE '%@name%' or last_name like '%@name%'";
+                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE first_name LIKE '%@name%' or last_name like '%@name%' and searchable = 1";
 
             SQLSearchString += " and trainer_id IS NOT NULL";
 
@@ -95,7 +95,7 @@ namespace Capstone.Web.DAL
             List<User> SearchList = new List<User>();
 
             string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id, user_location, trainer.price_per_hour from user_info" +
-                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE price_per_hour <= @price_per_hour";
+                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE price_per_hour <= @price_per_hour and searchable = 1";
 
             SQLSearchString += " and user_info.trainer_id IS NOT NULL";
 
@@ -125,7 +125,7 @@ namespace Capstone.Web.DAL
             List<User> SearchList = new List<User>();
 
             string SQLSearchString = "select first_name, last_name, email, user_info.trainer_id, user_location, trainer.price_per_hour from user_info" +
-                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE user_location = @location";
+                " JOIN trainer on user_info.trainer_id = trainer.trainer_id WHERE user_location = @location and searchable = 1";
 
             SQLSearchString += " and user_info.trainer_id IS NOT NULL";
 

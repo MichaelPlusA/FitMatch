@@ -34,6 +34,7 @@ namespace Capstone.Web.Models
             First_Name = user.First_Name;
             Last_Name = user.Last_Name;
             this.Email = user.Email;
+            User_Location = user.User_Location;
 
             byte[] saltString = Security.GenerateSalt(SALT_LENGTH);
 
@@ -51,7 +52,7 @@ namespace Capstone.Web.Models
 
             string hashedInput = Security.Hash(password, saltString);
 
-            if(Password.Equals(hashedInput))
+            if(Password.Equals(password))
             {
                 isValid = true;
             }

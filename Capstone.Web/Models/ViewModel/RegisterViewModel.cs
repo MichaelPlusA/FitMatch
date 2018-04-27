@@ -17,7 +17,6 @@ namespace Capstone.Web.Models.ViewModel
 
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
-
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
 
@@ -29,5 +28,6 @@ namespace Capstone.Web.Models.ViewModel
         public string Philosophy { get; set; } = "";
         public string ClientSuccessStories { get; set; } = "";
         public List<string> ListCertifications { get; set; } = new List<string>();
+        public string User_Location { get; set; } = "";
     }
 }

@@ -29,11 +29,11 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            if(!ModelState.IsValid)
-            {
-                //model.PlansList = _dalWorkout.GetPlan(model.UserID);
-                return View("Login", model);
-            }
+            //if(!ModelState.IsValid)
+            //{
+            //    //model.PlansList = _dalWorkout.GetPlan(model.UserID);
+            //    return View("Login", model);
+            //}
 
             User user = _dal.GetCurrentUser(model.Email);
             bool isValidPassword = user.isValidPassword(model.Password);
@@ -54,11 +54,9 @@ namespace Capstone.Web.Controllers
             }
 
             if(user.Trainer_ID != null)
-            {
-                
+            {                
                 return RedirectToAction("Index", "Trainer");      
             }
-
             
             return RedirectToAction("Index", "Trainee");
         }
@@ -78,7 +76,14 @@ namespace Capstone.Web.Controllers
 
                 if(isAdded)
                 {
-                    LoginToAccount(newtrainer);
+                    LoginViewModel loginVM = new LoginViewModel()
+                    {
+                        Email = newtrainer.Email,
+                        Password = newtrainer.Password
+                    };
+
+                    // TODO: redirect to logged in home page
+                    return Login(loginVM);
                 }
             } 
             else
@@ -88,7 +93,14 @@ namespace Capstone.Web.Controllers
 
                 if (isAdded)
                 {
-                    LoginToAccount(newUser);
+                    LoginViewModel loginVM = new LoginViewModel()
+                    {
+                        Email = newUser.Email,
+                        Password = newUser.Password,
+                    };
+
+                    // TODO: redirect to logged in home page
+                    return Login(loginVM);
                 }
             }
 

@@ -102,7 +102,7 @@ namespace Capstone.Web.DAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                Trainer result = conn.QueryFirstOrDefault<Trainer>("Select trainer_id, price_per_hour, experience, searchable, client_success_stories, exercise_philosophy, certifications, additional_notes FROM trainer WHERE trainer_id = @trainerID", new { trainerID = ID });
+                Trainer result = conn.QueryFirstOrDefault<Trainer>("Select trainer.trainer_id, price_per_hour, experience, searchable, client_success_stories, exercise_philosophy, certifications, additional_notes, user_location FROM trainer JOIN user_info on user_info.trainer_id = trainer.trainer_id WHERE trainer.trainer_id = @trainerID", new { trainerID = ID });
                 return result;
             }
         }
@@ -123,7 +123,9 @@ namespace Capstone.Web.DAL
         {
             bool check;
             string UpdateTrainerSQL = "UPDATE trainer SET price_per_hour = @price_per_hour, certifications = @certifications, experience = @experience, " +
-                "client_success_stories = @client_success_stories, exercise_philosophy = @exercise_philosophy, additional_notes = @additional_notes, searchable = @searchable WHERE trainer_id = @trainer_id";
+                "client_success_stories = @client_success_stories, exercise_philosophy = @exercise_philosophy, additional_notes = @additional_notes WHERE trainer_id = @trainer_id";
+
+            string UpdateLocationSQL = "UPDATE user_info SET user_location = @user_location WHERE user_id = @userID";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -140,6 +142,12 @@ namespace Capstone.Web.DAL
                 cmd.Parameters.AddWithValue("@trainer_id", update.Trainer_ID);
 
                 check = cmd.ExecuteNonQuery() > 0 ? true : false;
+
+                SqlCommand cmd1 = new SqlCommand(UpdateLocationSQL, conn);
+                cmd1.Parameters.AddWithValue("@user_location", update.User_Location);
+                cmd1.Parameters.AddWithValue("@userID", update.User_ID);
+
+                check = cmd1.ExecuteNonQuery() > 0 ? true : false;
             }
 
             return check;

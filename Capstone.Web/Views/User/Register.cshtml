@@ -13,14 +13,14 @@
                         <div class="top-row">
                             <div class="field-wrap">
                                 <label>
-                                    First Name<span class="req">*</span>
+                                    First Name -<span class="req">*</span>
                                 </label>
                                 <input type="text" name="First_Name" required autocomplete="off" />
                             </div>
 
                             <div class="field-wrap">
                                 <label>
-                                    Last Name<span class="req">*</span>
+                                    Last Name - <span class="req">*</span>
                                 </label>
                                 <input type="text" name="Last_Name" required autocomplete="off" />
                             </div>
@@ -28,21 +28,21 @@
 
                         <div class="field-wrap">
                             <label>
-                                Email Address<span class="req">*</span>
+                                Email - @Html.ValidationMessage("username - exists")<span class="req">*</span>
                             </label>
                             <input type="email" name="Email" required autocomplete="off" />
                         </div>
 
                         <div class="field-wrap">
                             <label>
-                                Location<span class="req">*</span>
+                                Location -<span class="req">*</span>
                             </label>
                             <input type="text" name="User_Location" required autocomplete="off" />
                         </div>
 
                         <div class="field-wrap">
                             <label>
-                                Set A Password<span class="req">*</span>
+                                Set A Password -<span class="req">*</span>
                             </label>
                             <input type="password" name="Password" required autocomplete="off" />
                         </div>

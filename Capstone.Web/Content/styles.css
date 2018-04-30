@@ -665,6 +665,7 @@ input[type=checkbox] {
 
 .card-body { /*Exercise Box*/
     /*background: rgba(19, 35, 47, 0.9); /*Form Back Color*/
+    width: 100%;
 }
 .card-body .row {
     padding-left: 2%;

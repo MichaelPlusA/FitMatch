@@ -160,7 +160,11 @@ namespace Capstone.Web.DAL
 
         //        using (SqlCommand cmd = new SqlCommand(SQLSendMessage, conn))
         //        {
+<<<<<<< HEAD
         //            cmd.Parameters.AddWithValue("@", );
+=======
+        //            //cmd.Parameters.AddWithValue("@", );
+>>>>>>> 6b6f96c6549072a4683c092568ad36240c2e45bd
 
         //        }
         //    }

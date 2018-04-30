@@ -15,5 +15,6 @@ namespace Capstone.Web.DAL.Interfaces
         Trainer GetTrainer(int ID);
         bool UpdateTrainer(Trainer update);
         bool SwitchAccess(int trainerID, string flipBit);
+        bool MatchWithTrainer(int trainee, int trainer);
     }
 }

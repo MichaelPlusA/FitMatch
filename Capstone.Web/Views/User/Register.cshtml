@@ -76,7 +76,7 @@
                                         <label>
                                             <span class="req">$</span>Price Per Hour
                                         </label>
-                                        <input type="text" name="PricePerHour" autocomplete="off" />
+                                        <input type="number" min="1" name="PricePerHour" autocomplete="off" />
                                     </div>
 
 
@@ -84,14 +84,14 @@
                                         <label>
                                             Certification
                                         </label>
-                                        <input type="text" name="Certifications" autocomplete="off" />
+                                        <input type="text" id="Certifications" name="Certifications" autocomplete="off" />
                                     </div>
                                 </div>
                                 <div class="field-wrap">
-                                    <label class="lrg-label">
+                                    <label>
                                         Years of Experience
                                     </label>
-                                    <textarea class="form-control" name="YearsExp" id="experience" rows="3"></textarea>
+                                    <input type="number" min="0" max="80" textarea class="form-control" name="YearsExp" id="experience" rows="3">
                                 </div>
                                 <div class="field-wrap">
                                     <label class="lrg-label">

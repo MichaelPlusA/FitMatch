@@ -14,7 +14,6 @@ namespace Capstone.Web.Models
 
         public int Rating { get; set; } = 0; //not part of MVP, for future use. Scale of 1-5
         public string Additional_notes { get; set; } = ""; //Lengthy
-        public double Price_Per_Hour { get; set; } = 0;
         public int YearsExp { get; set; } = 0;
         public string exercise_Philosophy { get; set; } = "";
         public string Client_Success_Stories { get; set; } = "";
@@ -32,7 +31,7 @@ namespace Capstone.Web.Models
             YearsExp = user.YearsExp;
             exercise_Philosophy = user.Philosophy;
             Client_Success_Stories = user.ClientSuccessStories;
-            ListCertifications = user.ListCertifications;
+            Certifications = user.Certifications;
 
             byte[] saltString = Security.GenerateSalt(SALT_LENGTH);
 

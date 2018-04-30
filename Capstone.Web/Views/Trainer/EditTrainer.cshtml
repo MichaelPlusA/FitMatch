@@ -39,13 +39,13 @@
                                 <div class="grid clearfix">
                                     <div class="col3 first">
                                         <div class="field-wrap input-sml">
-                                            <input class="input-sml" type="text" name="Price_Per_Hour" value="@Model.Price_Per_Hour" autocomplete="off" />
+                                            <input class="input-sml" type="number" min="0" name="Price_Per_Hour" value="@Model.Price_Per_Hour" autocomplete="off" />
                                         </div>
                                         <span>Price Per Hour</span>
                                     </div>
                                     <div class="col3">
                                         <div class="field-wrap input-sml">
-                                            <input class="input-sml" type="text" name="YearsExp" value="@Model.YearsExp" autocomplete="off" />
+                                            <input class="input-sml" type="number" min="0" max="80" name="YearsExp" value="@Model.YearsExp" autocomplete="off" />
                                         </div>
                                         <span>Years Experience</span>
                                     </div>

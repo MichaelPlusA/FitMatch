@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTrainer.cshtml";
+}
+
+<form action="/Trainer/SubmitExercise" method="post">
+    <div class="field-wrap">
+        <label class="lrg-label">
+            Exercise Name
+        </label>
+        <textarea class="form-control" name="Name" id="Name" rows="3"></textarea>
+    </div>
+
+    <div class="field-wrap">
+        <label class="lrg-label">
+            Description
+        </label>
+        <textarea class="form-control" name="Description" id="Description" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="button button-block">Add Exercise</button>
+
+</form>

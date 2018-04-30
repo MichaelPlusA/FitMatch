@@ -11,10 +11,12 @@ namespace Capstone.Web.Controllers
     public class TrainerController : Controller
     {
         private IUserDAL _dal;
+        private IWorkoutDAL _workoutDal;
 
-        public TrainerController(IUserDAL dal)
+        public TrainerController(IUserDAL dal, IWorkoutDAL workoutDal)
         {
             _dal = dal;
+            _workoutDal = workoutDal;
         }
 
         // GET: Trainer
@@ -53,6 +55,29 @@ namespace Capstone.Web.Controllers
         {
             int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
             bool TrainerAccess = _dal.SwitchAccess(trainerID, access);
+            return Redirect("/Trainer/Index");
+        }
+
+        public ActionResult AddExercise()
+        {
+            return View();
+        }
+
+        public ActionResult Requests()
+        {
+            return View();
+        }
+
+        public ActionResult TrainerMessages()
+        {
+            return View();
+        }
+
+        public ActionResult SubmitExercise(string name, string description)
+        {
+            int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
+            bool addExercise = _workoutDal.AddExercise(name, description, trainerID);
+
             return Redirect("/Trainer/Index");
         }
     }

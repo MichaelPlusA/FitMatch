@@ -76,7 +76,7 @@ namespace Capstone.Web.Controllers
         public ActionResult SubmitExercise(string name, string description)
         {
             int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
-            bool addExercise = _workoutDal.AddExercise(name, description, trainerID);
+            //bool addExercise = _workoutDal.AddExercise(name, description, trainerID);
 
             return Redirect("/Trainer/Index");
         }

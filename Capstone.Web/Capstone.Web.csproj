@@ -122,11 +122,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\barbell.svg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\Barbell.svg" />
+    <Content Include="Content\img\workout-profile.jpg" />
     <Content Include="Content\styles.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

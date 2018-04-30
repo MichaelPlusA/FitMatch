@@ -47,6 +47,10 @@ else
         <b>Client Reviews:</b> @Model.Client_Success_Stories
 
         <br />
+
+        <b>Profile is:</b> @(Model.Searchable == true ? "public" : "private")
+
+        <br />
     </div>
 </div>
 

@@ -92,7 +92,17 @@ namespace Capstone.Web.Controllers
             int traineeID = (int)Session[SessionKeys.UserID];
             int trainerID = id;
 
-            bool isMatched = _dalUser.MatchWithTrainer(traineeID, trainerID);
+            bool isMatched = _dalUser.MatchWithTrainer(trainerID, traineeID);
+            
+            if(isMatched)
+            {
+                TempData["IsMatched"] = true;
+            }
+            else
+            {
+                TempData["IsMatched"] = false;
+            }
+
             return Redirect(Request.UrlReferrer.ToString());
         }
     }

@@ -31,7 +31,7 @@ namespace Capstone.Web.Models.ViewModel
         public int YearsExp { get; set; } = 0;
         public string Philosophy { get; set; } = "";
         public string ClientSuccessStories { get; set; } = "";
-        public List<string> ListCertifications { get; set; } = new List<string>();
+        public string Certifications { get; set; } = "";
         public string User_Location { get; set; } = "";
     }
 }

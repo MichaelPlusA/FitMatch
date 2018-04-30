@@ -46,7 +46,7 @@ namespace Capstone.Web.DAL
         //trainer registration function
         public bool RegisterUser(Trainer trainMaster)
         {
-            string delimitedCerts = DelimitedList(trainMaster.ListCertifications);
+            //string delimitedCerts = DelimitedList(trainMaster.ListCertifications);
 
             bool check;
 
@@ -66,7 +66,7 @@ namespace Capstone.Web.DAL
                 cmd2.Parameters.AddWithValue("@exercise_philosophy", trainMaster.exercise_Philosophy);
                 cmd2.Parameters.AddWithValue("@additional_notes", trainMaster.Additional_notes);
                 cmd2.Parameters.AddWithValue("@experience", trainMaster.YearsExp);
-                cmd2.Parameters.AddWithValue("@certifications", delimitedCerts);
+                cmd2.Parameters.AddWithValue("@certifications", trainMaster.Certifications);
                 cmd2.Parameters.AddWithValue("@client_success_stories", trainMaster.Client_Success_Stories);
 
                 int mostRecent = (int)(cmd2.ExecuteScalar()); 

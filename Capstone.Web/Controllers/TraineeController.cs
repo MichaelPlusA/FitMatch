@@ -87,12 +87,12 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult MatchTrainer(int id)
+        public ActionResult MatchTrainer(int trainer_id)
         {
             int traineeID = (int)Session[SessionKeys.UserID];
-            int trainerID = id;
+            int trainerID = trainer_id;
 
-            bool isMatched = _dalUser.MatchWithTrainer(traineeID, trainerID);
+            bool isMatched = _dalUser.MatchWithTrainer(trainerID, traineeID);
             return Redirect(Request.UrlReferrer.ToString());
         }
     }

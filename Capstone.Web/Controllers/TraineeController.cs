@@ -44,6 +44,11 @@ namespace Capstone.Web.Controllers
         {
             List<User> users = null;
 
+            if (searchString == "")
+            {
+                return Json(string.Empty, JsonRequestBehavior.AllowGet);
+            }
+
             if (searchType.Equals("name"))
             {
                 string[] names = searchString.Split();

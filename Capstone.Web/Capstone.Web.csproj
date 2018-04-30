@@ -153,6 +153,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\registration.js" />
     <Content Include="Scripts\search.js" />
+    <Content Include="Scripts\TrainerProfile.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

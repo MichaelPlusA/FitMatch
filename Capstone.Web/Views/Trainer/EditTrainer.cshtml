@@ -1,4 +1,8 @@
-﻿@using Capstone.Web.Models
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTrainer.cshtml";
+}
+
+@using Capstone.Web.Models
 @model Trainer
 
 <h1>Edit your profile</h1>
@@ -25,8 +29,8 @@
                                     <img src="~/Content/img/workout-profile.jpg" />
                                 </div>
                                 <div class="col-md-12">
-                                    <h1>@((string)Session[SessionKeys.First_Name]) @((string)Session[SessionKeys.First_Name])@*@Model.First_Name @Model.Last_Name*@</h1>
-                                    <h4>Exercise Philosophy</h4>
+                                    <h3>@((string)Session[SessionKeys.First_Name]) @((string)Session[SessionKeys.First_Name])@*@Model.First_Name @Model.Last_Name*@</h3>
+                                    <h3 class="light-p">Exercise Philosophy</h3>
                                     <p>
                                         <div class="field-wrap input-sml input-philo">
                                             <input class="input-sml" type="text" name="exercise_Philosophy" value="@Model.exercise_Philosophy" autocomplete="off" />
@@ -73,7 +77,7 @@
                             </div>
                             <div class="profileinfo">
                                 <p>
-                                    <div class="field-wrap input-sml">
+                                    <div class="field-wrap">
                                         <textarea class="form-control" name="Certifications" id="Certifications" rows="3">@Model.Certifications</textarea>
                                     </div>
                                 </p>
@@ -86,7 +90,7 @@
                                 <img src="~/Content/img/workout-profile.jpg" alt="">
                                 <h3>@Model.User_Location</h3>
                                 <p>
-                                    <div class="field-wrap input-sml">
+                                    <div class="field-wrap">
                                         <textarea class="form-control" name="Additional_notes" id="Additional_notes" rows="3">@Model.Additional_notes</textarea>
                                     </div>
                                 </p>
@@ -113,5 +117,5 @@
 </div>
 
 
-        
+
 

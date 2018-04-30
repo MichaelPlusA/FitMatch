@@ -20,9 +20,15 @@
 .footer {
     bottom: 0;
     width: 100%;
-    height: 60px;
+    height: 60px; 
     line-height: 60px;
     background-color: #393939;
+}
+
+.white-text {
+    color: white;
+    margin: auto;
+    width: 90%;
 }
 /*Logo*/
 .brand-container {
@@ -775,7 +781,13 @@ input[type=checkbox] {
         float: right;
     }
 .container-profile {
-    padding: 60px 50px 70px;
+    padding: 60px 0 70px;
+}
+
+.light-p {
+    color: #7F97B8;
+    font-size: 1rem;
+    padding-top: 1%;
 }
 
 .innerwrap {
@@ -948,6 +960,8 @@ section.section2 {
 
 .section2 .profileinfo p {
     text-align: justify;
+    padding: 1px;
+    overflow-wrap:break-word;
 }
 
 .section2 .profileinfo span {

@@ -25,6 +25,7 @@ namespace Capstone.Web.Controllers
             if(Session[SessionKeys.Trainer_ID] != null)
             {
                 Trainer trainerLogin = _dal.GetTrainer((int)Session[SessionKeys.Trainer_ID]);
+                trainerLogin.ClientList = _dal.GetClients((int)trainerLogin.Trainer_ID);
                 return View(trainerLogin);
             }
 

@@ -1065,3 +1065,55 @@ section.section2 {
 .input-philo {
     margin-left: 120px;
 }
+
+.btn-searchable {
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    color: inherit;
+    background: #7F97B8;
+    cursor: pointer;
+    padding: 1% 5%;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-update {
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    color: inherit;
+    background: #C2EE6C;
+    cursor: pointer;
+    padding: 1% 5%;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.edit-header {
+    width: 90%;
+    margin: auto;
+}
+
+.edit-text {
+    color: white;
+    margin: 0;
+}
+
+.no-pad-left {
+    padding-left: 0 !important;
+}

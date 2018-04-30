@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     var inputText = "<input type='text' id='searchString' name='SearchString' />"
-    var inputInt = "<input type='number' id='searchString' name='SearchString' />"
+    var inputInt = "<input type='number' min='0' max='99999' id='searchString' name='SearchString'/>"
 
     $("button[name='searchButton'").on("click", function (event) {
         var searchString = $("#searchString").val();

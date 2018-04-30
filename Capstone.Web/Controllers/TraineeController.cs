@@ -44,6 +44,11 @@ namespace Capstone.Web.Controllers
         {
             List<User> users = null;
 
+            if(searchString == "")
+            {
+                return Json(string.Empty, JsonRequestBehavior.AllowGet);
+            }
+
             if (searchType.Equals("name"))
             {
                 string[] names = searchString.Split();
@@ -79,7 +84,26 @@ namespace Capstone.Web.Controllers
 
             Trainer Searchedtrainer = _dalUser.GetTrainer(Convert.ToInt32(id));
             return View("TrainerProfile", Searchedtrainer);
+        }
+
+        [HttpGet]
+        public ActionResult MatchTrainer(int id)
+        {
+            int traineeID = (int)Session[SessionKeys.UserID];
+            int trainerID = id;
+
+            bool isMatched = _dalUser.MatchWithTrainer(trainerID, traineeID);
             
+            if(isMatched)
+            {
+                TempData["IsMatched"] = true;
+            }
+            else
+            {
+                TempData["IsMatched"] = false;
+            }
+
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }

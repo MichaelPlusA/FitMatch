@@ -171,5 +171,26 @@ namespace Capstone.Web.DAL
 
             return check;
         }
+
+        public bool MatchWithTrainer(int trainer, int trainee)
+        {
+            bool isMatched = false;
+
+            string MatchTrainerSQL = @"INSERT INTO Trainer_Trainee (trainer_id, trainee_id) 
+                                       VALUES (@trainer, @trainee);";
+
+            using(SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(MatchTrainerSQL, conn);
+                cmd.Parameters.AddWithValue("@trainer", trainer);
+                cmd.Parameters.AddWithValue("@trainee", trainee);
+
+                isMatched = cmd.ExecuteNonQuery() > 0 ? true : false;
+            }
+
+            return isMatched;
+        }
     }
 }

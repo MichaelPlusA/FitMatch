@@ -18,10 +18,10 @@ namespace Capstone.Web.DAL
             this.connectionString = connectionString;
         }
 
-        public bool AddExercise(string name, string description, string videoLink, string type)
+        public bool AddExercise(string name, string description, int id)
         {
             //this is not finished
-            string AddExerciseDAL = "INSERT INTO exercises (exercise_name, exercise_description, vide_link, trainer_id) VALUES (@name, @description, @videolink, @type)";
+            string AddExerciseDAL = "INSERT INTO exercises (exercise_name, exercise_description, trainer_id) VALUES (@name, @description, @trainerID)";
             bool check;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -30,9 +30,8 @@ namespace Capstone.Web.DAL
 
                 SqlCommand cmd = new SqlCommand(AddExerciseDAL, conn);
                 cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@desciption", description);
-                cmd.Parameters.AddWithValue("@videoLink", videoLink);
-                cmd.Parameters.AddWithValue("@type", type);
+                cmd.Parameters.AddWithValue("@description", description);
+                cmd.Parameters.AddWithValue("@trainerID", id);
 
                 check = cmd.ExecuteNonQuery() > 0 ? true : false;
             }

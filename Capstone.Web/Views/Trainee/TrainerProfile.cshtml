@@ -1,5 +1,16 @@
-﻿@{ 
+﻿@{
     Layout = "~/Views/Shared/_LayoutTrainee.cshtml";
+}
+@if (TempData["IsMatched"] != null)
+{
+    if ((bool)TempData["IsMatched"] == true)
+    {
+        <div class="alert alert-success" role="alert">Successfully matched with trainer</div>
+    }
+    else if ((bool)TempData["IsMatched"] == false)
+    {
+        <div class="alert alert-danger" role="alert">Failed to match with trainer</div>
+    }
 }
 
 <div class="col-md-6, text-center">
@@ -34,6 +45,8 @@
         <b>Client Reviews:</b> @Model.Client_Success_Stories
 
         <br />
+
+        <input type="button" class="btn btn-info" value="Register With Trainer" onclick="location.href='@Url.Action("MatchTrainer", "Trainee", new { id = Model.Trainer_ID })'" />
     </div>
 </div>
 

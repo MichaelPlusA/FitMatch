@@ -171,5 +171,12 @@ namespace Capstone.Web.DAL
 
             return check;
         }
+
+        public bool MatchWithTrainer(int trainee, int trainer)
+        {
+            bool isMatched = false;
+
+            return isMatched;
+        }
     }
 }

@@ -84,7 +84,16 @@ namespace Capstone.Web.Controllers
 
             Trainer Searchedtrainer = _dalUser.GetTrainer(Convert.ToInt32(id));
             return View("TrainerProfile", Searchedtrainer);
-            
+        }
+
+        [HttpGet]
+        public ActionResult MatchTrainer(int id)
+        {
+            int traineeID = (int)Session[SessionKeys.UserID];
+            int trainerID = id;
+
+            bool isMatched = _dalUser.MatchWithTrainer(traineeID, trainerID);
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }

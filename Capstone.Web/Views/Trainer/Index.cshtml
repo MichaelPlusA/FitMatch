@@ -27,9 +27,10 @@ else
                         <div class="col2 first">
                             <img src="~/Content/img/workout-profile.jpg" />
                             <h1>@((string)Session[SessionKeys.First_Name]) @((string)Session[SessionKeys.First_Name])@*@Model.First_Name @Model.Last_Name*@</h1>
-                            
+
                             <p>@Model.exercise_Philosophy</p>
-                            <span>Public</span>
+                            
+                            @*<span>@(Model.Searchable == true ? "public" : "private")</span>*@
                         </div>
                         <div class="col2 last">
                             <div class="grid clearfix">

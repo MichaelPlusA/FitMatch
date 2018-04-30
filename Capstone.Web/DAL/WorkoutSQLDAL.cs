@@ -18,10 +18,19 @@ namespace Capstone.Web.DAL
             this.connectionString = connectionString;
         }
 
-        public bool AddExercise(string name, string description, int id)
+        public bool AddExercise(string name, string description, int id, string type)
         {
             //this is not finished
-            string AddExerciseDAL = "INSERT INTO exercises (exercise_name, exercise_description, trainer_id) VALUES (@name, @description, @trainerID)";
+            string AddExerciseDAL = "INSERT INTO exercises (exercise_name, exercise_description, trainer_id,) VALUES (@name, @description, @trainerID)";
+            string addToTable;
+
+            if(type == "cardio")
+            {
+                addToTable = "INSERT INTO strength_exercises (exercise_id) VALUES (@exercise_id)";
+            }
+
+
+
             bool check;
 
             using (SqlConnection conn = new SqlConnection(connectionString))

@@ -17,6 +17,29 @@
         <textarea class="form-control" name="Description" id="Description" rows="3"></textarea>
     </div>
 
-    <button type="submit" class="button button-block">Add Exercise</button>
+
+    <div class="field-wrap">
+        <div class="row">
+            <div class="col-sm-1 col-md-1 col-lg-1 padd-R-0">
+                <input class="checkbox" type="checkbox" value="true" name="is_trainer" data-toggle="collapse" href="#is-trainer-active" role="button" aria-expanded="false" aria-controls="collapseExample" />
+            </div>
+            <div class="col-sm-10 col-md-10 col-lg-10 padd-LR-0">
+                <span class="checkbox-label">Register as a Trainer?</span>
+            </div>
+        </div>
+
+        <h3>Type of Exercise</h3>
+        <div>
+            <label>
+                @Html.RadioButton("Type", "Strength")Strength
+            </label>
+        </div>
+        <div>
+            <label>
+                @Html.RadioButton("Type", "Cardio")Cardio
+            </label>
+        </div>
+
+        <button type="submit" class="button button-block">Add Exercise</button>
 
 </form>

@@ -2,35 +2,40 @@
     Layout = "~/Views/Shared/_LayoutTrainer.cshtml";
 }
 
-@if (Session[SessionKeys.Email] == null)
-{
-    <br />
-    <h1>Welcome!</h1>
-    <br />
-}
-else
-{
-    <br />
-    <h1>Welcome Trainer @((string)Session[SessionKeys.First_Name])!</h1>
-    <br />
-}
+
 
 @using Capstone.Web.Models
 @model Trainer
 
+<br />
+<br />
 <div class="jumbotron trainer-back">
+    @if (Session[SessionKeys.Email] == null)
+    {
+        <h2 class="white-text">Welcome!</h2>
+       
+    }
+    else
+    {
+        <h2 class="white-text">Welcome Trainer @((string)Session[SessionKeys.First_Name])!</h2>
+    }
     <div class="container-profile">
         <div class="innerwrap">
             <section class="section1 clearfix">
                 <div>
                     <div class="row grid clearfix">
                         <div class="col2 first">
-                            <img src="~/Content/img/workout-profile.jpg" />
-                            <h1>@((string)Session[SessionKeys.First_Name]) @((string)Session[SessionKeys.First_Name])@*@Model.First_Name @Model.Last_Name*@</h1>
-
-                            <p>@Model.exercise_Philosophy</p>
-                            
-                            @*<span>@(Model.Searchable == true ? "public" : "private")</span>*@
+                            <div class="col-md-12">
+                                <img src="~/Content/img/workout-profile.jpg" />
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-philo">
+                                    <h3>@((string)Session[SessionKeys.First_Name]) @((string)Session[SessionKeys.First_Name])@*@Model.First_Name @Model.Last_Name*@</h3>
+                                    <h4 class="light-p">Exercise Philosophy</h4>
+                                    <p>@Model.exercise_Philosophy</p>
+                                    <span>@(Model.Searchable == true ? "public" : "private")</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="col2 last">
                             <div class="grid clearfix">
@@ -74,7 +79,9 @@ else
                         <div class="profileinfo">
                             <img src="~/Content/img/workout-profile.jpg" alt="">
                             <h3>@Model.User_Location</h3>
-                            <p>@Model.Additional_notes</p>
+                            <div class="text-center">
+                                <p>@Model.Additional_notes</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col3 last">

@@ -62,6 +62,7 @@ namespace Capstone.Web.DAL
             return check;
         }
 
+
         public bool AddStrengthToWorkout(StrengthExercise exercise)
         {
             bool check;
@@ -82,6 +83,7 @@ namespace Capstone.Web.DAL
             }
             return check;
         }
+
 
         public bool CreatePlan(Plan insertPlan)
         {
@@ -189,6 +191,11 @@ namespace Capstone.Web.DAL
                 PlanName = Convert.ToString(reader["plan_name"]),
                 Notes = Convert.ToString(reader["plan_notes"]),
             };
+        }
+
+        public List<User> GetClientNames(int TrainerID)
+        {
+            throw new NotImplementedException();
         }
     }
 }

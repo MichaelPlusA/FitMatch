@@ -147,10 +147,14 @@ namespace Capstone.Web.DAL
 
                     while (reader.Read())
                     {
-                        Exercise ExerciseToAdd = 
+                        Exercise ExerciseToAdd = MapRowToExercise(reader);
+
+                        ExercisesByTrainer.Add(ExerciseToAdd);
                     }
                 }
             }
+
+            return ExercisesByTrainer;
 
         }
 

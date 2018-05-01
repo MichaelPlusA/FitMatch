@@ -10,5 +10,7 @@ namespace Capstone.Web.Models
     {
         public List<CardioExercise> RunningAndStuff { get; set; }
         public List<StrengthExercise> GetBig { get; set; }
+        public string WorkoutName { get; set; }
+        public int WorkoutID { get; set; }
     }
 }

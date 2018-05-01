@@ -1,5 +1,6 @@
 ﻿using Capstone.Web.DAL.Interfaces;
 using Capstone.Web.Models;
+using Capstone.Web.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -133,13 +134,72 @@ namespace Capstone.Web.DAL
             return PlanList;
         }
 
+        public List<Workout> GetWorkouts(int planID)
+        {
+            List<Workout> WorkoutsList = new List<Workout>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string SQL_WorkOutList = "SELECT * from workout WHERE plan_id = @plan_id";
+
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(SQL_WorkOutList, conn))
+                {
+                    cmd.Parameters.AddWithValue("@plan_id", planID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+
+                    while (reader.Read())
+                    {
+                        Workout workoutToAdd = MapRowToWorkout(reader);
+
+                        WorkoutsList.Add(workoutToAdd);
+                    }
+                }
+            }
+            return WorkoutsList;
+        }
+
+
+        public PopulatePlanViewModel GetPlanViewModel(int traineeID)
+        {
+            PopulatePlanViewModel plan = new PopulatePlanViewModel();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string SQL_Plans = "SELECT plan_id, plan_name from workout_plan WHERE trainee_id = @trainee_ID";
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(SQL_Plans, conn))
+                {
+                    cmd.Parameters.AddWithValue("@trainee_ID", traineeID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+
+                    while (reader.Read())
+                    {
+                        PopulatePlanViewModel planToAdd = MapRowToPlanViewModel(reader);
+
+                        plan = planToAdd;
+                    }
+                }
+            }
+
+            return plan;
+        }
+
         public List<Exercise> GetExercisesForTrainer(int TrainerID)
         {
             List<Exercise> ExercisesByTrainer = new List<Exercise>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string SQLExercises = "SELECT exercise_id, exercise_name, exercise_description, video_link FROM exercises WHERE trainer_id = @trainer_id";
+                conn.Open();
+
+                string SQLExercises = "SELECT exercise_id, exercise_name, exercise_description, video_link, exercise_type_id FROM exercises WHERE trainer_id = @trainer_id and trainer_id = 1";
 
                 using (SqlCommand cmd = new SqlCommand(SQLExercises, conn))
                 {
@@ -160,6 +220,14 @@ namespace Capstone.Web.DAL
 
         }
 
+        private Workout MapRowToWorkout(SqlDataReader reader)
+        {
+            return new Workout()
+            {
+                WorkoutName = Convert.ToString(reader["workout_name"]),
+                WorkoutID = Convert.ToInt32(reader["workout_id"]),
+            };
+        }
 
         private Exercise MapRowToExercise(SqlDataReader reader)
         {
@@ -182,6 +250,16 @@ namespace Capstone.Web.DAL
             };
         }
 
+        private PopulatePlanViewModel MapRowToPlanViewModel(SqlDataReader reader)
+        {
+            return new PopulatePlanViewModel()
+            {
+                PlanID = Convert.ToInt32(reader["plan_id"]),
+                PlanName = Convert.ToString(reader["plan_name"]),
+            };
+        }
+
+
         private Plan MapRowToPlan(SqlDataReader reader)
         {
             return new Plan()
@@ -193,9 +271,5 @@ namespace Capstone.Web.DAL
             };
         }
 
-        public List<User> GetClientNames(int TrainerID)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

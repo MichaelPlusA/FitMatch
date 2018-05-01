@@ -9,6 +9,15 @@
         event.preventDefault();
     })
 
+    $("button[name='workoutButton'").on("click", function (event) {
+        var workoutToAdd = $("#workouts").val();
+        var planToAddTo = $("#plan").val();
+
+        var service = new WorkoutService();
+        service.add(workoutToAdd, planToAddTo, workoutAdded);
+        event.preventDefault();
+    })
+
     function ExerciseAdded() {
         var div = $("<div class = exercise-success> Exercise added </div>");
         $(div).insertBefore("fieldtoinsert");
@@ -29,6 +38,25 @@
                 successCallback(data);
             }).fail(function (xhr, status, error) {
                 console.error("Error occured while adding exercise", error);
+            })
+        }
+    }
+
+    function WorkoutService() {
+        const root = "//";
+
+        this.add = function (WorkoutToAdd, Plan, successCallback) {
+            $.ajax({
+                url: root,
+                method: "POST",
+                data: {
+                    "WorkoutToAdd": WorkoutToAdd,
+                    "Plan": Plan
+                }
+            }).done(function (data) {
+                successCallback(data);
+            }).fail(function (xhr, status, error) {
+                console.error("Error occured while adding workout", error);
             })
         }
     }

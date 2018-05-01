@@ -192,5 +192,41 @@ namespace Capstone.Web.DAL
 
             return isMatched;
         }
+
+        public List<User> GetClients (int trainerID)
+        {
+            List<User> ClientList = new List<User>();
+
+            string ClientSelectSQL = "Select user_info.first_name, user_info.last_name, user_info.user_id from user_info JOIN trainer_trainee on user_info.user_id = trainer_trainee.trainee_id WHERE trainer_trainee.trainer_id = @trainer_id";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(ClientSelectSQL, conn);
+
+                cmd.Parameters.AddWithValue("@trainer_id", trainerID);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    User userToAdd = MapRowToUser(reader);
+
+                    ClientList.Add(userToAdd);
+                }
+            }
+            return ClientList;
+        }
+
+        private User MapRowToUser(SqlDataReader reader)
+        {
+            return new User()
+            {
+                User_ID = Convert.ToInt32(reader["user_id"]),
+                First_Name = Convert.ToString(reader["first_name"]),
+                Last_Name = Convert.ToString(reader["last_name"]),
+            };
+        }
     }
 }

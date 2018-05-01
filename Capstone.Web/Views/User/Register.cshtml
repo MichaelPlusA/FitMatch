@@ -28,18 +28,19 @@
                     </div>
                 </div>
 
+                <h1 style="color:lawngreen;">@Html.ValidationMessage("username - exists")</h1>
                 <div class="field-wrap">
                     <label>
-                        Email - @Html.ValidationMessage("username - exists")<span class="req">*</span>
+                        Email - <span class="req">*</span>
                     </label>
                     <input type="email" name="Email" required autocomplete="off" />
                 </div>
 
                 <div class="field-wrap">
                     <label>
-                        Location -<span class="req">*</span>
+                        Zip Code -<span class="req">*</span>
                     </label>
-                    <input type="text" name="User_Location" required autocomplete="off" />
+                    <input type="number" name="User_Location" pattern=".{4,6}" required autocomplete="off" />
                 </div>
 
                 <div class="field-wrap">
@@ -48,7 +49,7 @@
                     </label>
                     <input type="password" name="Password" required autocomplete="off" />
                 </div>
-                <div style="color:white;">@Html.ValidationMessageFor(m => m.ConfirmPassword)</div>
+                <div style="color:lawngreen;">@Html.ValidationMessageFor(m => m.ConfirmPassword)</div>
                 <div class="field-wrap">
                     <label>
                         Confirm Password<span class="req">*</span>

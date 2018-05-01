@@ -181,6 +181,7 @@
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\StrengthExercise.cs" />
+    <Compile Include="Models\ViewModel\PopulatePlanViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
     <Compile Include="Models\ViewModel\SearchViewModel.cs" />
     <Compile Include="Models\Workout.cs" />
@@ -208,6 +209,7 @@
     <Content Include="Views\Trainer\ClientServices.cshtml" />
     <Content Include="Views\Trainer\Detail.cshtml" />
     <Content Include="Views\Trainee\Detail.cshtml" />
+    <Content Include="Views\Trainer\PopulatePlan.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

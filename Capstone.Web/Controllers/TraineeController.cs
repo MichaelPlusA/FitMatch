@@ -27,15 +27,12 @@ namespace Capstone.Web.Controllers
         // GET: Trainee
         public ActionResult Index()
         {
-            if ((Session)[SessionKeys.UserID] != null)
-            {
-                int ID = (int)Session[SessionKeys.UserID];
+            int ID = (int)Session[SessionKeys.UserID];
 
-                List<Plan> plans = _dalWorkout.GetPlans(ID);
-
-                return View(plans);
-            }
-            else return View("~/Views/Home/Index");
+            Plan plan = _dalWorkout.GetTraineePlan(ID);
+            plan.SeveralWorkouts = _dalWorkout.GetWorkoutsWithExercises(plan.Id);
+            
+            return View(plan);
         }
 
         public ActionResult Search(string json)
@@ -88,12 +85,6 @@ namespace Capstone.Web.Controllers
 
             Trainer Searchedtrainer = _dalUser.GetTrainer(Convert.ToInt32(id));
             return View("TrainerProfile", Searchedtrainer);
-        }
-
-        public ActionResult Detail()
-        {
-            Exercise exercise = _dalUser.GetExercise(1);
-            return View("Detail", exercise);
         }
 
         [HttpGet]

@@ -1,5 +1,6 @@
 ﻿using Capstone.Web.DAL.Interfaces;
 using Capstone.Web.Models;
+using Capstone.Web.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,9 +84,10 @@ namespace Capstone.Web.Controllers
             return View(loggedInTrainer.ClientList);
         }
 
-        public ActionResult Detail()
+        public ActionResult Detail(int id)
         {
-            Exercise exercise = _dal.GetExercise(7);
+
+            Exercise exercise = _dal.GetExercise(id);
             return View("Detail", exercise);
         }
 
@@ -93,9 +95,19 @@ namespace Capstone.Web.Controllers
         public ActionResult CreatePlan(Plan CreatePlan)
         {
             int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
+            CreatePlan.ByTrainer = ((int)Session[SessionKeys.Trainer_ID]);
             bool Plan = _workoutDal.CreatePlan(CreatePlan);
 
-            return Redirect("/Trainer/Index");
+            PopulatePlanViewModel ViewModel = _workoutDal.GetPlanViewModel(CreatePlan.ForTrainee);
+            ViewModel.exercises = _workoutDal.GetExercisesForTrainer(trainerID);
+            ViewModel.workouts = _workoutDal.GetWorkouts(ViewModel.PlanID);
+
+            return View("PopulatePlan", ViewModel);
+        }
+
+        public ActionResult PopulatePlan(PopulatePlanViewModel planviewmodel)
+        {
+            return View();
         }
 
         [HttpPost]

@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTrainer.cshtml";
+}
+
+@using Capstone.Web.Models.ViewModel
+@model PopulatePlanViewModel
+
+<h1>Create a single Workout for that plan you just made</h1>
+
+<h3>Select an exercise to add to the workout which ultimately is added to the plan which is a collection of workouts and workouts are collections of exercises its very confusing</h3>
+<select name="">
+    @foreach (var item in Model.exercises)
+    {
+        <option name="ForTrainee" id="ForTrainee">@item.Name</option>
+    }
+</select>
+
+<div class="field-wrap">
+    <label>
+        Workout Name -<span class="req"></span>
+    </label>
+    <input type="text" name="" required autocomplete="off" />
+</div>
+
+<select name="">
+    @foreach (var item in Model.workouts)
+    {
+        <option name="ForTrainee" id="ForTrainee">@item.WorkoutName</option>
+    }
+</select>
+
+<h2>Assign workout to which plan for this user</h2>
+<select name="ForTrainee">
+    <option name="ForTrainee" id="ForTrainee">@Model.PlanName</option>
+</select>

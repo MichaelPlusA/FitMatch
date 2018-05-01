@@ -59,34 +59,6 @@ namespace Capstone.Web.DAL
                 return check;
         }
 
-        public List<User> GetClientNames(int TrainerID)
-        {
-
-            List<User> Clients = new List<User>();
-            string GetClientsSQL = "Select first_name, last_name FROM user_info JOIN trainer_trainee on user_info.user_id = trainer_trainee.trainee_id WHERE trainer_trainee.trainer_id = @trainerID";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-
-                SqlCommand cmd = new SqlCommand(GetClientsSQL, conn);
-                cmd.Parameters.AddWithValue("@trainerID", TrainerID);
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while(reader.Read())
-                {
-                    User UserToAdd = MapRowToUser(reader);
-
-                    Clients.Add(UserToAdd);
-                }
-                
-            }
-
-            return Clients;
-
-        }
-
-
         public bool CreatePlan(Plan insertPlan)
         {
             string AddPlanDAL = "INSERT INTO workout_plan (trainer_id, trainee_id, plan_notes, plan_name) VALUES (@trainer_id, @trainee_id, @plan_notes, @plan_name)";

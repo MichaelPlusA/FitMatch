@@ -25,7 +25,6 @@ namespace Capstone.Web.Controllers
             if(Session[SessionKeys.Trainer_ID] != null)
             {
                 Trainer trainerLogin = _dal.GetTrainer((int)Session[SessionKeys.Trainer_ID]);
-                trainerLogin.ClientList = _dal.GetClients((int)trainerLogin.Trainer_ID);
                 return View(trainerLogin);
             }
 
@@ -76,9 +75,13 @@ namespace Capstone.Web.Controllers
 
         public ActionResult ClientServices()
         {
-            int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
-            List<User> ClientList = _workoutDal.GetClientNames(trainerID);
-            return View(ClientList);
+            if (Session[SessionKeys.Trainer_ID] != null)
+            {
+                Trainer trainerLogin = _dal.GetTrainer((int)Session[SessionKeys.Trainer_ID]);
+                return View(trainerLogin);
+            }
+
+            return Redirect("/User/Login");
         }
 
         [HttpPost]

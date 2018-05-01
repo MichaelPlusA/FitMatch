@@ -83,16 +83,16 @@ namespace Capstone.Web.Controllers
             return View(loggedInTrainer.ClientList);
         }
 
-        public ActionResult Detail(int exerciseID)
+        public ActionResult Detail()
         {
-            Exercise exercise = _dal.GetExercise(exerciseID);
+            Exercise exercise = _dal.GetExercise(9);
             return View("Detail", exercise);
         }
 
         [HttpPost]
         public ActionResult CreatePlan(Plan CreatePlan)
         {
-            int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
+            CreatePlan.ByTrainer = ((int)Session[SessionKeys.Trainer_ID]);
             bool Plan = _workoutDal.CreatePlan(CreatePlan);
 
             return Redirect("/Trainer/Index");
@@ -101,6 +101,8 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult SubmitExercise(Exercise addExercise)
         {
+            string[] splitLink = addExercise.VideoLink.Split('=');
+            addExercise.VideoLink = "https://www.youtube.com/embed/" + splitLink[1];
             addExercise.TrainerID = ((int)Session[SessionKeys.Trainer_ID]);
             bool AddExercise = _workoutDal.AddExercise(addExercise);
 

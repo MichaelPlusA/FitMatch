@@ -1,4 +1,5 @@
-﻿body {
+﻿html, body {
+    height: 100%
 }
 
 /* Menu ============================================================= */
@@ -20,9 +21,14 @@
 .footer {
     bottom: 0;
     width: 100%;
-    height: 60px; 
+    height: 60px;
     line-height: 60px;
     background-color: #393939;
+    
+}
+
+.footer-absolute {
+    position: absolute;
 }
 
 .white-text {
@@ -161,6 +167,20 @@
 
 .exercise-success {
     -webkit-animation: reversefill 4s linear forwards;
+}
+
+iframe {
+    display: block;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+.detailContainer {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 .triangle-down2 {
@@ -1183,5 +1203,40 @@ section.section2 {
 
 .btn-red a {
     text-decoration: none;
+    color: white;
+}
+
+.button-huge {
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    padding: 15px 0;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    background: #7F97B8;
+    color: #ffffff;
+    transition: all 0.5s ease;
+    -webkit-appearance: none;
+}
+
+    .button-huge:hover, .button-huge:focus {
+        background: #C2EE6C;
+    }
+
+.button-block {
+    display: block;
+    width: 100%;
+}
+
+/* Search =====================================================================*/
+
+.search-back {
+    background-color: #393939;
+    margin-top: 5%;
+}
+
+.search-back h2 {
     color: white;
 }

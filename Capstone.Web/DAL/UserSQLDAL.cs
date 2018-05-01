@@ -178,7 +178,9 @@ namespace Capstone.Web.DAL
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string SQLOneExercise = "SELECT exercise_id, exercise_name, exercise_description, video_link FROM exercises WHERE exercise_id = @exercise_id";
+                conn.Open();
+
+                string SQLOneExercise = "SELECT exercise_id, exercise_name, exercise_description, video_link, exercise_type_id FROM exercises WHERE exercise_id = @exercise_id";
 
                 using (SqlCommand cmd = new SqlCommand(SQLOneExercise, conn))
                 {
@@ -202,16 +204,23 @@ namespace Capstone.Web.DAL
         {
             bool isMatched = false;
 
-            string MatchTrainerSQL = @"INSERT INTO Trainer_Trainee (trainer_id, trainee_id) 
-                                       VALUES (@trainer, @trainee);";
+            string MatchTrainerSQL = @"BEGIN
+                                        IF NOT EXISTS (SELECT * FROM Trainer_Trainee
+                                        WHERE trainer_id = @trainerID
+                                        AND trainee_id = @traineeID)
+                                        BEGIN
+                                        INSERT INTO Trainer_Trainee (trainer_id, trainee_id)
+                                        VALUES (@trainerID, @traineeID)
+                                        END
+                                        END";
 
             using(SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 
                 SqlCommand cmd = new SqlCommand(MatchTrainerSQL, conn);
-                cmd.Parameters.AddWithValue("@trainer", trainer);
-                cmd.Parameters.AddWithValue("@trainee", trainee);
+                cmd.Parameters.AddWithValue("@trainerID", trainer);
+                cmd.Parameters.AddWithValue("@traineeID", trainee);
 
                 isMatched = cmd.ExecuteNonQuery() > 0 ? true : false;
             }

@@ -150,22 +150,6 @@ namespace Capstone.Web.DAL
             return SearchList;
         }
 
-        //public bool SendMessage(int TrainerID, int TraineeID, string MessageContent)
-        //{
-        //    string SQLSendMessage = "";
-
-        //    using (SqlConnection conn = new SqlConnection(connectionString))
-        //    {
-        //        conn.Open();
-
-        //        using (SqlCommand cmd = new SqlCommand(SQLSendMessage, conn))
-        //        {
-        //            //cmd.Parameters.AddWithValue("@", );
-
-        //        }
-        //    }
-        //}
-
         private User MapRowToUser(SqlDataReader reader)
         {
             return new User()

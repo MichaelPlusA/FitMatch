@@ -19,18 +19,24 @@
         </label>
         <textarea class="form-control" name="Description" id="Description" rows="2" required></textarea>
     </div>
+    <div class="field-wrap">
+        <label class="lrg-label">
+            Youtube Link
+        </label>
+        <textarea class="form-control" name="VideoLink" id="VideoLink" rows="1" required></textarea>
+    </div>
 
-        <h3>Type of Exercise</h3>
-        <div>
-            <label>
-                @Html.RadioButton("type", "2")Strength
-            </label>
-        </div>
-        <div>
-            <label>
-                @Html.RadioButton("type", "1", new { @checked = true })Cardio
-            </label>
-        </div>
+    <h3>Type of Exercise</h3>
+    <div>
+        <label>
+            @Html.RadioButton("type", "2")Strength
+        </label>
+    </div>
+    <div>
+        <label>
+            @Html.RadioButton("type", "1", new { @checked = true })Cardio
+        </label>
+    </div>
 
-        <button type="submit" class="button button-block">Add Exercise</button>
+    <button type="submit" class="button button-block">Add Exercise</button>
 </form>

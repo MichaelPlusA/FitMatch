@@ -106,9 +106,9 @@ namespace Capstone.Web.DAL
             return check;
         }
 
-        public List<Plan> GetPlans(int traineeID)
+        public Plan GetPlans(int traineeID)
         {
-            List<Plan> PlanList = new List<Plan>();
+            Plan plan = null;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -124,15 +124,108 @@ namespace Capstone.Web.DAL
 
                     while (reader.Read())
                     {
-                        Plan planToAdd = MapRowToPlan(reader);
-
-                        PlanList.Add(planToAdd);
+                        plan = MapRowToPlan(reader);
                     }
                 }
             }
-            return PlanList;
+            return plan;
         }
 
+        public List<Workout> GetWorkouts(int planId)
+        {
+            List<Workout> workouts = new List<Workout>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string SQL_Plans = "SELECT * from workout WHERE plan_id = @plan_Id";
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(SQL_Plans, conn))
+                {
+                    cmd.Parameters.AddWithValue("@plan_Id", planId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Workout workout = MapRowToWorkout(reader);
+                        workout.GetBig = GetStrengthExercises(workout.Id);
+                        workout.RunningAndStuff = GetCardioExercises(workout.Id);
+
+                        workouts.Add(workout);
+                    }
+                }
+            }
+
+            return workouts;
+        }
+
+        public List<StrengthExercise> GetStrengthExercises(int workoutId)
+        {
+            List<StrengthExercise> se = new List<StrengthExercise>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string SQL_Plans = @"SELECT * 
+                                    from strength_exercise
+                                    JOIN exercises ON strength_exercise.exercise_id = exercises.exercise_id
+                                    WHERE workout_id = @workout_id";
+
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(SQL_Plans, conn))
+                {
+                    cmd.Parameters.AddWithValue("@workout_Id", workoutId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        StrengthExercise exercise = MapRowToStrength(reader);
+
+                        se.Add(exercise);
+                    }
+                }
+            }
+
+            return se;
+        }
+
+        public List<CardioExercise> GetCardioExercises(int workoutId)
+        {
+            List<CardioExercise> ce = new List<CardioExercise>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string SQL_Plans = @"SELECT * 
+                                    from cardio_exercise
+                                    JOIN exercises ON cardio_exercise.exercise_id = exercises.exercise_id
+                                    WHERE workout_id = @workout_id";
+
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(SQL_Plans, conn))
+                {
+                    cmd.Parameters.AddWithValue("@workout_Id", workoutId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        CardioExercise exercise = MapRowToCardio(reader);
+
+                        ce.Add(exercise);
+                    }
+                }
+            }
+
+            return ce;
+        }
+
+        public List<User> GetClientNames(int TrainerID)
+        {
+            throw new NotImplementedException();
+        }
         public List<Exercise> GetExercisesForTrainer(int TrainerID)
         {
             List<Exercise> ExercisesByTrainer = new List<Exercise>();
@@ -160,7 +253,6 @@ namespace Capstone.Web.DAL
 
         }
 
-
         private Exercise MapRowToExercise(SqlDataReader reader)
         {
             return new Exercise()
@@ -186,6 +278,7 @@ namespace Capstone.Web.DAL
         {
             return new Plan()
             {
+                Id = Convert.ToInt32(reader["plan_id"]),
                 ByTrainer = Convert.ToInt32(reader["trainer_id"]),
                 ForTrainee = Convert.ToInt32(reader["trainee_id"]),
                 PlanName = Convert.ToString(reader["plan_name"]),
@@ -193,9 +286,48 @@ namespace Capstone.Web.DAL
             };
         }
 
-        public List<User> GetClientNames(int TrainerID)
+        private Workout MapRowToWorkout(SqlDataReader reader)
         {
-            throw new NotImplementedException();
+            return new Workout()
+            {
+                Id = Convert.ToInt32(reader["workout_id"]),
+                Name = Convert.ToString(reader["workout_name"]),
+                Notes = Convert.ToString(reader["additional_notes"]),
+                Plan_Id = Convert.ToInt32(reader["plan_id"])
+            };
+        }
+
+        private StrengthExercise MapRowToStrength(SqlDataReader reader)
+        {
+            return new StrengthExercise()
+            {
+                ExerciseID = Convert.ToInt32(reader["exercise_id"]),
+                Name = Convert.ToString(reader["exercise_name"]),
+                Type = Convert.ToInt32(reader["exercise_type_id"]),
+                Description = Convert.ToString(reader["exercise_description"]),
+                VideoLink = Convert.ToString(reader["video_link"]),
+                TrainerID = Convert.ToInt32(reader["trainer_id"]),
+                Reps = Convert.ToInt32(reader["strength_reps"]),
+                Sets = Convert.ToInt32(reader["strength_sets"]),
+                Rest_time = Convert.ToInt32(reader["rest_time"]),
+                Strength_id = Convert.ToInt32(reader["strength_id"])
+            };
+        }
+
+        private CardioExercise MapRowToCardio(SqlDataReader reader)
+        {
+            return new CardioExercise()
+            {
+                ExerciseID = Convert.ToInt32(reader["exercise_id"]),
+                Name = Convert.ToString(reader["exercise_name"]),
+                Type = Convert.ToInt32(reader["exercise_type_id"]),
+                Description = Convert.ToString(reader["exercise_description"]),
+                VideoLink = Convert.ToString(reader["video_link"]),
+                TrainerID = Convert.ToInt32(reader["trainer_id"]),
+                Intensity = Convert.ToInt32(reader["intensity"]),
+                Duration = Convert.ToInt32(reader["duration"]),
+                Cardio_id = Convert.ToInt32(reader["cardio_id"]),
+            };
         }
     }
 }

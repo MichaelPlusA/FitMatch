@@ -9,7 +9,9 @@ namespace Capstone.Web.DAL.Interfaces
     public interface IWorkoutDAL
     {
         bool AddExercise(Exercise addExercise);
-        List<Plan> GetPlans(int traineeID);
+        Plan GetPlans(int traineeID);
         bool CreatePlan(Plan insertPlan);
+        List<Workout> GetWorkouts(int planId);
+        List<StrengthExercise> GetStrengthExercises(int workoutId);
     }
 }

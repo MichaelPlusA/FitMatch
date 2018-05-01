@@ -29,9 +29,10 @@ namespace Capstone.Web.Controllers
         {
             int ID = (int)Session[SessionKeys.UserID];
 
-            List<Plan> plans = _dalWorkout.GetPlans(ID);
-
-            return View(plans);
+            Plan plan = _dalWorkout.GetPlans(ID);
+            plan.SeveralWorkouts = _dalWorkout.GetWorkouts(plan.Id);
+            
+            return View(plan);
         }
 
         public ActionResult Search(string json)

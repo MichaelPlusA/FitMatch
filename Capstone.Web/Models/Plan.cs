@@ -7,6 +7,7 @@ namespace Capstone.Web.Models
 {
     public class Plan
     {
+        public int Id { get; set; }
         public List<Workout> SeveralWorkouts { get; set; }
         public string PlanName { get; set; }
         public string Notes { get; set; }

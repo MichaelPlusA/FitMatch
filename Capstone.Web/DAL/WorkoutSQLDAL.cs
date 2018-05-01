@@ -134,35 +134,6 @@ namespace Capstone.Web.DAL
             return plan;
         }
 
-        public List<Workout> GetWorkouts(int planId)
-        {
-            List<Workout> workouts = new List<Workout>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string SQL_Plans = "SELECT * from workout WHERE plan_id = @plan_Id";
-                conn.Open();
-
-                using (SqlCommand cmd = new SqlCommand(SQL_Plans, conn))
-                {
-                    cmd.Parameters.AddWithValue("@plan_Id", planId);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        Workout workout = MapRowToWorkout(reader);
-                        workout.GetBig = GetStrengthExercises(workout.Id);
-                        workout.RunningAndStuff = GetCardioExercises(workout.Id);
-
-                        workouts.Add(workout);
-                    }
-                }
-            }
-
-            return workouts;
-        }
-
         public List<Workout> GetWorkoutsWithExercises(int planId)
         {
             List<Workout> workouts = new List<Workout>();
@@ -307,12 +278,12 @@ namespace Capstone.Web.DAL
                     }
                 }
             }
+            return plan;
+        }
 
         public List<User> GetClientNames(int TrainerID)
         {
             throw new NotImplementedException();
-        }
-            return plan;
         }
 
         public List<Exercise> GetExercisesForTrainer(int TrainerID)
@@ -342,15 +313,6 @@ namespace Capstone.Web.DAL
 
             return ExercisesByTrainer;
 
-        }
-
-        private Workout MapRowToWorkout(SqlDataReader reader)
-        {
-            return new Workout()
-            {
-                WorkoutName = Convert.ToString(reader["workout_name"]),
-                WorkoutID = Convert.ToInt32(reader["workout_id"]),
-            };
         }
 
         private Exercise MapRowToExercise(SqlDataReader reader)

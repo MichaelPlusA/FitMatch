@@ -17,6 +17,5 @@ namespace Capstone.Web.DAL.Interfaces
         List<StrengthExercise> GetStrengthExercises(int workoutId);
         PopulatePlanViewModel GetPlanViewModel(int traineeID);
         List<Exercise> GetExercisesForTrainer(int TrainerID);
-        List<Workout> GetWorkouts(int planID);
     }
 }

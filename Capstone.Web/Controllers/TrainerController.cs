@@ -83,9 +83,9 @@ namespace Capstone.Web.Controllers
             return View(loggedInTrainer.ClientList);
         }
 
-        public ActionResult Detail()
+        public ActionResult Detail(int id)
         {
-            Exercise exercise = _dal.GetExercise(9);
+            Exercise exercise = _dal.GetExercise(id);
             return View("Detail", exercise);
         }
 

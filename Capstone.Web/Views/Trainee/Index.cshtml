@@ -26,7 +26,7 @@ else
             <h1 class="plan-header">@Model.PlanName</h1>
         </div>
         <div class="col-md-6">
-            <button class="btn btn-trainer btn-1 btn-1c">Trainer : @Model.ByTrainer</button>
+            <a href="@("/Trainee/TrainerProfile/" + Model.ByTrainer)" class="btn btn-trainer btn-1 btn-1c">Trainer : @Model.TrainerName</a>
         </div>
     </div>
     <div id="accordion">
@@ -44,27 +44,28 @@ else
                     </h5>
                 </div>
                 <div id="@("collapse" + counter)" class="collapse show" aria-labelledby="@("heading" + counter)" data-parent="#accordion">
+                    <div class="workout-notes">@workout.Notes</div>
                     <div class="card-body">
-                        @if(workout.RunningAndStuff.Count > 0)
+                        @if (workout.RunningAndStuff.Count > 0)
                         {
                             <h3>Cardio</h3>
-                            foreach(CardioExercise e in workout.RunningAndStuff)
+                            foreach (CardioExercise e in workout.RunningAndStuff)
                             {
                                 <div class="workout-exercise">
-                                    <a href="">@e.Name</a>
+                                    <a href="@("/Trainer/Detail/" + e.ExerciseID)">@e.Name</a>
                                     <span class="duration">Time: @e.Duration</span>
                                     <span class="intensity">Intensity: @e.Intensity</span>
                                 </div>
                             }
                         }
 
-                        @if(workout.GetBig.Count > 0)
+                        @if (workout.GetBig.Count > 0)
                         {
                             <h3>Strength</h3>
-                            foreach(StrengthExercise e in workout.GetBig)
+                            foreach (StrengthExercise e in workout.GetBig)
                             {
                                 <div class="workout-exercise">
-                                    <a href="">@e.Name</a>
+                                    <a href="@("/Trainer/Detail/" + e.ExerciseID)">@e.Name</a>
                                     <span class="sets">Sets: @e.Sets</span>
                                     <span class="reps">Reps: @e.Reps</span>
                                     <span class="rest-time">Time Between Sets: @e.Rest_time</span>
@@ -75,64 +76,7 @@ else
                 </div>
             </div>
 
-            @(counter++)
+            counter++;
         }
-        @*<div class="card">
-            <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">
-                        Workout A
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseFour" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" id="headingTwo">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseTwo">
-                        Workout B
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body">
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" id="headingThree">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
-                        Workout C
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseSix" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                    <div class="row">- Exercise</div>
-                </div>
-            </div>
-        </div>*@
     </div>
 </div> <!--End Jumbotron-->

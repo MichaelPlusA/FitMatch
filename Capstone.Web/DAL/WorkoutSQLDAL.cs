@@ -62,7 +62,6 @@ namespace Capstone.Web.DAL
             return check;
         }
 
-
         public bool AddStrengthToWorkout(StrengthExercise exercise)
         {
             bool check;
@@ -83,7 +82,6 @@ namespace Capstone.Web.DAL
             }
             return check;
         }
-
 
         public bool CreatePlan(Plan insertPlan)
         {
@@ -106,13 +104,15 @@ namespace Capstone.Web.DAL
             return check;
         }
 
-        public Plan GetPlans(int traineeID)
+        public Plan GetTraineePlan(int traineeID)
         {
             Plan plan = null;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string SQL_Plans = "SELECT * from workout_plan WHERE trainee_id = @trainee_ID";
+                string SQL_Plans = @"SELECT workout_plan.*, user_info.first_name, user_info.last_name FROM workout_plan 
+                                     JOIN user_info ON workout_plan.trainer_id = user_info.trainer_id
+                                     WHERE trainee_id = @trainee_ID";
                 conn.Open();
 
                 using (SqlCommand cmd = new SqlCommand(SQL_Plans, conn))
@@ -132,6 +132,35 @@ namespace Capstone.Web.DAL
         }
 
         public List<Workout> GetWorkouts(int planId)
+        {
+            List<Workout> workouts = new List<Workout>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string SQL_Plans = "SELECT * from workout WHERE plan_id = @plan_Id";
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(SQL_Plans, conn))
+                {
+                    cmd.Parameters.AddWithValue("@plan_Id", planId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Workout workout = MapRowToWorkout(reader);
+                        workout.GetBig = GetStrengthExercises(workout.Id);
+                        workout.RunningAndStuff = GetCardioExercises(workout.Id);
+
+                        workouts.Add(workout);
+                    }
+                }
+            }
+
+            return workouts;
+        }
+
+        public List<Workout> GetWorkoutsWithExercises(int planId)
         {
             List<Workout> workouts = new List<Workout>();
 
@@ -283,6 +312,22 @@ namespace Capstone.Web.DAL
                 ForTrainee = Convert.ToInt32(reader["trainee_id"]),
                 PlanName = Convert.ToString(reader["plan_name"]),
                 Notes = Convert.ToString(reader["plan_notes"]),
+                TrainerFirstName = Convert.ToString(reader["first_name"]),
+                TrainerLastName = Convert.ToString(reader["last_name"])
+            };
+        }
+
+        private Plan MapRowToTraineePlan(SqlDataReader reader)
+        {
+            return new Plan()
+            {
+                Id = Convert.ToInt32(reader["plan_id"]),
+                ByTrainer = Convert.ToInt32(reader["trainer_id"]),
+                ForTrainee = Convert.ToInt32(reader["trainee_id"]),
+                PlanName = Convert.ToString(reader["plan_name"]),
+                Notes = Convert.ToString(reader["plan_notes"]),
+                TrainerFirstName = Convert.ToString(reader["first_name"]),
+                TrainerLastName = Convert.ToString(reader["last_name"])
             };
         }
 

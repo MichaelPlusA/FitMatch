@@ -137,7 +137,7 @@ namespace Capstone.Web.DAL
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string SQLExercises = "SELECT * FROM exercises WHERE trainer_id = @trainer_id";
+                string SQLExercises = "SELECT exercise_id, exercise_name, exercise_description, video_link FROM exercises WHERE trainer_id = @trainer_id";
 
                 using (SqlCommand cmd = new SqlCommand(SQLExercises, conn))
                 {
@@ -157,6 +157,7 @@ namespace Capstone.Web.DAL
             return ExercisesByTrainer;
 
         }
+
 
         private Exercise MapRowToExercise(SqlDataReader reader)
         {

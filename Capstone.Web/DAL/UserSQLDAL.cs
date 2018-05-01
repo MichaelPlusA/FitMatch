@@ -65,7 +65,7 @@ namespace Capstone.Web.DAL
                 cmd2.Parameters.AddWithValue("@price_per_hour", trainMaster.Price_Per_Hour);
                 cmd2.Parameters.AddWithValue("@exercise_philosophy", trainMaster.exercise_Philosophy);
                 cmd2.Parameters.AddWithValue("@additional_notes", trainMaster.Additional_notes);
-                cmd2.Parameters.AddWithValue("@experience", trainMaster.YearsExp);
+                cmd2.Parameters.AddWithValue("@experience", trainMaster.experience);
                 cmd2.Parameters.AddWithValue("@certifications", trainMaster.Certifications);
                 cmd2.Parameters.AddWithValue("@client_success_stories", trainMaster.Client_Success_Stories);
 
@@ -134,7 +134,7 @@ namespace Capstone.Web.DAL
                 SqlCommand cmd = new SqlCommand(UpdateTrainerSQL, conn);
                 cmd.Parameters.AddWithValue("@price_per_hour", update.Price_Per_Hour);
                 cmd.Parameters.AddWithValue("@certifications", update.Certifications);
-                cmd.Parameters.AddWithValue("@experience", update.YearsExp);
+                cmd.Parameters.AddWithValue("@experience", update.experience);
                 cmd.Parameters.AddWithValue("@client_success_stories", update.Client_Success_Stories);
                 cmd.Parameters.AddWithValue("@exercise_philosophy", update.exercise_Philosophy);
                 cmd.Parameters.AddWithValue("@additional_notes", update.Additional_notes);

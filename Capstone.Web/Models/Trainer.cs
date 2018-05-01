@@ -14,12 +14,13 @@ namespace Capstone.Web.Models
 
         public int Rating { get; set; } = 0; //not part of MVP, for future use. Scale of 1-5
         public string Additional_notes { get; set; } = ""; //Lengthy
-        public int YearsExp { get; set; } = 0;
+        public int experience { get; set; } = 0;
         public string exercise_Philosophy { get; set; } = "";
         public string Client_Success_Stories { get; set; } = "";
         public List<string> ListCertifications { get; set; } = new List<string>();
         public string Certifications { get; set; }
         public bool Searchable { get; set; }
+        public List<int> ClientIDs { get; set; }
 
         public Trainer(RegisterViewModel user)
         {
@@ -28,7 +29,7 @@ namespace Capstone.Web.Models
             this.Email = user.Email;
             Additional_notes = user.Additional_notes;
             Price_Per_Hour = user.PricePerHour;
-            YearsExp = user.YearsExp;
+            experience = user.YearsExp;
             exercise_Philosophy = user.Philosophy;
             Client_Success_Stories = user.ClientSuccessStories;
             Certifications = user.Certifications;

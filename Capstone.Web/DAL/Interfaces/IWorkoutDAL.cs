@@ -8,8 +8,11 @@ namespace Capstone.Web.DAL.Interfaces
 {
     public interface IWorkoutDAL
     {
-        //bool AddExercise(string name, string description, int id);
 
+        bool AddExercise(Exercise addExercise);
         List<Plan> GetPlans(int traineeID);
+        bool CreatePlan(Plan insertPlan);
+        List<User> GetClientNames(int TrainerID);
+
     }
 }

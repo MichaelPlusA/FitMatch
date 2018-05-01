@@ -18,19 +18,10 @@ namespace Capstone.Web.DAL
             this.connectionString = connectionString;
         }
 
-        public bool AddExercise(string name, string description, int id, string type)
+        public bool AddExercise(Exercise addExercise)
         {
             //this is not finished
-            string AddExerciseDAL = "INSERT INTO exercises (exercise_name, exercise_description, trainer_id,) VALUES (@name, @description, @trainerID)";
-            string addToTable;
-
-            if(type == "cardio")
-            {
-                addToTable = "INSERT INTO strength_exercises (exercise_id) VALUES (@exercise_id)";
-            }
-
-
-
+            string AddExerciseDAL = "INSERT INTO exercises (exercise_name, exercise_description, trainer_id, exercise_type_id, video_link) VALUES (@name, @description, @trainerID, @exerciseTypeID, @videolink)";
             bool check;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -38,9 +29,11 @@ namespace Capstone.Web.DAL
                 conn.Open();
 
                 SqlCommand cmd = new SqlCommand(AddExerciseDAL, conn);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@description", description);
-                cmd.Parameters.AddWithValue("@trainerID", id);
+                cmd.Parameters.AddWithValue("@name", addExercise.Name);
+                cmd.Parameters.AddWithValue("@description", addExercise.Description);
+                cmd.Parameters.AddWithValue("@trainerID", addExercise.TrainerID);
+                cmd.Parameters.AddWithValue("@exerciseTypeID", addExercise.Type);
+                cmd.Parameters.AddWithValue("@videolink", addExercise.VideoLink);
 
                 check = cmd.ExecuteNonQuery() > 0 ? true : false;
             }
@@ -48,28 +41,53 @@ namespace Capstone.Web.DAL
             return check;
         }
 
-        public bool AddWorkout(Workout Moves)
+        public bool AddExercisesToWorkout(Exercise exercise)
         {
-            //workouts might need a exerciseID in the SQL table
-            //this is not done
-            string AddWorkoutDAL = "INSERT INTO workout (workout_name, additional_notes, plan_id)";
             bool check;
+            string AddExercisesToSQLDAL = "INSERT INTO strength_exercises (workout_id) VALUES (@workoutID) WHERE exercise_id = @exerciseID";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand(AddWorkoutDAL, conn);
-                cmd.Parameters.AddWithValue("@", Moves.GetBig);
-                cmd.Parameters.AddWithValue("@", Moves.RunningAndStuff);
+                SqlCommand cmd = new SqlCommand(AddExercisesToSQLDAL, conn);
+                cmd.Parameters.AddWithValue("@workoutID", exercise.WorkoutID);
+                cmd.Parameters.AddWithValue("@exerciseID", exercise.ExerciseID);
 
                 check = cmd.ExecuteNonQuery() > 0 ? true : false;
             }
-
-            return check;
+                return check;
         }
 
-        public bool AddPlan(Plan insertPlan)
+        public List<User> GetClientNames(int TrainerID)
+        {
+
+            List<User> Clients = new List<User>();
+            string GetClientsSQL = "Select first_name, last_name FROM user_info JOIN trainer_trainee on user_info.user_id = trainer_trainee.trainee_id WHERE trainer_trainee.trainer_id = @trainerID";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(GetClientsSQL, conn);
+                cmd.Parameters.AddWithValue("@trainerID", TrainerID);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    User UserToAdd = MapRowToUser(reader);
+
+                    Clients.Add(UserToAdd);
+                }
+                
+            }
+
+            return Clients;
+
+        }
+
+
+        public bool CreatePlan(Plan insertPlan)
         {
             string AddPlanDAL = "INSERT INTO workout_plan (trainer_id, trainee_id, plan_notes, plan_name) VALUES (@trainer_id, @trainee_id, @plan_notes, @plan_name)";
             bool check;
@@ -115,6 +133,15 @@ namespace Capstone.Web.DAL
                 }
             }
             return PlanList;
+        }
+
+        private User MapRowToUser(SqlDataReader reader)
+        {
+            return new User()
+            {
+                First_Name = Convert.ToString(reader["first_name"]),
+                Last_Name = Convert.ToString(reader["last_name"]),
+            };
         }
 
         private Plan MapRowToPlan(SqlDataReader reader)

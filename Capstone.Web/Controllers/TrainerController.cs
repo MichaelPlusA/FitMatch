@@ -73,10 +73,27 @@ namespace Capstone.Web.Controllers
             return View();
         }
 
-        public ActionResult SubmitExercise(string name, string description)
+        public ActionResult ClientServices()
         {
             int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
-            //bool addExercise = _workoutDal.AddExercise(name, description, trainerID);
+            List<User> ClientList = _workoutDal.GetClientNames(trainerID);
+            return View(ClientList);
+        }
+
+        [HttpPost]
+        public ActionResult CreatePlan(Plan CreatePlan)
+        {
+            int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
+            bool Plan = _workoutDal.CreatePlan(CreatePlan);
+
+            return Redirect("/Trainer/Index");
+        }
+
+        [HttpPost]
+        public ActionResult SubmitExercise(Exercise addExercise)
+        {
+            addExercise.TrainerID = ((int)Session[SessionKeys.Trainer_ID]);
+            bool AddExercise = _workoutDal.AddExercise(addExercise);
 
             return Redirect("/Trainer/Index");
         }

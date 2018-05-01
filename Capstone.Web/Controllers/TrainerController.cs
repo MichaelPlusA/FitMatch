@@ -92,7 +92,7 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult CreatePlan(Plan CreatePlan)
         {
-            int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
+            CreatePlan.ByTrainer = ((int)Session[SessionKeys.Trainer_ID]);
             bool Plan = _workoutDal.CreatePlan(CreatePlan);
 
             return Redirect("/Trainer/Index");

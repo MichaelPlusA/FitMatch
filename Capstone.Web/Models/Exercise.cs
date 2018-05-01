@@ -12,7 +12,7 @@ namespace Capstone.Web.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Type is required")]
-        public string Type { get; set; }
+        public int Type { get; set; }
 
         public string Description { get; set; }
         public string VideoLink { get; set; } = "";

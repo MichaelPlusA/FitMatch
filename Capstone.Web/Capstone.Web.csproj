@@ -205,9 +205,9 @@
     <Content Include="Views\Shared\_LayoutTrainee.cshtml" />
     <Content Include="Views\Shared\_LayoutTrainer.cshtml" />
     <Content Include="Views\Trainer\AddExercise.cshtml" />
-    <Content Include="Views\Trainer\TrainerMessages.cshtml" />
-    <Content Include="Views\Trainer\Requests.cshtml" />
     <Content Include="Views\Trainer\ClientServices.cshtml" />
+    <Content Include="Views\Trainer\Detail.cshtml" />
+    <Content Include="Views\Trainee\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -178,7 +178,9 @@ namespace Capstone.Web.DAL
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string SQLOneExercise = "SELECT exercise_id, exercise_name, exercise_description, video_link FROM exercises WHERE exercise_id = @exercise_id";
+                conn.Open();
+
+                string SQLOneExercise = "SELECT exercise_id, exercise_name, exercise_description, video_link, exercise_type_id FROM exercises WHERE exercise_id = @exercise_id";
 
                 using (SqlCommand cmd = new SqlCommand(SQLOneExercise, conn))
                 {

@@ -2,26 +2,28 @@
 
     $("button[name='exerciseButton'").on("click", function (event) {
         var exerciseToAdd = $("#exercises").val();
+        var workoutToAddTo = $("workout").val();
 
         var service = new ExerciseService();
-        service.add(exerciseToAdd, ExerciseAdded);
+        service.add(exerciseToAdd, workout, ExerciseAdded);
         event.preventDefault();
     })
 
     function ExerciseAdded() {
-        var div = $("<div class = exercise-success>");
+        var div = $("<div class = exercise-success> Exercise added </div>");
         $(div).insertBefore("fieldtoinsert");
     }
 
     function ExerciseService() {
         const root = "/Trainer/Exercises";
 
-        this.add = function (exerciseToAdd, successCallback) {
+        this.add = function (exerciseToAdd, workout, successCallback) {
             $.ajax({
                 url: root,
                 method: "POST",
                 data: {
-                    "exercise": exerciseToAdd
+                    "exercise": exerciseToAdd,
+                    "workout": workout
                 }
             }).done(function (data) {
                 successCallback(data);

@@ -76,9 +76,7 @@ namespace Capstone.Web.Controllers
 
         public ActionResult ClientServices()
         {
-            int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
-            List<User> ClientList = _workoutDal.GetClientNames(trainerID);
-            return View(ClientList);
+            return View();
         }
 
         [HttpPost]

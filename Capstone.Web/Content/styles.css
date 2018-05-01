@@ -163,6 +163,11 @@
     -webkit-animation: reversefill 4s linear forwards;
 }
 
+iframe {
+    display: block;
+    margin: auto;
+}
+
 .triangle-down2 {
     position: absolute;
     margin-top: 2.5%;

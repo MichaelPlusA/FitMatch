@@ -1193,6 +1193,30 @@ section.section2 {
     color: white;
 }
 
+.button-huge {
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    padding: 15px 0;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    background: #7F97B8;
+    color: #ffffff;
+    transition: all 0.5s ease;
+    -webkit-appearance: none;
+}
+
+    .button-huge:hover, .button-huge:focus {
+        background: #C2EE6C;
+    }
+
+.button-block {
+    display: block;
+    width: 100%;
+}
+
 /* Search =====================================================================*/
 
 .search-back {

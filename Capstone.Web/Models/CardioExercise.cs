@@ -9,5 +9,6 @@ namespace Capstone.Web.Models
     {
         public double Intensity { get; set; } //scale of 1-10
         public int Duration { get; set; }
+        public int Cardio_id { get; set; }
     }
 }

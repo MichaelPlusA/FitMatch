@@ -159,6 +159,10 @@
     color: white;
 }
 
+.exercise-success {
+    -webkit-animation: reversefill 4s linear forwards;
+}
+
 .triangle-down2 {
     position: absolute;
     margin-top: 2.5%;
@@ -273,6 +277,16 @@
 
     to {
         opacity: 1;
+    }
+}
+
+@-webkit-keyframes reversefill {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
     }
 }
 
@@ -718,32 +732,7 @@ input[type=checkbox] {
     transition: all 0.3s;
 }
 
-/* Button 1 */
-.btn-1 {
-    border: 3px solid #fff;
-    color: #fff;
-}
 
-
-/* Button 1c */
-.btn-1c:after {
-    width: 0%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: #fff;
-}
-
-.btn-1c:hover,
-.btn-1c:active {
-    background-color: #C2EE6C;
-    color: #393939;
-}
-
-    .btn-1c:hover:after,
-    .btn-1c:active:after {
-        width: 100%;
-    }
 
 
 /*Trainer =================================================================*/
@@ -1032,9 +1021,23 @@ section.section2 {
         margin-top: 25px;
     }
     .input-philo {
-        margin-left: 0;
+        margin-left: auto !important;
     }
-}
+    .container-profile {
+        padding-top: 20px;
+    }
+    .text-change {
+        text-align: left;
+    }
+    .btn-searchable {
+        font-size: 0.5rem;
+    }
+    .edit-text {
+        color: white;
+        margin-bottom: 5%;
+    }
+
+    }
 
 @media only screen and (max-width: 450px) {
     .container-profile {
@@ -1052,6 +1055,12 @@ section.section2 {
 
     .section1 .col2.last .col3 h1 {
         font-size: 18px;
+    }
+    .input-philo {
+        margin-left: auto !important;
+    }
+    .container-profile{
+        padding-top: 20px;
     }
 }
 
@@ -1116,4 +1125,63 @@ section.section2 {
 
 .no-pad-left {
     padding-left: 0 !important;
+}
+
+
+/* Misc Buttons ===========================================*/
+
+/* Button 1 */
+.btn-1 {
+    border: 3px solid #fff;
+    color: #fff;
+}
+
+
+/* Button 1c */
+.btn-1c:after {
+    width: 0%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #fff;
+}
+
+.btn-1c:hover,
+.btn-1c:active {
+    background-color: #C2EE6C;
+    color: #393939;
+}
+
+    .btn-1c:hover:after,
+    .btn-1c:active:after {
+        width: 100%;
+    }
+
+/* Button Red */
+.btn-red {
+    background-color: #de4a4a;
+    margin-left: 1%;
+}
+.btn-red:after {
+    width: 0%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #de4a4a; /*red*/
+}
+
+.btn-red:hover,
+.btn-red:active {
+    background-color: #8b0c0c;
+    color: white;
+}
+
+    .btn-red:hover:after,
+    .btn-red:active:after {
+        width: 100%;
+    }
+
+.btn-red a {
+    text-decoration: none;
+    color: white;
 }

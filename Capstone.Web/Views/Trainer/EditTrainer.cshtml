@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="col3">
                                             <div class="field-wrap input-sml">
-                                                <input class="input-sml" type="number" min="0" max="80" name="YearsExp" value="@Model.experience" autocomplete="off" />
+                                                <input class="input-sml" type="number" min="0" max="80" name="experience" value="@Model.experience" autocomplete="off" />
                                             </div>
                                             <span>Years Experience</span>
                                         </div>
@@ -126,8 +126,9 @@
                     </section>
                 </div>
                 <div class="row edit-header">
-                    <button type="submit" class="btn btn-update btn-1 btn-1c">Update Profile</button>
-                    </div>
+                    <button type="submit" class="btn btn-searchable btn-1 btn-1c">Update Profile</button>
+                    <button class="btn btn-red btn-1 btn-1c"><a href="@Url.Action("Index", "Trainer")">Cancel</a></button>
+                </div>
             </form>
         </div>
     </div>

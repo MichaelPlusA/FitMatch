@@ -30,7 +30,7 @@ namespace Capstone.Web.Controllers
             int ID = (int)Session[SessionKeys.UserID];
 
             Plan plan = _dalWorkout.GetTraineePlan(ID);
-            plan.SeveralWorkouts = _dalWorkout.GetWorkouts(plan.Id);
+            plan.SeveralWorkouts = _dalWorkout.GetWorkoutsWithExercises(plan.Id);
             
             return View(plan);
         }

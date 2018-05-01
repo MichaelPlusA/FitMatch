@@ -1,4 +1,5 @@
-﻿body {
+﻿html, body {
+    height: 100%
 }
 
 /* Menu ============================================================= */
@@ -20,9 +21,10 @@
 .footer {
     bottom: 0;
     width: 100%;
-    height: 60px; 
+    height: 60px;
     line-height: 60px;
     background-color: #393939;
+    position: absolute;
 }
 
 .white-text {
@@ -1183,5 +1185,16 @@ section.section2 {
 
 .btn-red a {
     text-decoration: none;
+    color: white;
+}
+
+/* Search =====================================================================*/
+
+.search-back {
+    background-color: #393939;
+    margin-top: 5%;
+}
+
+.search-back h2 {
     color: white;
 }

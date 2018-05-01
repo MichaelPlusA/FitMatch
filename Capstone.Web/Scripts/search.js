@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-    var inputText = "<input type='text' id='searchString' name='SearchString' />"
-    var inputInt = "<input type='number' min='0' max='99999' id='searchString' name='SearchString'/>"
+    var inputText = "<input type='text' id='searchString' name='SearchString' class='search-input input-margin' />"
+    var inputInt = "<input type='number' min='0' max='99999' id='searchString' name='SearchString' class='search-input input-margin'/>"
 
     $("button[name='searchButton'").on("click", function (event) {
         var searchString = $("#searchString").val();
@@ -21,15 +21,15 @@
                 if (this.text == "Price Per Hour") {
                     $("input[name='SearchString']").remove();
                     console.log(this.text);
-                    $(inputInt).insertBefore("button");
+                    $(inputInt).insertAfter("select");
                 }
                 else if (this.text == "Area Code") {
                     $("input[name='SearchString']").remove();
-                    $(inputInt).insertBefore("button");
+                    $(inputInt).insertAfter("select");
                 }
                 else if (this.text == "Name") {
                     $("input[name='SearchString']").remove();
-                    $(inputText).insertBefore("button");
+                    $(inputText).insertAfter("select");
                 }
             })
         })

@@ -5,38 +5,45 @@
 
 
 <div class="jumbotron search-back">
-    <h2>Search For A Trainer</h2>
-
-    <div>@Model</div>
-    @*<form action="/Trainee/SearchResult" method="get">*@
-    <div style="padding-bottom: 20px;">
-        <label>Search Type</label>
-        <select name="SearchType" id="SearchTypeID">
-            <option selected="selected" value="name">Name</option>
-            <option selected="selected" value="price">Price Per Hour</option>
-            <option selected="selected" value="location">Area Code</option>
-        </select>
-        <input type="text" id="searchString" name="SearchString" />
-        <button name="searchButton">Search</button>
-    </div>
-    @*</form>*@
-
-    <div class="container">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email Address</th>
-                    <th>Price Per Hour</th>
-                    <th>Location</th>
-                    <th>Profile</th>
-                </tr>
-            </thead>
-            <tbody id="searchTable"></tbody>
-        </table>
-    </div>
-
-</div>
     
+    <div class="container">
+        <h2>Search For A Trainer</h2>
+        <br />
+        <div>@Model</div>
+        @*<form action="/Trainee/SearchResult" method="get">*@
+        <div class="row" style="padding-bottom: 20px;">
+            <div class="col-md-6 col-lg-7">
+                <label class="dropdown-label">Search Type</label>
+                <select name="SearchType" id="SearchTypeID" class="dropdown-box input-margin">
+                    <option selected="selected" value="name">Name</option>
+                    <option selected="selected" value="price">Price Per Hour</option>
+                    <option selected="selected" value="location">Area Code</option>
+                </select>
+                <input type="text" id="searchString" name="SearchString" class="search-input input-margin" />
+            </div>
+            <div class="col-lg-4">
+                <button class="button-block button-thin search-btn" name="searchButton">Search</button>
+            </div>
+        </div>
+    </div>
+        @*</form>*@
+
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email Address</th>
+                        <th>Price Per Hour</th>
+                        <th>Location</th>
+                        <th>Profile</th>
+                    </tr>
+                </thead>
+                <tbody id="searchTable"></tbody>
+            </table>
+        </div>
+
+    </div>
+

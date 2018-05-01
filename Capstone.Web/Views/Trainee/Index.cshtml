@@ -10,17 +10,22 @@
 @if (Session[SessionKeys.Email] == null)
 {
     <br />
-    <h2>Welcome!</h2>
+    <h1>Welcome!</h1>
     <br />
 }
 else
 {
     <br />
-    <h2>Welcome Trainee @((string)Session[SessionKeys.First_Name])!</h2>
+    <h1>Welcome Trainee @((string)Session[SessionKeys.First_Name])!</h1>
     <br />
 }
 
-@foreach (Plan plan in Model)
+@if(Model.Count == 0)
+{
+    <h2>You have no workout plans, yet </h2> <br /> <h3> Search for a trainer and request a plan to get started! </h3>
+}
+
+@foreach(Plan plan in Model)
 {
 <div class="jumbotron dark-back">
     <div class="row">

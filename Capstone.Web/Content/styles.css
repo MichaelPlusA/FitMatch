@@ -24,6 +24,10 @@
     height: 60px;
     line-height: 60px;
     background-color: #393939;
+    
+}
+
+.footer-absolute {
     position: absolute;
 }
 

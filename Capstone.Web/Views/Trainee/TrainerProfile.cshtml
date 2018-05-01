@@ -93,7 +93,7 @@
             @if (TempData["IsMatched"] == null || (TempData["IsMatched"] != null && (bool)TempData["IsMatched"] == false))
              {
                 <div class="text-center">
-                <input type="button" class="btn btn-info" value="Register With Trainer" onclick="location.href='@Url.Action("MatchTrainer", "Trainee", new { id = Model.Trainer_ID })'" />
+                <input type="button" class="btn button-huge button-block" value="Register With Trainer" onclick="location.href='@Url.Action("MatchTrainer", "Trainee", new { id = Model.Trainer_ID })'" />
                 </div>
              }
 

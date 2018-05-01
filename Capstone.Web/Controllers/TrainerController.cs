@@ -83,9 +83,9 @@ namespace Capstone.Web.Controllers
             return View(loggedInTrainer.ClientList);
         }
 
-        public ActionResult Detail(int exerciseID)
+        public ActionResult Detail()
         {
-            Exercise exercise = _dal.GetExercise(exerciseID);
+            Exercise exercise = _dal.GetExercise(9);
             return View("Detail", exercise);
         }
 
@@ -101,6 +101,8 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult SubmitExercise(Exercise addExercise)
         {
+            string[] splitLink = addExercise.VideoLink.Split('=');
+            addExercise.VideoLink = "https://www.youtube.com/embed/" + splitLink[1];
             addExercise.TrainerID = ((int)Session[SessionKeys.Trainer_ID]);
             bool AddExercise = _workoutDal.AddExercise(addExercise);
 

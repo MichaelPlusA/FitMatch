@@ -4,97 +4,79 @@
 
 @using Capstone.Web.Models
 
-@model List<Plan>
+@model Plan
 
 
 @if (Session[SessionKeys.Email] == null)
 {
     <br />
-    <h1>Welcome!</h1>
+    <h2>Welcome!</h2>
     <br />
 }
 else
 {
     <br />
-    <h1>Welcome Trainee @((string)Session[SessionKeys.First_Name])!</h1>
+    <h2>Welcome Trainee @((string)Session[SessionKeys.First_Name])!</h2>
     <br />
 }
 
-@if(Model.Count == 0)
-{
-    <h2>You have no workout plans, yet. </h2> <br /> <h3> Search for a trainer and request a plan to get started! </h3>
-}
-
-@foreach(Plan plan in Model)
-{
 <div class="jumbotron dark-back">
     <div class="row">
         <div class="col-md-6">
-            <h1 class="plan-header">@plan.PlanName</h1>
+            <h1 class="plan-header">@Model.PlanName</h1>
         </div>
         <div class="col-md-6">
-            <button class="btn btn-trainer btn-1 btn-1c">Trainer : @plan.ByTrainer</button>
+            <a href="@("/Trainee/TrainerProfile/" + Model.ByTrainer)" class="btn btn-trainer btn-1 btn-1c">Trainer : @Model.TrainerName</a>
         </div>
     </div>
-        <div id="accordion">
+    <div id="accordion">
+        @{
+            int counter = 1;
+        }
+        @foreach (Workout workout in Model.SeveralWorkouts)
+        {
             <div class="card">
-                <div class="card-header" id="headingOne">
+                <div class="card-header" id="@("heading" + counter)">
                     <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">
-                            Workout A
+                        <button class="btn btn-link" data-toggle="collapse" data-target="@("#collapse" + counter)" aria-expanded="true" aria-controls="collapseOne">
+                            @workout.Name
                         </button>
                     </h5>
                 </div>
+                <div id="@("collapse" + counter)" class="collapse show" aria-labelledby="@("heading" + counter)" data-parent="#accordion">
+                    <div class="workout-notes">@workout.Notes</div>
+                    <div class="card-body">
+                        @if (workout.RunningAndStuff.Count > 0)
+                        {
+                            <h3>Cardio</h3>
+                            foreach (CardioExercise e in workout.RunningAndStuff)
+                            {
+                                <div class="workout-exercise">
+                                    <a href="@("/Trainer/Detail/" + e.ExerciseID)">@e.Name</a>
+                                    <span class="duration">Time: @e.Duration</span>
+                                    <span class="intensity">Intensity: @e.Intensity</span>
+                                </div>
+                            }
+                        }
 
-                <div id="collapseFour" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body">
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
+                        @if (workout.GetBig.Count > 0)
+                        {
+                            <h3>Strength</h3>
+                            foreach (StrengthExercise e in workout.GetBig)
+                            {
+                                <div class="workout-exercise">
+                                    <a href="@("/Trainer/Detail/" + e.ExerciseID)">@e.Name</a>
+                                    <span class="sets">Sets: @e.Sets</span>
+                                    <span class="reps">Reps: @e.Reps</span>
+                                    <span class="rest-time">Time Between Sets: @e.Rest_time</span>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header" id="headingTwo">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseTwo">
-                            Workout B
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                    <div class="card-body">
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="headingThree">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
-                            Workout C
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseSix" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                    <div class="card-body">
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                        <div class="row">- Exercise</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!--End Jumbotron-->
-}
+
+            counter++;
+        }
+    </div>
+</div> <!--End Jumbotron-->

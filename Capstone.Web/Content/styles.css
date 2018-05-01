@@ -752,6 +752,10 @@ input[type=checkbox] {
     transition: all 0.3s;
 }
 
+.workout-notes {
+    padding: .75rem 1.25rem;
+}
+
 
 
 

@@ -9,5 +9,7 @@ namespace Capstone.Web.Models
     {
         public int Reps { get; set; }
         public int Sets { get; set; }
+        public int Rest_time { get; set; }
+        public int Strength_id { get; set; }
     }
 }

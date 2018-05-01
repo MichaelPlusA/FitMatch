@@ -76,7 +76,11 @@ namespace Capstone.Web.Controllers
 
         public ActionResult ClientServices()
         {
-            return View();
+            Trainer loggedInTrainer = new Trainer();
+
+            int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
+            loggedInTrainer.ClientList = _dal.GetClients(trainerID);
+            return View(loggedInTrainer.ClientList);
         }
 
         [HttpPost]

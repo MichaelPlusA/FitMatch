@@ -41,24 +41,48 @@ namespace Capstone.Web.DAL
             return check;
         }
 
-        public bool AddExercisesToWorkout(Exercise exercise)
+        public bool AddCardioToWorkout(CardioExercise exercise)
         {
             bool check;
-            string AddExercisesToSQLDAL = "INSERT INTO strength_exercises (workout_id) VALUES (@workoutID) WHERE exercise_id = @exerciseID";
+            string addCardio = "INSERT INTO cardio_exercise (exercise_id, duration, intensity, workout_id) VALUES (@exercise_id, @duration, @intensity, @workout_id)";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand(AddExercisesToSQLDAL, conn);
-                cmd.Parameters.AddWithValue("@workoutID", exercise.WorkoutID);
-                cmd.Parameters.AddWithValue("@exerciseID", exercise.ExerciseID);
+                SqlCommand cmd = new SqlCommand(addCardio, conn);
+                cmd.Parameters.AddWithValue("@exercise_id", exercise.ExerciseID);
+                cmd.Parameters.AddWithValue("@duration", exercise.Duration);
+                cmd.Parameters.AddWithValue("@intensity", exercise.Intensity);
+                cmd.Parameters.AddWithValue("@workout_id", exercise.WorkoutID);
 
                 check = cmd.ExecuteNonQuery() > 0 ? true : false;
             }
-                return check;
+
+            return check;
         }
 
+
+        public bool AddStrengthToWorkout(StrengthExercise exercise)
+        {
+            bool check;
+            string addStrength = "INSERT INTO strength_exercises (exercise_id, strength_reps, strength_sets, rest_time, workout_id) VALUES (@exercise_id, @strength_reps, @rest_time, @workout)";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(addStrength, conn);
+                cmd.Parameters.AddWithValue("@exerciseID", exercise.ExerciseID);
+                cmd.Parameters.AddWithValue("@strength_reps", exercise.Reps);
+                cmd.Parameters.AddWithValue("@rest_sets", exercise.Sets);
+                cmd.Parameters.AddWithValue("@rest_time", exercise.Rest_time);
+                cmd.Parameters.AddWithValue("@workout_id", exercise.WorkoutID);
+
+                check = cmd.ExecuteNonQuery() > 0 ? true : false;
+            }
+            return check;
+        }
 
 
         public bool CreatePlan(Plan insertPlan)
@@ -107,6 +131,46 @@ namespace Capstone.Web.DAL
                 }
             }
             return PlanList;
+        }
+
+        public List<Exercise> GetExercisesForTrainer(int TrainerID)
+        {
+            List<Exercise> ExercisesByTrainer = new List<Exercise>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string SQLExercises = "SELECT exercise_id, exercise_name, exercise_description, video_link FROM exercises WHERE trainer_id = @trainer_id";
+
+                using (SqlCommand cmd = new SqlCommand(SQLExercises, conn))
+                {
+                    cmd.Parameters.AddWithValue("@trainer_id", TrainerID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Exercise ExerciseToAdd = MapRowToExercise(reader);
+
+                        ExercisesByTrainer.Add(ExerciseToAdd);
+                    }
+                }
+            }
+
+            return ExercisesByTrainer;
+
+        }
+
+
+        private Exercise MapRowToExercise(SqlDataReader reader)
+        {
+            return new Exercise()
+            {
+                Name = Convert.ToString(reader["exercise_name"]),
+                Type = Convert.ToInt32(reader["exercise_type_id"]),
+                Description = Convert.ToString(reader["exercise_description"]),
+                ExerciseID = Convert.ToInt32(reader["exercise_id"]),
+                VideoLink = Convert.ToString(reader["video_link"])
+            };
         }
 
         private User MapRowToUser(SqlDataReader reader)

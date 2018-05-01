@@ -172,6 +172,32 @@ namespace Capstone.Web.DAL
             return check;
         }
 
+        public Exercise GetExercise(int ExerciseID)
+        {
+            Exercise AExercise = new Exercise();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string SQLOneExercise = "SELECT exercise_id, exercise_name, exercise_description, video_link FROM exercises WHERE exercise_id = @exercise_id";
+
+                using (SqlCommand cmd = new SqlCommand(SQLOneExercise, conn))
+                {
+                    cmd.Parameters.AddWithValue("@exercise_id", ExerciseID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Exercise add = MapRowToExercise(reader);
+
+                        AExercise = add;
+                    }
+                }
+            }
+
+            return AExercise;
+        }
+
         public bool MatchWithTrainer(int trainer, int trainee)
         {
             bool isMatched = false;
@@ -217,6 +243,18 @@ namespace Capstone.Web.DAL
                 }
             }
             return ClientList;
+        }
+
+        private Exercise MapRowToExercise(SqlDataReader reader)
+        {
+            return new Exercise()
+            {
+                Name = Convert.ToString(reader["exercise_name"]),
+                Type = Convert.ToInt32(reader["exercise_type_id"]),
+                Description = Convert.ToString(reader["exercise_description"]),
+                ExerciseID = Convert.ToInt32(reader["exercise_id"]),
+                VideoLink = Convert.ToString(reader["video_link"])
+            };
         }
 
         private User MapRowToUser(SqlDataReader reader)

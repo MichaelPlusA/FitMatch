@@ -223,6 +223,8 @@ namespace Capstone.Web.DAL
                 cmd.Parameters.AddWithValue("@traineeID", trainee);
 
                 isMatched = cmd.ExecuteNonQuery() > 0 ? true : false;
+
+
             }
 
             return isMatched;
@@ -232,7 +234,10 @@ namespace Capstone.Web.DAL
         {
             List<User> ClientList = new List<User>();
 
-            string ClientSelectSQL = "Select user_info.first_name, user_info.last_name, user_info.user_id from user_info JOIN trainer_trainee on user_info.user_id = trainer_trainee.trainee_id WHERE trainer_trainee.trainer_id = @trainer_id";
+            string ClientSelectSQL = @"Select user_info.first_name, user_info.last_name, user_info.user_id 
+                                       FROM user_info 
+                                       JOIN trainer_trainee ON user_info.user_id = trainer_trainee.trainee_id 
+                                       WHERE trainer_trainee.trainer_id = @trainer_id";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -245,6 +250,37 @@ namespace Capstone.Web.DAL
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while(reader.Read())
+                {
+                    User userToAdd = MapRowToUser(reader);
+
+                    ClientList.Add(userToAdd);
+                }
+            }
+
+            return ClientList;
+        }
+
+        public List<User> GetClientsWithoutPlans(int trainerID)
+        {
+            List<User> ClientList = new List<User>();
+
+            string ClientSelectSQL = @"SELECT tt.*, wp.*, ui.first_name, ui.last_name, ui.user_id
+                                       FROM Trainer_Trainee tt
+                                       LEFT JOIN workout_plan wp ON tt.trainee_id = wp.trainee_id
+                                       JOIN user_info ui ON tt.trainee_id = ui.user_id
+                                       WHERE wp.plan_id IS NULL AND tt.trainer_id = @trainer_id";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(ClientSelectSQL, conn);
+
+                cmd.Parameters.AddWithValue("@trainer_id", trainerID);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
                     User userToAdd = MapRowToUser(reader);
 

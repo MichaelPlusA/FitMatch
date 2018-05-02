@@ -39,12 +39,14 @@
             </li>
         </ul>
     </header>
-    <div class="container-fluid">
-        @RenderBody()
+    <div class="page-wrap">
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
     </div>
 
 
-    <footer class="footer footer-absolute">
+    <footer class="footer site-footer">
         <div class="copyright"> Copyright @DateTime.Now.Year WOM LLC.</div>
     </footer>
 </body>

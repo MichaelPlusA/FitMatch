@@ -38,42 +38,87 @@ else
             <div class="card">
                 <div class="card-header" id="@("heading" + counter)">
                     <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="@("#collapse" + counter)" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="@("#collapse" + counter)" aria-expanded="false" aria-controls="collapseOne">
                             @workout.Name
                         </button>
                     </h5>
                 </div>
-                <div id="@("collapse" + counter)" class="collapse show" aria-labelledby="@("heading" + counter)" data-parent="#accordion">
-                    <div class="workout-notes">@workout.Notes</div>
-                    <div class="card-body">
-                        @if (workout.RunningAndStuff.Count > 0)
-                        {
-                            <h3>Cardio</h3>
-                            foreach (CardioExercise e in workout.RunningAndStuff)
-                            {
-                                <div class="workout-exercise">
-                                    <a href="@("/Trainer/Detail/" + e.ExerciseID)">@e.Name</a>
-                                    <span class="duration">Time: @e.Duration</span>
-                                    <span class="intensity">Intensity: @e.Intensity</span>
-                                </div>
-                            }
-                        }
+                <div id="@("collapse" + counter)" class="collapse" aria-labelledby="@("heading" + counter)" data-parent="#accordion">
+                    <div class="row">
 
-                        @if (workout.GetBig.Count > 0)
-                        {
-                            <h3>Strength</h3>
-                            foreach (StrengthExercise e in workout.GetBig)
-                            {
-                                <div class="workout-exercise">
-                                    <a href="@("/Trainer/Detail/" + e.ExerciseID)">@e.Name</a>
-                                    <span class="sets">Sets: @e.Sets</span>
-                                    <span class="reps">Reps: @e.Reps</span>
-                                    <span class="rest-time">Time Between Sets: @e.Rest_time</span>
+                        <div class="col-lg-6">
+
+                            <div class="card-body">
+                                @if (workout.RunningAndStuff.Count > 0)
+    {
+                            
+                            
+                                <div class="card-header card-subheader">
+                                    <h3>Cardio</h3>
                                 </div>
-                            }
-                        }
+                                foreach (CardioExercise e in workout.RunningAndStuff)
+                                {
+                                <div class="card">
+                                    <div class="workout-exercise">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <span class="badge badge-primary badge-exercise"><a href="@("/Trainer/Detail/" + e.ExerciseID)">@e.Name</a></span>
+                                                                        <i class="far fa-clock exercise-icon"></i><span class="duration"><b>Time: </b>@e.Duration</span>
+                                                                        <i class="far fa-heart exercise-icon"></i><span class="intensity"><b>Intensity: </b>@e.Intensity</span>
+                                            </li>
+                                        </ul>
+                                        
+                                        
+                                        
+                                    </div>
+                                </div>
+                                <br />
+
+                                }
+                                }
+
+                                @if (workout.GetBig.Count > 0)
+    {
+                                <div class="card-header card-subheader">
+                                    <h3>Strength</h3>
+                                </div>
+                                    
+foreach (StrengthExercise e in workout.GetBig)
+{
+                                <div class="card">
+                                    <div class="workout-exercise">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <span class="badge badge-primary badge-exercise"><a href="@("/Trainer/Detail/" + e.ExerciseID)">@e.Name</a></span>
+                                                <i class="far fa-hourglass exercise-icon"></i><span class="sets"><b>Sets: </b>@e.Sets</span>
+                                                <i class="far fa-hand-rock exercise-icon"></i><span class="reps"><b>Reps: </b>@e.Reps</span>
+                                                <i class="far fa-clock exercise-icon"></i><span class="rest-time"><b>Time Between Sets: </b>@e.Rest_time</span>
+                                            </li>
+                                        </ul>
+                                        
+                                        
+                                        
+                                        
+                                    </div>
+                                    </div>
+                                    }
+                                    }
+                                </div>
+                            </div>
+                        <div class="col-lg-6">
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-header card-subheader">
+                                        <h3>Notes</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="workout-notes">@workout.Notes</div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
             </div>
 
             counter++;

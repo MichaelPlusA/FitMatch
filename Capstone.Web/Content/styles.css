@@ -20,6 +20,7 @@
 
 .footer {
     bottom: 0;
+    left: 0;
     width: 100%;
     height: 60px;
     line-height: 60px;
@@ -30,6 +31,22 @@
 .footer-absolute {
     position: absolute;
 }
+.page-wrap {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -60px;
+}
+
+    .page-wrap:after {
+        content: "";
+        display: block;
+    }
+
+    .site-footer, .page-wrap:after {
+        height: 60px;
+    }
+
+
 
 .white-text {
     color: white;
@@ -687,6 +704,9 @@ input[type=checkbox] {
         text-decoration: none !important;
     }
 
+.card-subheader { /*Workout Title Box*/
+    background: #C2EE6C;
+}
 
 .mb-0 button { /*Workout Heading*/
     color: #393939; /*Menu Back Color*/
@@ -719,6 +739,36 @@ input[type=checkbox] {
     margin-bottom: 5%;
 }
 
+/*Exercise*/
+.workout-exercise {
+    padding-left: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.badge-exercise {
+    background-color: #323232;
+    padding: 1rem;
+}
+    .badge-exercise:hover {
+        background-color: #7F97B8;
+        
+    }
+
+    .badge-exercise a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+
+.exercise-icon {
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+}
+
+.duration, .intensity {
+    font-size: 1rem;
+}
 
 
 /*Trainer Button*/

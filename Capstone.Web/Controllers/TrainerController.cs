@@ -96,18 +96,36 @@ namespace Capstone.Web.Controllers
         {
             int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
             CreatePlan.ByTrainer = ((int)Session[SessionKeys.Trainer_ID]);
-            bool Plan = _workoutDal.CreatePlan(CreatePlan);
+            int planId = _workoutDal.CreatePlan(CreatePlan);
 
-            PopulatePlanViewModel ViewModel = _workoutDal.GetPlanViewModel(CreatePlan.ForTrainee);
-            ViewModel.exercises = _workoutDal.GetExercisesForTrainer(trainerID);
-            ViewModel.workouts = _workoutDal.GetWorkouts(ViewModel.PlanID);
-
-            return View("PopulatePlan", ViewModel);
+            return RedirectToAction("CreateWorkout", new { planId = planId });
         }
 
-        public ActionResult PopulatePlan(PopulatePlanViewModel planviewmodel)
+        public ActionResult CreateWorkout(int planId)
         {
-            return View();
+            Plan plan = _workoutDal.GetPlan(planId);
+            plan.SeveralWorkouts = _workoutDal.GetWorkouts(planId);
+            return View(plan);
+        }
+
+        [HttpPost]
+        public ActionResult CreateWorkout(string name, string notes, int planID)
+        {
+            bool isAdded = _workoutDal.CreateWorkout(name, notes, planID);
+
+            return RedirectToAction("CreateWorkout", new { planId = planID });
+        }
+
+        public ActionResult AddExercisesToWorkout(int planId, int workoutId)
+        {
+            int trainerId = (int)Session[SessionKeys.Trainer_ID];
+
+            PopulatePlanViewModel vm = new PopulatePlanViewModel();
+            vm.Exercises = _workoutDal.GetExercisesForTrainer(trainerId);
+            vm.Strength = _workoutDal.GetStrengthExercises(workoutId);
+            vm.Cardio = _workoutDal.GetCardioExercises(workoutId);
+
+            return View(vm);
         }
 
         [HttpPost]

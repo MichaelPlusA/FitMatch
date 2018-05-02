@@ -251,6 +251,7 @@ namespace Capstone.Web.DAL
                     ClientList.Add(userToAdd);
                 }
             }
+
             return ClientList;
         }
 

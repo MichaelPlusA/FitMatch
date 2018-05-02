@@ -11,11 +11,14 @@ namespace Capstone.Web.DAL.Interfaces
     {
         bool AddExercise(Exercise addExercise);
         Plan GetTraineePlan(int traineeID);
-        bool CreatePlan(Plan insertPlan);
+        int CreatePlan(Plan insertPlan);
         List<Workout> GetWorkouts(int planId);
         List<Workout> GetWorkoutsWithExercises(int planId);
         List<StrengthExercise> GetStrengthExercises(int workoutId);
+        List<CardioExercise> GetCardioExercises(int workoutId);
         PopulatePlanViewModel GetPlanViewModel(int traineeID);
         List<Exercise> GetExercisesForTrainer(int TrainerID);
+        bool CreateWorkout(string name, string notes, int planID);
+        Plan GetPlan(int planID);
     }
 }

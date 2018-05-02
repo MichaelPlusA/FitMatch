@@ -7,9 +7,12 @@ namespace Capstone.Web.Models.ViewModel
 {
     public class PopulatePlanViewModel
     {
-        public List<Exercise> exercises { get; set; } = new List<Exercise>();
-        public List<Workout> workouts { get; set; } = new List<Workout>();
+        public List<Exercise> Exercises { get; set; }
+        public List<StrengthExercise> Strength { get; set; }
+        public List<CardioExercise> Cardio { get; set; }
+        public List<Workout> Workouts { get; set; }
         public int PlanID { get; set; }
         public string PlanName { get; set; }
+        public int WorkoutID { get; set; }
     }
 }

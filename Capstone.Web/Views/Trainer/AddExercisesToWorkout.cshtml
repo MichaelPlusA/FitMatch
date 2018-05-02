@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTrainer.cshtml";
+}
+
+
+@using Capstone.Web.Models.ViewModel
+@model PopulatePlanViewModel
+
+<h1>hi</h1>
+
+@foreach (var item in Model.Exercises)
+{
+    <div>
+        <a href="@("/Trainer/Detail/" + item.ExerciseID)">@item.Name</a>
+    </div>
+}
+

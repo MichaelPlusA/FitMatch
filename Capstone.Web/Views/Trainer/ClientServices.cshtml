@@ -28,3 +28,27 @@
     </div>
     <button type="submit" class="button button-block">Create Plan</button>
 </form>
+
+@*<h1>Edit a plan for a client</h1>
+<form action="//" method="post">
+    <select name="ForTrainee">
+        @foreach (User item in Model)
+         {
+            <option name="ForTrainee" id="ForTrainee" value=@item.User_ID>@item.First_Name @item.Last_Name</option>
+         }
+    </select>
+    <div class="field-wrap">
+        <label class="lrg-label">
+            Plan Name
+        </label>
+        <textarea class="form-control" name="planName" id="planName" rows="3"></textarea>
+    </div>
+
+    <div class="field-wrap">
+        <label class="lrg-label">
+            Notes
+        </label>
+        <textarea class="form-control" name="Notes" id="Notes" rows="3"></textarea>
+    </div>
+    <button type="submit" class="button button-block">Create Plan</button>
+</form>*@

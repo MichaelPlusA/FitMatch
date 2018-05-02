@@ -209,7 +209,8 @@
     <Content Include="Views\Trainer\ClientServices.cshtml" />
     <Content Include="Views\Trainer\Detail.cshtml" />
     <Content Include="Views\Trainee\Detail.cshtml" />
-    <Content Include="Views\Trainer\PopulatePlan.cshtml" />
+    <Content Include="Views\Trainer\CreateWorkout.cshtml" />
+    <Content Include="Views\Trainer\AddExercisesToWorkout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

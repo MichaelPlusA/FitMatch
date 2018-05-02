@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTrainer.cshtml";
+}
+
+@using Capstone.Web.Models
+@model Plan
+
+<h1>Add workouts to plan</h1>
+
+<h3>Select an exercise to add to the workout which ultimately is added to the plan which is a collection of workouts and workouts are collections of exercises its very confusing</h3>
+
+@foreach (Workout item in Model.SeveralWorkouts)
+{
+    <div name="workoutID" id="workoutID">
+        <a href="@("/Trainer/AddExercisesToWorkout?planId=" + item.Plan_Id + "&workoutId=" + item.Id)">@item.Name</a>
+    </div>
+}
+
+<h2>Assign workout to which plan for this user</h2>
+
+<form action="/Trainer/CreateWorkout" method="post">
+    <div class="field-wrap">
+        <label class="lrg-label">
+            Workout Name
+        </label>
+        <input type="text" class="form-control" name="Name" id="Name">
+        <input type="hidden" value="@Model.Id" class="form-control" name="planID" id="planID">
+    </div>
+
+    <div class="field-wrap">
+        <label class="lrg-label">
+            Notes
+        </label>
+        <textarea class="form-control" name="Notes" id="Notes" rows="3"></textarea>
+    </div>
+    <button type="submit" class="button button-block">Create Workout</button>
+</form>

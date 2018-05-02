@@ -42,6 +42,27 @@ namespace Capstone.Web.DAL
             return check;
         }
 
+        public bool CreateWorkout(string name, string notes, int planID)
+        {
+            string AddPlanDAL = "INSERT INTO workout (workout_name, additional_notes, plan_id) VALUES (@name, @notes, @planID)";
+            bool check;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(AddPlanDAL, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@notes", notes);
+                cmd.Parameters.AddWithValue("@planID", planID);
+
+                check = cmd.ExecuteNonQuery() > 0 ? true : false;
+            }
+
+            return check;
+        }
+
+
         public bool AddCardioToWorkout(CardioExercise exercise)
         {
             bool check;
@@ -86,10 +107,10 @@ namespace Capstone.Web.DAL
         }
 
 
-        public bool CreatePlan(Plan insertPlan)
+        public int CreatePlan(Plan insertPlan)
         {
-            string AddPlanDAL = "INSERT INTO workout_plan (trainer_id, trainee_id, plan_notes, plan_name) VALUES (@trainer_id, @trainee_id, @plan_notes, @plan_name)";
-            bool check;
+            string AddPlanDAL = @"INSERT INTO workout_plan (trainer_id, trainee_id, plan_notes, plan_name) OUTPUT INSERTED.plan_id VALUES (@trainer_id, @trainee_id, @plan_notes, @plan_name)";
+            int id;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -101,10 +122,37 @@ namespace Capstone.Web.DAL
                 cmd.Parameters.AddWithValue("@trainer_id", insertPlan.ByTrainer);
                 cmd.Parameters.AddWithValue("@plan_notes", insertPlan.Notes);
 
-                check = cmd.ExecuteNonQuery() > 0 ? true : false;
+                id = (int)cmd.ExecuteScalar();
             }
 
-            return check;
+            return id;
+        }
+
+        public Plan GetPlan(int planID)
+        {
+            Plan plan = null;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string SQL_Plans = @"SELECT workout_plan.*, user_info.first_name, user_info.last_name FROM workout_plan 
+                                     JOIN user_info ON workout_plan.trainer_id = user_info.trainer_id
+                                     WHERE plan_id = @PlanID";
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(SQL_Plans, conn))
+                {
+                    cmd.Parameters.AddWithValue("@PlanID", planID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+
+                    while (reader.Read())
+                    {
+                        plan = MapRowToPlan(reader);
+                    }
+                }
+            }
+            return plan;
         }
 
         public Plan GetTraineePlan(int traineeID)

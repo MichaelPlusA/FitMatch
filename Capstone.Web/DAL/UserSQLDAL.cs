@@ -291,6 +291,38 @@ namespace Capstone.Web.DAL
             return ClientList;
         }
 
+        public List<User> GetClientsWithPlans(int trainerID)
+        {
+            List<User> ClientList = new List<User>();
+
+            string ClientSelectSQL = @"SELECT tt.*, wp.*, ui.first_name, ui.last_name, ui.user_id
+                                       FROM Trainer_Trainee tt
+                                       JOIN workout_plan wp ON tt.trainee_id = wp.trainee_id
+                                       JOIN user_info ui ON tt.trainee_id = ui.user_id
+                                       WHERE tt.trainer_id = @trainer_id";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(ClientSelectSQL, conn);
+
+                cmd.Parameters.AddWithValue("@trainer_id", trainerID);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    User userToAdd = MapRowToUser(reader);
+                    userToAdd.PlanId = Convert.ToInt32(reader["plan_id"]);
+
+                    ClientList.Add(userToAdd);
+                }
+            }
+
+            return ClientList;
+        }
+
         private Exercise MapRowToExercise(SqlDataReader reader)
         {
             return new Exercise()

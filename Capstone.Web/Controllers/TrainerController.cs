@@ -77,16 +77,21 @@ namespace Capstone.Web.Controllers
 
         public ActionResult ClientServices()
         {
-            Trainer loggedInTrainer = new Trainer();
-
             int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
-            loggedInTrainer.ClientList = _dal.GetClientsWithoutPlans(trainerID);
-            return View(loggedInTrainer.ClientList);
+            TrainerClients clients = new TrainerClients()
+            {
+                TrainerId = trainerID,
+                ClientsWithoutPlans = _dal.GetClientsWithoutPlans(trainerID),
+                ClientsWithPlans = _dal.GetClientsWithPlans(trainerID)
+            };
+            return View(clients);
         }
 
         public ActionResult Clients()
         {
-            return View();
+            int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
+            List<User> clients = _dal.GetClientsWithPlans(trainerID);
+            return View(clients);
         }
 
         public ActionResult Detail(int id)

@@ -11,7 +11,7 @@
 
 @foreach (Workout item in Model.SeveralWorkouts)
 {
-    <div name="workoutID" id="workoutID">
+    <div>
         <a href="@("/Trainer/AddExercisesToWorkout?planId=" + item.Plan_Id + "&workoutId=" + item.Id)">@item.Name</a>
     </div>
 }

@@ -177,6 +177,7 @@
     <Compile Include="Models\CardioExercise.cs" />
     <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\Trainer.cs" />
+    <Compile Include="Models\TrainerClients.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\Plan.cs" />

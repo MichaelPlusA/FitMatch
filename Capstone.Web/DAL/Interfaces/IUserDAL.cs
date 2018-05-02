@@ -18,6 +18,7 @@ namespace Capstone.Web.DAL.Interfaces
         bool MatchWithTrainer(int trainee, int trainer);
         List<User> GetClients(int trainerID);
         List<User> GetClientsWithoutPlans(int trainerID);
+        List<User> GetClientsWithPlans(int trainerID);
         Exercise GetExercise(int exerciseID);
     }
 }

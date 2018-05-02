@@ -1,37 +1,75 @@
 ﻿$(document).ready(function () {
 
-    $("button[name='exerciseButton'").on("click", function (event) {
-        var exerciseToAdd = $("#exercises").val();
+    $("button[name='strengthExerciseButton'").on("click", function (event) {
+        var exerciseToAdd = $("#strengthExercises").find(":selected").val();
+        var cardioExerciseToAdd = $("#cardioExercises").find(":selected").val();
         var workoutToAddTo = $("#workoutID").val();
-        var sets = $("#sets").text();
-        var reps = $("#reps").text();
-        var duration = $("#duration").text();
-        var intensity = $("#intensity").text();
+        var sets = $("#sets").val();
+        var reps = $("#reps").val();
 
         var service = new ExerciseService();
-        service.add(exerciseToAdd, workout, ExerciseAdded);
+        service.addStrength(exerciseToAdd, workoutToAddTo, sets, reps, ExerciseAdded);
         event.preventDefault();
     })
 
-    function ExerciseAdded(exerciseAdded) {
-        var tr = $("<tr scope='row'>");
-        var resultCell = $("<td>").text(exerciseAdded.Name);
-        tr.append(resultCell);
-        $("#exerciseTable").append(tr);
+    $("button[name='cardioExerciseButton'").on("click", function (event) {
+        var exerciseToAdd = $("#cardioExercises").find(":selected").val();
+        var workoutToAddTo = $("#workoutID").val();
+        var duration = $("#duration").val();
+        var intensity = $("#intensity").val();
+
+        var service = new ExerciseService();
+        service.addCardio(exerciseToAdd, workoutToAddTo, duration, intensity, ExerciseAdded)
+        event.preventDefault();
+    })
+
+    function ExerciseAdded(exercises) {
+        $("#exerciseTable").empty();
+        console.log(exercises);
+        for (i = 0; i < exercises.RunningAndStuff.length; i++) {
+            var item = exercises.RunningAndStuff[i];
+            var tr = $("<tr scope='row'>");
+            var resultCell = $("<td>").text(item.Name);
+            tr.append(resultCell);
+            $("#exerciseTable").append(tr);
+        }
+        for (i = 0; i < exercises.GetBig.length; i++) {
+            var item = exercises.GetBig[i];
+            var tr = $("<tr scope='row'>");
+            var resultCell = $("<td>").text(item.Name);
+            tr.append(resultCell);
+            $("#exerciseTable").append(tr);
+        }
     }
 
     function ExerciseService() {
-        const root = "/Trainer/AddExercise";
+        const strengthRoot = "/Trainer/AddStrengthExercise";
+        const cardioRoot = "/Trainer/AddCardioExercise";
 
-        this.add = function (exerciseToAdd, workout, successCallback) {
+        this.addStrength = function (exerciseToAdd, workoutToAddTo, sets, reps, successCallback) {
             $.ajax({
-                url: root,
+                url: strengthRoot,
                 method: "GET",
                 data: {
                     "exerciseID": exerciseToAdd,
                     "workoutID": workoutToAddTo,
                     "sets": sets,
-                    "reps": reps,
+                    "reps": reps
+                }
+            }).done(function (data) {
+                successCallback(data);
+            }).fail(function (xhr, status, error) {
+                console.error("Error occured while adding exercise", error);
+            })
+        };
+
+        this.addCardio = function (exerciseToAdd, workoutToAddTo, duration, intensity, successCallback) {
+            $.ajax({
+                url: cardioRoot,
+                method: "GET",
+                data: {
+                    "exerciseID": exerciseToAdd,
+                    "workoutID": workoutToAddTo,
                     "duration": duration,
                     "intensity": intensity
                 }
@@ -42,4 +80,4 @@
             })
         }
     }
-})
+});

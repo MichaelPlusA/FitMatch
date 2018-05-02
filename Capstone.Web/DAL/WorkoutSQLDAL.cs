@@ -88,16 +88,17 @@ namespace Capstone.Web.DAL
         public bool AddStrengthToWorkout(StrengthExercise exercise)
         {
             bool check;
-            string addStrength = "INSERT INTO strength_exercises (exercise_id, strength_reps, strength_sets, rest_time, workout_id) VALUES (@exercise_id, @strength_reps, @rest_time, @workout)";
+            string addStrength = @"INSERT INTO strength_exercise (exercise_id, strength_reps, strength_sets, rest_time, workout_id) 
+                                   VALUES (@exercise_id, @strength_reps, @strength_sets, @rest_time, @workout_id)";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 
                 SqlCommand cmd = new SqlCommand(addStrength, conn);
-                cmd.Parameters.AddWithValue("@exerciseID", exercise.ExerciseID);
+                cmd.Parameters.AddWithValue("@exercise_id", exercise.ExerciseID);
                 cmd.Parameters.AddWithValue("@strength_reps", exercise.Reps);
-                cmd.Parameters.AddWithValue("@rest_sets", exercise.Sets);
+                cmd.Parameters.AddWithValue("@strength_sets", exercise.Sets);
                 cmd.Parameters.AddWithValue("@rest_time", exercise.Rest_time);
                 cmd.Parameters.AddWithValue("@workout_id", exercise.WorkoutID);
 
@@ -301,6 +302,32 @@ namespace Capstone.Web.DAL
             return WorkoutsList;
         }
 
+        public Workout GetWorkout(int workoutId)
+        {
+            Workout workout = null;
+
+            string GetWorkoutSQL = @"SELECT * FROM workout WHERE workout_id = @workoutId";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(GetWorkoutSQL, conn))
+                {
+                    cmd.Parameters.AddWithValue("@workoutId", workoutId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                       workout = MapRowToWorkout(reader);
+                       workout.GetBig = GetStrengthExercises(workoutId);
+                       workout.RunningAndStuff = GetCardioExercises(workoutId);
+                    }
+                }
+            }
+
+            return workout;
+        }
 
         public PopulatePlanViewModel GetPlanViewModel(int traineeID)
         {

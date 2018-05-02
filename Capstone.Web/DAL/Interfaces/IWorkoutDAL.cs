@@ -13,6 +13,7 @@ namespace Capstone.Web.DAL.Interfaces
         Plan GetTraineePlan(int traineeID);
         int CreatePlan(Plan insertPlan);
         List<Workout> GetWorkouts(int planId);
+        Workout GetWorkout(int workoutId);
         List<Workout> GetWorkoutsWithExercises(int planId);
         List<StrengthExercise> GetStrengthExercises(int workoutId);
         List<CardioExercise> GetCardioExercises(int workoutId);

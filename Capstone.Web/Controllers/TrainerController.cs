@@ -101,7 +101,7 @@ namespace Capstone.Web.Controllers
             CreatePlan.ByTrainer = ((int)Session[SessionKeys.Trainer_ID]);
             int planId = _workoutDal.CreatePlan(CreatePlan);
 
-            return RedirectToAction("CreateWorkout", new { planId = planId });
+            return RedirectToAction("Workouts", new { planId = planId });
         }
 
         public ActionResult Workouts(int planId)
@@ -122,12 +122,9 @@ namespace Capstone.Web.Controllers
         public ActionResult AddExercisesToWorkout(int planId, int workoutId)
         {
             int trainerId = (int)Session[SessionKeys.Trainer_ID];
-
             PopulatePlanViewModel vm = new PopulatePlanViewModel();
+            vm.Workout = _workoutDal.GetWorkout(workoutId);
             vm.Exercises = _workoutDal.GetExercisesForTrainer(trainerId);
-            vm.Strength = _workoutDal.GetStrengthExercises(workoutId);
-            vm.Cardio = _workoutDal.GetCardioExercises(workoutId);
-            vm.Workouts = _workoutDal.GetWorkouts(planId);
 
             return View(vm);
         }
@@ -152,21 +149,25 @@ namespace Capstone.Web.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
-        //[HttpGet]
-        //public ActionResult AddExercise(int exerciseID, int workoutID, int duration, int intensity, int sets, int reps)
-        //{
-        //    if (duration == null || intensity == null)
-        //    {
-        //        StrengthExercise strengthExercise = new StrengthExercise();
-        //        _workoutDal.AddStrengthToWorkout(strengthExercise);
-        //    }
-        //    else
-        //    {
-        //        CardioExercise cardioExercise = new CardioExercise();
-        //        _workoutDal.AddCardioToWorkout(cardioExercise);
-        //    }
+        [HttpGet]
+        public ActionResult AddStrengthExercise(int exerciseID, int workoutID, int reps, int sets)
+        {
+            bool success = _workoutDal.AddStrengthToWorkout(new StrengthExercise() { Sets = sets, Reps = reps, ExerciseID = exerciseID, WorkoutID = workoutID });
+            Workout wo = new Workout();
+            wo.GetBig = _workoutDal.GetStrengthExercises(workoutID);
+            wo.RunningAndStuff = _workoutDal.GetCardioExercises(workoutID);
+            return Json(wo, JsonRequestBehavior.AllowGet);
+        }
 
+        [HttpGet]
+        public ActionResult AddCardioExercise(int exerciseID, int workoutID, int duration, int intensity)
+        {
+            bool success = _workoutDal.AddCardioToWorkout(new CardioExercise() { Duration = duration, Intensity = intensity, ExerciseID = exerciseID, WorkoutID = workoutID });
+            Workout wo = new Workout();
+            wo.GetBig = _workoutDal.GetStrengthExercises(workoutID);
+            wo.RunningAndStuff = _workoutDal.GetCardioExercises(workoutID);
+            return Json(wo, JsonRequestBehavior.AllowGet);
+        }
 
-        //}
     }
 }

@@ -1542,3 +1542,97 @@ section.section2 {
 #add-radio label:hover .radio-type + span {
     border-color: #C2EE6C;
 }
+
+/*Detail Page =======================================*/
+.detail-back {
+    background-color: #393939;
+    margin-top: 2%;
+}
+
+.detail-back h2 {
+    color: white;
+    text-align: center;
+}
+.video-card {
+    width: 60%;
+    margin: auto;
+}
+
+.btn-back {
+    background-color: #7F97B8;
+    border-color: #7F97B8;
+}
+
+    .btn-back:hover {
+        background-color: #C2EE6C;
+        border-color: #a8ce5e;
+        color: #323232;
+    }
+
+/*Plan Creation ======================================================================*/
+
+#create-plan {
+
+}
+
+#create-plan label {
+    color: white;
+    font-size: 1.45rem;
+}
+
+#create-plan .dropdown {
+    background-color: #C2EE6C;
+    color: #393939;
+    font-size: 1.23rem;
+    font-weight: bold;
+}
+
+    #create-plan input, #create-plan textarea {
+        font-size: 22px;
+        display: block;
+        width: 100%;
+        padding: 5px 10px;
+        background: none;
+        background-image: none;
+        border: 1px solid #a0b3b0;
+        color: #ffffff;
+        border-radius: 4px;
+        transition: border-color .25s ease, box-shadow .25s ease;
+    }
+
+    #create-plan input:focus, #create-plan textarea:focus {
+        outline: 0;
+        border-color: #C2EE6C;
+    }
+
+
+
+
+
+
+#create-plan .field-wrap {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+#create-plan .top-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#create-plan .top-row > div {
+    float: left;
+    width: 48%;
+    margin-right: 4%;
+}
+
+#create-plan .top-row > div:last-child {
+    margin: 0;
+}
+
+#create-plan .row-two > div {
+    float: left;
+    width: 48%;
+    margin-right: 4%;
+}

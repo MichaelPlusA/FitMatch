@@ -23,7 +23,7 @@
                     console.log(this.text);
                     $(inputInt).insertAfter("select");
                 }
-                else if (this.text == "Area Code") {
+                else if (this.text == "Zip Code") {
                     $("input[name='SearchString']").remove();
                     $(inputInt).insertAfter("select");
                 }

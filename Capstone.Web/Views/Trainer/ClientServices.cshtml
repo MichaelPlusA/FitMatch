@@ -6,35 +6,27 @@
 @model List<User>
 
 <div class="jumbotron search-back">
-    <div class="container">
+    <div class="container" id="create-plan">
 
         <h2>Create a new plan for a client</h2>
         <br />
         <form action="/Trainer/CreatePlan" method="post">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" name="ForTrainee" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown button
-                    </button>
-                <div class="dropdown-menu" name="ForTrainee" aria-labelledby="dropdownMenuButton">
-                @foreach (User item in Model)
-                    {
-                        <a class="dropdown-item" name="ForTrainee" id="ForTrainee" value=@item.User_ID>@item.First_Name @item.Last_Name</a>
+            <div class="form-group">
+                <label for="clientselect">Select Client to Add to Plan</label>
+                <select class="form-control btn btn-secondary dropdown-toggle dropdown" id="clientselect" name="ForTrainee">
+                    @foreach (User item in Model)
+                {
 
-                    }
-                </div>
-            
+                    <option name="ForTrainee" id="ForTrainee" value=@item.User_ID>@item.First_Name @item.Last_Name</option>
+
+                }
+                </select>
             </div>
-            @*<select name="ForTrainee">
-                @foreach (User item in Model)
-        {
-            <option name="ForTrainee" id="ForTrainee" value=@item.User_ID>@item.First_Name @item.Last_Name</option>
-}
-            </select>*@
             <div class="field-wrap">
                 <label class="lrg-label">
                     Plan Name
                 </label>
-                <textarea class="form-control" name="planName" id="planName" rows="3"></textarea>
+                <input type="text" class="form-control" name="planName" id="planName">
             </div>
 
             <div class="field-wrap">
@@ -43,7 +35,7 @@
                 </label>
                 <textarea class="form-control" name="Notes" id="Notes" rows="3"></textarea>
             </div>
-            <button type="submit" class="button button-block">Create Plan</button>
+            <button type="submit" class="button-huge button-block">Create Plan</button>
         </form>
         </div>
     </div>

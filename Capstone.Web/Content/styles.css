@@ -502,7 +502,7 @@ iframe {
             color: #179b77;
         }
 
-    #registration .form {
+    #registration .form, #add-exercise .form {
         background: rgba(19, 35, 47, 0.9);
         padding: 40px;
         max-width: 600px;
@@ -511,15 +511,15 @@ iframe {
         box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
     }
 
-   
-    #registration h1, #login h1 {
+
+    #registration h1, #login h1, #add-exercise h1 {
         text-align: center;
         color: #ffffff;
         font-weight: 300;
         margin: 0 0 40px;
     }
 
-    #registration label, #login label {
+    #registration label, #login label, #add-exercise label{
         position: absolute;
         -webkit-transform: translateY(6px);
         transform: translateY(6px);
@@ -531,35 +531,39 @@ iframe {
         font-size: 1.375rem;
     }
 
-        #registration label .req, #login label .req {
+        #registration label .req, #login label .req, #add-exercise label .req{
             margin: 2px;
             color: #C2EE6C;
         }
 
-        #registration label.active, #login label.active {
+        #registration label.active, #login label.active, #add-exercise label.active {
             -webkit-transform: translateY(50px);
             transform: translateY(50px);
             left: 2px;
             font-size: 0.875rem;
         }
-    #registration .lrg-label.active {
+    #registration .lrg-label.active, #add-exercise .lrg-label.active {
         -webkit-transform: translateY(120px);
         transform: translateY(120px);
+    }
+    #registration .md-label.active, #add-exercise .md-label.active {
+        -webkit-transform: translateY(80px);
+        transform: translateY(80px);
     }
     #registration .x-lrg-label.active {
         -webkit-transform: translateY(180px);
         transform: translateY(180px);
     }
 
-            #registration label.active .req, #login label.active .req {
-                opacity: 0;
-            }
+    #registration label.active .req, #login label.active .req, #add-exercise label.active .req {
+        opacity: 0;
+    }
 
-        #registration label.highlight, #login label.highlight {
-            color: #ffffff;
-        }
+    #registration label.highlight, #login label.highlight, #add-exercise label.highlight {
+        color: #ffffff;
+    }
 
-    #registration input, #registration textarea, #login input, #login textarea {
+    #registration input, #registration textarea, #login input, #login textarea, #add-exercise input, #add-exercise textarea {
         font-size: 22px;
         display: block;
         width: 100%;
@@ -572,7 +576,7 @@ iframe {
         transition: border-color .25s ease, box-shadow .25s ease;
     }
 
-        #registration input:focus, #registration textarea:focus, #login input:focus, #login textarea:focus {
+        #registration input:focus, #registration textarea:focus, #login input:focus, #login textarea:focus, #add-exercise input:focus, #add-exercise textarea:focus {
             outline: 0;
             border-color: #C2EE6C;
         }
@@ -580,39 +584,39 @@ iframe {
 
 
 
-    #registration textarea, #login textarea {
+    #registration textarea, #login textarea, #add-exercise textarea{
         border: 2px solid #C2EE6C;
         resize: vertical;
     }
 
-    #registration .field-wrap, #login .field-wrap {
+    #registration .field-wrap, #login .field-wrap, #add-exercise .field-wrap{
         position: relative;
         margin-bottom: 40px;
     }
 
-    #registration .top-row:after, #login .top-row:after {
+    #registration .top-row:after, #login .top-row:after, #add-exercise .top-row:after {
         content: "";
         display: table;
         clear: both;
     }
 
-    #registration .top-row > div, #login .top-row > div {
+    #registration .top-row > div, #login .top-row > div, #add-exercise .top-row > div {
         float: left;
         width: 48%;
         margin-right: 4%;
     }
 
-        #registration .top-row > div:last-child, #login .top-row > div:last-child {
+        #registration .top-row > div:last-child, #login .top-row > div:last-child, #add-exercise .top-row > div:last-child {
             margin: 0;
         }
 
-    #registration .row-two > div, #login .row-two > div {
+    #registration .row-two > div, #login .row-two > div, #add-exercise .row-two > div {
         float: left;
         width: 48%;
         margin-right: 4%;
     }
 
-    #registration .button, #login .button {
+    #registration .button, #login .button, #add-exercise .button {
         border: 0;
         outline: none;
         border-radius: 0;
@@ -627,19 +631,16 @@ iframe {
         -webkit-appearance: none;
     }
 
-        #registration .button:hover, #registration .button:focus, #login .button:hover, #login .button:focus {
+        #registration .button:hover, #registration .button:focus, #login .button:hover, #login .button:focus, #add-exercise .button:hover, #add-exercise .button:focus {
             background: #C2EE6C;
         }
 
-    #registration .button-block, #login .button-block {
+    #registration .button-block, #login .button-block, #add-exercise .button-block {
         display: block;
         width: 100%;
     }
 
-    #registration .forgot, #login .forgot {
-        margin-top: -20px;
-        text-align: right;
-    }
+
 
 .card-dark {
     background-color: rgba(19, 35, 47, 0.9);
@@ -1480,3 +1481,64 @@ section.section2 {
             -webkit-transition: all 0.35s ease;
             transition: all 0.35s ease;
         }
+
+
+/*Add Exercise ==============================================*/
+
+#add-exercise i {
+    float: left;
+    font-size: 3rem;
+    color: white;
+    margin-left: 15px;
+    width: 5%;
+    text-align: center;
+}
+
+#add-radio h3 {
+    color: white;
+}
+
+/*Radio Button*/
+#add-radio label {
+    margin-right: 20px;
+    margin-left: 10px;
+    color: white;
+    font-size: 1.375rem;
+}
+
+#add-radio .radio-type {
+    display: none;
+}
+
+    #add-radio .radio-type + span {
+        background-color: white;
+        border: 1px solid;
+        border-color: #C2EE6C;
+        border-radius: 50px;
+        display: inline-block;
+        float: left;
+        margin-right: 8px;
+        padding: 12px;
+        top: 3px;
+        position: relative;
+        -webkit-appearance: none;
+    }
+
+    #add-radio .radio-type:checked + span {
+        color: #f00;
+    }
+
+        #add-radio .radio-type:checked + span:after {
+            background: #7F97B8;
+            border-radius: 50px;
+            content: " ";
+            height: 14px;
+            width: 14px;
+            left: 5px;
+            position: absolute;
+            top: 5px;
+        }
+
+#add-radio label:hover .radio-type + span {
+    border-color: #C2EE6C;
+}

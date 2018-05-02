@@ -118,7 +118,17 @@ namespace Capstone.Web.Controllers
             addExercise.TrainerID = ((int)Session[SessionKeys.Trainer_ID]);
             bool AddExercise = _workoutDal.AddExercise(addExercise);
 
-            return Redirect("/Trainer/Index");
+            if (AddExercise)
+            {
+                TempData["AddExercise"] = true;
+            }
+            else
+            {
+                TempData["AddExercise"] = false;
+            }
+
+            return Redirect(Request.UrlReferrer.ToString());
         }
+
     }
 }

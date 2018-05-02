@@ -1542,3 +1542,29 @@ section.section2 {
 #add-radio label:hover .radio-type + span {
     border-color: #C2EE6C;
 }
+
+/*Detail Page =======================================*/
+.detail-back {
+    background-color: #393939;
+    margin-top: 2%;
+}
+
+.detail-back h2 {
+    color: white;
+    text-align: center;
+}
+.video-card {
+    width: 60%;
+    margin: auto;
+}
+
+.btn-back {
+    background-color: #7F97B8;
+    border-color: #7F97B8;
+}
+
+    .btn-back:hover {
+        background-color: #C2EE6C;
+        border-color: #a8ce5e;
+        color: #323232;
+    }

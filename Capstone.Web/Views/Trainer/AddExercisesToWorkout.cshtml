@@ -40,9 +40,3 @@
     <input type="number" placeholder="intensity(1-10)" id="Intensity" />
     <button name="exerciseButton" id="exerciseButton">Add Exercise</button>
 }
-@foreach (var item in Model.Exercises)
-{
-    <div>
-        <a href="@("/Trainer/Detail/" + item.ExerciseID)">@item.Name</a>
-    </div>
-}

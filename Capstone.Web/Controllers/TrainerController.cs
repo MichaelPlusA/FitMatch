@@ -87,13 +87,6 @@ namespace Capstone.Web.Controllers
             return View(clients);
         }
 
-        public ActionResult Clients()
-        {
-            int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
-            List<User> clients = _dal.GetClientsWithPlans(trainerID);
-            return View(clients);
-        }
-
         public ActionResult Detail(int id)
         {
 
@@ -111,11 +104,11 @@ namespace Capstone.Web.Controllers
             return RedirectToAction("CreateWorkout", new { planId = planId });
         }
 
-        public ActionResult CreateWorkout(int planId)
+        public ActionResult Workouts(int planId)
         {
             Plan plan = _workoutDal.GetPlan(planId);
             plan.SeveralWorkouts = _workoutDal.GetWorkouts(planId);
-            return View(plan);
+            return View("CreateWorkout", plan);
         }
 
         [HttpPost]
@@ -123,7 +116,7 @@ namespace Capstone.Web.Controllers
         {
             bool isAdded = _workoutDal.CreateWorkout(name, notes, planID);
 
-            return RedirectToAction("CreateWorkout", new { planId = planID });
+            return RedirectToAction("Workouts", new { planId = planID });
         }
 
         public ActionResult AddExercisesToWorkout(int planId, int workoutId)

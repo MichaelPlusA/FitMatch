@@ -129,6 +129,7 @@ namespace Capstone.Web.Controllers
             vm.Exercises = _workoutDal.GetExercisesForTrainer(trainerId);
             vm.Strength = _workoutDal.GetStrengthExercises(workoutId);
             vm.Cardio = _workoutDal.GetCardioExercises(workoutId);
+            vm.Workouts = _workoutDal.GetWorkouts(planId);
 
             return View(vm);
         }
@@ -153,5 +154,21 @@ namespace Capstone.Web.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
+        //[HttpGet]
+        //public ActionResult AddExercise(int exerciseID, int workoutID, int duration, int intensity, int sets, int reps)
+        //{
+        //    if (duration == null || intensity == null)
+        //    {
+        //        StrengthExercise strengthExercise = new StrengthExercise();
+        //        _workoutDal.AddStrengthToWorkout(strengthExercise);
+        //    }
+        //    else
+        //    {
+        //        CardioExercise cardioExercise = new CardioExercise();
+        //        _workoutDal.AddCardioToWorkout(cardioExercise);
+        //    }
+
+
+        //}
     }
 }

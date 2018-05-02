@@ -80,8 +80,13 @@ namespace Capstone.Web.Controllers
             Trainer loggedInTrainer = new Trainer();
 
             int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
-            loggedInTrainer.ClientList = _dal.GetClients(trainerID);
+            loggedInTrainer.ClientList = _dal.GetClientsWithoutPlans(trainerID);
             return View(loggedInTrainer.ClientList);
+        }
+
+        public ActionResult Clients()
+        {
+            return View();
         }
 
         public ActionResult Detail(int id)

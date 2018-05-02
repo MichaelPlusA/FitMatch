@@ -20,5 +20,7 @@ namespace Capstone.Web.DAL.Interfaces
         List<Exercise> GetExercisesForTrainer(int TrainerID);
         bool CreateWorkout(string name, string notes, int planID);
         Plan GetPlan(int planID);
+        bool AddStrengthToWorkout(StrengthExercise strengthExercise);
+        bool AddCardioToWorkout(CardioExercise cardioExercise);
     }
 }

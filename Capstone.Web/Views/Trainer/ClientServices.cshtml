@@ -15,11 +15,12 @@
                 <label for="clientselect">Select Client to Add to Plan</label>
                 <select class="form-control btn btn-secondary dropdown-toggle dropdown" id="clientselect" name="ForTrainee">
                     @foreach (User item in Model)
-                {
+    {
 
-                    <option name="ForTrainee" id="ForTrainee" value=@item.User_ID>@item.First_Name @item.Last_Name</option>
+                <option name="ForTrainee" id="ForTrainee" value=@item.User_ID>@item.First_Name @item.Last_Name</option>
 
-                }
+}
+                    <option name="ForTrainee" id="ForTrainee" disabled>There are no clients without plans.</option>
                 </select>
             </div>
             <div class="field-wrap">

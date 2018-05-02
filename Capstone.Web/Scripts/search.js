@@ -49,13 +49,13 @@
 
             var result = searchResults[i];
 
-            var tr = $("<tr>");
+            var tr = $("<tr scope='row'>");
             var searchCell = $("<td>")
             var profileURL = "/trainee/trainerprofile/" + result.Trainer_ID
 
             tr.append(searchCell);
 
-            var profileCell = $("<td>")
+            var profileCell = $("<td class='view-profile'>")
             var firstNameCell = $("<td>").text(result.First_Name);
             var anchor = $("<a>").text("View Profile").attr("href", profileURL);
             var lastNameCell = $("<td>").text(result.Last_Name);

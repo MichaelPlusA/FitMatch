@@ -28,22 +28,32 @@
     </div>
         @*</form>*@
 
-        <div class="container">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email Address</th>
-                        <th>Price Per Hour</th>
-                        <th>Location</th>
-                        <th>Profile</th>
-                    </tr>
-                </thead>
-                <tbody id="searchTable"></tbody>
-            </table>
-        </div>
+    <div class="container">
+        @*<figure class="resultcard">
+            <figcaption>
+                <h3>Trainer Name</h3>
+                <h4>Location</h4>
+                <p>Something Else</p>
+                <div class="icons">
+                </div>
+            </figcaption>
+        </figure>*@
+
+        <table class="table table-striped table-dark result-table">
+            <thead class="thead-dark thead-blue">
+                <tr>
+                    <th></th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Price Per Hour</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Profile</th>
+                </tr>
+            </thead>
+            <tbody id="searchTable"></tbody>
+        </table>
+    </div>
 
     </div>
 

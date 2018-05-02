@@ -5,50 +5,69 @@
 @using Capstone.Web.Models
 @model List<User>
 
-<h1>Create a new plan for a client</h1>
-<form action="/Trainer/CreatePlan" method="post">
-    <select name="ForTrainee">
-        @foreach (User item in Model)
+<div class="jumbotron search-back">
+    <div class="container">
+
+        <h2>Create a new plan for a client</h2>
+        <br />
+        <form action="/Trainer/CreatePlan" method="post">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" name="ForTrainee" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown button
+                    </button>
+                <div class="dropdown-menu" name="ForTrainee" aria-labelledby="dropdownMenuButton">
+                @foreach (User item in Model)
+                    {
+                        <a class="dropdown-item" name="ForTrainee" id="ForTrainee" value=@item.User_ID>@item.First_Name @item.Last_Name</a>
+
+                    }
+                </div>
+            
+            </div>
+            @*<select name="ForTrainee">
+                @foreach (User item in Model)
         {
             <option name="ForTrainee" id="ForTrainee" value=@item.User_ID>@item.First_Name @item.Last_Name</option>
-        }
-    </select>
-    <div class="field-wrap">
-        <label class="lrg-label">
-            Plan Name
-        </label>
-        <textarea class="form-control" name="planName" id="planName" rows="3"></textarea>
+}
+            </select>*@
+            <div class="field-wrap">
+                <label class="lrg-label">
+                    Plan Name
+                </label>
+                <textarea class="form-control" name="planName" id="planName" rows="3"></textarea>
+            </div>
+
+            <div class="field-wrap">
+                <label class="lrg-label">
+                    Notes
+                </label>
+                <textarea class="form-control" name="Notes" id="Notes" rows="3"></textarea>
+            </div>
+            <button type="submit" class="button button-block">Create Plan</button>
+        </form>
+        </div>
     </div>
 
-    <div class="field-wrap">
-        <label class="lrg-label">
-            Notes
-        </label>
-        <textarea class="form-control" name="Notes" id="Notes" rows="3"></textarea>
-    </div>
-    <button type="submit" class="button button-block">Create Plan</button>
-</form>
+        @*<h1>Edit a plan for a client</h1>
+            <form action="//" method="post">
+                <select name="ForTrainee">
+                    @foreach (User item in Model)
+                     {
+                        <option name="ForTrainee" id="ForTrainee" value=@item.User_ID>@item.First_Name @item.Last_Name</option>
+                     }
+                </select>
+                <div class="field-wrap">
+                    <label class="lrg-label">
+                        Plan Name
+                    </label>
+                    <textarea class="form-control" name="planName" id="planName" rows="3"></textarea>
+                </div>
 
-@*<h1>Edit a plan for a client</h1>
-<form action="//" method="post">
-    <select name="ForTrainee">
-        @foreach (User item in Model)
-         {
-            <option name="ForTrainee" id="ForTrainee" value=@item.User_ID>@item.First_Name @item.Last_Name</option>
-         }
-    </select>
-    <div class="field-wrap">
-        <label class="lrg-label">
-            Plan Name
-        </label>
-        <textarea class="form-control" name="planName" id="planName" rows="3"></textarea>
-    </div>
-
-    <div class="field-wrap">
-        <label class="lrg-label">
-            Notes
-        </label>
-        <textarea class="form-control" name="Notes" id="Notes" rows="3"></textarea>
-    </div>
-    <button type="submit" class="button button-block">Create Plan</button>
-</form>*@
+                <div class="field-wrap">
+                    <label class="lrg-label">
+                        Notes
+                    </label>
+                    <textarea class="form-control" name="Notes" id="Notes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="button button-block">Create Plan</button>
+            </form>*@

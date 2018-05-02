@@ -86,6 +86,7 @@ namespace Capstone.Web.Controllers
 
         public ActionResult Detail(int id)
         {
+
             Exercise exercise = _dal.GetExercise(id);
             return View("Detail", exercise);
         }

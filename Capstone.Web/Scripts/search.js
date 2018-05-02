@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-    var inputText = "<input type='text' id='searchString' name='SearchString' />"
-    var inputInt = "<input type='number' min='0' max='99999' id='searchString' name='SearchString'/>"
+    var inputText = "<input type='text' id='searchString' name='SearchString' class='search-input input-margin' />"
+    var inputInt = "<input type='number' min='0' max='99999' id='searchString' name='SearchString' class='search-input input-margin'/>"
 
     $("button[name='searchButton'").on("click", function (event) {
         var searchString = $("#searchString").val();
@@ -21,15 +21,15 @@
                 if (this.text == "Price Per Hour") {
                     $("input[name='SearchString']").remove();
                     console.log(this.text);
-                    $(inputInt).insertBefore("button");
+                    $(inputInt).insertAfter("select");
                 }
                 else if (this.text == "Area Code") {
                     $("input[name='SearchString']").remove();
-                    $(inputInt).insertBefore("button");
+                    $(inputInt).insertAfter("select");
                 }
                 else if (this.text == "Name") {
                     $("input[name='SearchString']").remove();
-                    $(inputText).insertBefore("button");
+                    $(inputText).insertAfter("select");
                 }
             })
         })
@@ -49,13 +49,13 @@
 
             var result = searchResults[i];
 
-            var tr = $("<tr>");
+            var tr = $("<tr scope='row'>");
             var searchCell = $("<td>")
             var profileURL = "/trainee/trainerprofile/" + result.Trainer_ID
 
             tr.append(searchCell);
 
-            var profileCell = $("<td>")
+            var profileCell = $("<td class='view-profile'>")
             var firstNameCell = $("<td>").text(result.First_Name);
             var anchor = $("<a>").text("View Profile").attr("href", profileURL);
             var lastNameCell = $("<td>").text(result.Last_Name);

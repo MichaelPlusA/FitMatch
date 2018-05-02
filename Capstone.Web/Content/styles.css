@@ -20,6 +20,7 @@
 
 .footer {
     bottom: 0;
+    left: 0;
     width: 100%;
     height: 60px;
     line-height: 60px;
@@ -30,6 +31,22 @@
 .footer-absolute {
     position: absolute;
 }
+.page-wrap {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -60px;
+}
+
+    .page-wrap:after {
+        content: "";
+        display: block;
+    }
+
+    .site-footer, .page-wrap:after {
+        height: 60px;
+    }
+
+
 
 .white-text {
     color: white;
@@ -687,6 +704,9 @@ input[type=checkbox] {
         text-decoration: none !important;
     }
 
+.card-subheader { /*Workout Title Box*/
+    background: #C2EE6C;
+}
 
 .mb-0 button { /*Workout Heading*/
     color: #393939; /*Menu Back Color*/
@@ -719,6 +739,36 @@ input[type=checkbox] {
     margin-bottom: 5%;
 }
 
+/*Exercise*/
+.workout-exercise {
+    padding-left: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.badge-exercise {
+    background-color: #323232;
+    padding: 1rem;
+}
+    .badge-exercise:hover {
+        background-color: #7F97B8;
+        
+    }
+
+    .badge-exercise a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+
+.exercise-icon {
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+}
+
+.duration, .intensity {
+    font-size: 1rem;
+}
 
 
 /*Trainer Button*/
@@ -1234,6 +1284,25 @@ section.section2 {
     width: 100%;
 }
 
+.button-thin {
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    padding: 10px 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    background: #7F97B8;
+    color: #ffffff;
+    transition: all 0.5s ease;
+    -webkit-appearance: none;
+}
+
+    .button-thin:hover, .button-thin:focus {
+        background: #C2EE6C;
+    }
+
 /* Search =====================================================================*/
 
 .search-back {
@@ -1244,3 +1313,170 @@ section.section2 {
 .search-back h2 {
     color: white;
 }
+
+/* Dropdown*/
+.input-margin {
+    margin-left: 2%;
+}
+.dropdown-label {
+    background-color: #C2EE6C;
+    border: 1px solid #C2EE6C !important;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    padding: 10px;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+    font-weight: bold;
+    float: left;
+}
+
+.dropdown-box {
+    background-color: #fff;
+    border: 1px solid #C2EE6C !important;
+    border-color: #323232;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 10px;
+    float: left;
+}
+
+.search-input {
+    background-color: #fff;
+    border: 1px solid #C2EE6C;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 1rem;
+    display: block;
+    width: 50%;
+    background: none;
+    background-image: none;
+    color: #ffffff;
+    transition: border-color .25s ease, box-shadow .25s ease;
+    float: left;
+}
+
+    .search-input:focus {
+        outline: 0;
+        border-color: #C2EE6C;
+    }
+.search-btn {
+    float: left; 
+    border-radius: 4px;
+}
+
+/*Result Table*/
+    .result-table td:first-child {
+        font-weight: bold;
+        text-align: left;
+    }
+
+.view-profile a {
+    color: #7F97B8;
+    font-weight: bold;
+}
+
+    .view-profile a:hover {
+        color: #C2EE6C;
+        font-weight: bold;
+    }
+
+/*.result-table tr:nth-child(odd) td {
+    background: white;
+}
+
+.result-table tr:nth-child(even) td {
+    background: #7F97B8;
+}*/
+
+.thead-blue {
+    background-color: #7F97B8 !important;
+}
+
+/* Result Cards */ /*Ignore this ---- Would look cool for searching, but may not be possible due to resricted time*/
+
+.resultcard {
+    font-family: 'Open Sans', Arial, sans-serif;
+    position: relative;
+    float: left;
+    margin: 10px 1%;
+    min-width: 230px;
+    max-width: 315px;
+    width: 100%;
+    color: #000000;
+    text-align: center;
+    line-height: 1.4em;
+    font-size: 14px;
+    box-shadow: none !important;
+}
+
+    .resultcard * {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .resultcard .profile-image {
+        display: inline-block;
+        width: 80%;
+        z-index: 1;
+        position: relative;
+        padding: 10px;
+        border: 2px solid #e8b563;
+    }
+
+        .resultcard .profile-image img {
+            max-width: 100%;
+            vertical-align: top;
+        }
+
+    .resultcard figcaption {
+        width: 100%;
+        background-color: #F2F2F2;
+        color: #555;
+        padding: 125px 25px 25px;
+        margin-top: -100px;
+        display: inline-block;
+    }
+
+    .resultcard h3,
+    .resultcard h4,
+    .resultcard p {
+        margin: 0 0 5px;
+    }
+
+    .resultcard h3 {
+        font-weight: 600;
+        font-size: 1.3em;
+        font-family: 'Playfair Display', Arial, sans-serif;
+    }
+
+    .resultcard h4 {
+        color: #8c8c8c;
+        font-weight: 400;
+        letter-spacing: 2px;
+    }
+
+    .resultcard p {
+        font-size: 0.9em;
+        letter-spacing: 1px;
+        opacity: 0.9;
+    }
+
+    .resultcard .icons {
+        text-align: center;
+        width: 100%;
+    }
+
+    .resultcard i {
+        padding: 10px 2px;
+        display: inline-block;
+        font-size: 18px;
+        font-weight: normal;
+        color: #e8b563;
+        opacity: 0.75;
+    }
+
+        .resultcard i:hover {
+            opacity: 1;
+            -webkit-transition: all 0.35s ease;
+            transition: all 0.35s ease;
+        }

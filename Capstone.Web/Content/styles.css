@@ -694,6 +694,10 @@ input[type=checkbox] {
     background: #393939;
     padding-top: 1%;
 }
+
+.white {
+    color: white;
+}
 .card {
     text-decoration: none !important;
 }
@@ -1188,6 +1192,10 @@ section.section2 {
     transition: all 0.3s;
 }
 
+.btn-update:hover {
+    background-color: #9dc05a;
+}
+
 .edit-header {
     width: 90%;
     margin: auto;
@@ -1666,7 +1674,7 @@ section.section2 {
     .add-new {
         margin-top: 1.25rem;
         margin-bottom: 1.15rem;
-        background-color: #7F97B8;
+        background-color: rgba(19, 35, 47, 0.9);
     }
 
     .no-pad-right {

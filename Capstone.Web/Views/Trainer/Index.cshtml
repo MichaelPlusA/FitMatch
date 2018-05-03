@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="input-philo">
-                                    <h3>@((string)Session[SessionKeys.First_Name]) @((string)Session[SessionKeys.First_Name])@*@Model.First_Name @Model.Last_Name*@</h3>
+                                    <h3>@Model.First_Name @Model.Last_Name</h3>
                                     <h4 class="light-p">Exercise Philosophy</h4>
                                     <p>@Model.exercise_Philosophy</p>
                                     <span>@(Model.Searchable == true ? "public" : "private")</span>

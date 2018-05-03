@@ -369,7 +369,7 @@ namespace Capstone.Web.DAL
             {
                 conn.Open();
 
-                string SQLExercises = "SELECT exercise_id, exercise_name, exercise_description, video_link, exercise_type_id FROM exercises WHERE trainer_id = @trainer_id and trainer_id = 1";
+                string SQLExercises = "SELECT exercise_id, exercise_name, exercise_description, video_link, exercise_type_id FROM exercises WHERE trainer_id = @trainer_id";
 
                 using (SqlCommand cmd = new SqlCommand(SQLExercises, conn))
                 {

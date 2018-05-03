@@ -53,8 +53,8 @@ namespace Capstone.Web.DAL
             string CreateUserSQL = "INSERT INTO user_info (email, password, salt, trainer_id, first_name, last_name) " +
                 "VALUES (@email, @password, @salt, @trainer_id, @first_name, @last_name)";
 
-            string createProfileSQL = "INSERT INTO trainer (price_per_hour, certifications, experience, client_success_stories, exercise_philosophy, additional_notes) " +
-                "OUTPUT inserted.trainer_id VALUES (@price_per_hour, @certifications, @experience, @client_success_stories, @exercise_philosophy, @additional_notes)";
+            string createProfileSQL = "INSERT INTO trainer (price_per_hour, certifications, experience, client_success_stories, exercise_philosophy, additional_notes, searchable) " +
+                "OUTPUT inserted.trainer_id VALUES (@price_per_hour, @certifications, @experience, @client_success_stories, @exercise_philosophy, @additional_notes, 1)";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -102,7 +102,7 @@ namespace Capstone.Web.DAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                Trainer result = conn.QueryFirstOrDefault<Trainer>("Select trainer.trainer_id, price_per_hour, experience, searchable, client_success_stories, exercise_philosophy, certifications, additional_notes, user_location FROM trainer JOIN user_info on user_info.trainer_id = trainer.trainer_id WHERE trainer.trainer_id = @trainerID", new { trainerID = ID });
+                Trainer result = conn.QueryFirstOrDefault<Trainer>("Select trainer.trainer_id, user_info.first_name, user_info.last_name, price_per_hour, experience, searchable, client_success_stories, exercise_philosophy, certifications, additional_notes, user_location FROM trainer JOIN user_info on user_info.trainer_id = trainer.trainer_id WHERE trainer.trainer_id = @trainerID", new { trainerID = ID });
                 return result;
             }
         }

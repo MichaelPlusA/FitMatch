@@ -47,6 +47,11 @@ namespace Capstone.Web.Controllers
 
         public ActionResult SuccessfulEdit(Trainer edited)
         {
+            if (Session[SessionKeys.Trainer_ID] == null)
+            {
+                return Redirect("/User/Login");
+            }
+
             edited.Trainer_ID = ((int)Session[SessionKeys.Trainer_ID]);
             edited.User_ID = ((int)Session[SessionKeys.UserID]);
             bool EditTrainer = _dal.UpdateTrainer(edited);
@@ -55,6 +60,11 @@ namespace Capstone.Web.Controllers
 
         public ActionResult ChangeAccess(string access)
         {
+            if (Session[SessionKeys.Trainer_ID] == null)
+            {
+                return Redirect("/User/Login");
+            }
+
             int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
             bool TrainerAccess = _dal.SwitchAccess(trainerID, access);
             return Redirect("/Trainer/Index");
@@ -77,6 +87,11 @@ namespace Capstone.Web.Controllers
 
         public ActionResult ClientServices()
         {
+            if (Session[SessionKeys.Trainer_ID] == null)
+            {
+                return Redirect("/User/Login");
+            }
+
             int trainerID = ((int)Session[SessionKeys.Trainer_ID]);
             TrainerClients clients = new TrainerClients()
             {
@@ -89,6 +104,10 @@ namespace Capstone.Web.Controllers
 
         public ActionResult Detail(int id)
         {
+            if (Session[SessionKeys.Trainer_ID] == null)
+            {
+                return Redirect("/User/Login");
+            }
 
             Exercise exercise = _dal.GetExercise(id);
             return View("Detail", exercise);
@@ -106,6 +125,11 @@ namespace Capstone.Web.Controllers
 
         public ActionResult Workouts(int planId)
         {
+            if (Session[SessionKeys.Trainer_ID] == null)
+            {
+                return Redirect("/User/Login");
+            }
+
             Plan plan = _workoutDal.GetPlan(planId);
             plan.SeveralWorkouts = _workoutDal.GetWorkouts(planId);
             return View("CreateWorkout", plan);
@@ -121,6 +145,11 @@ namespace Capstone.Web.Controllers
 
         public ActionResult AddExercisesToWorkout(int planId, int workoutId)
         {
+            if (Session[SessionKeys.Trainer_ID] == null)
+            {
+                return Redirect("/User/Login");
+            }
+
             int trainerId = (int)Session[SessionKeys.Trainer_ID];
             PopulatePlanViewModel vm = new PopulatePlanViewModel();
             vm.PlanID = planId;

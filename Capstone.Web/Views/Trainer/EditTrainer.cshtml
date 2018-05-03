@@ -19,13 +19,13 @@
             
                 <form action="/Trainer/ChangeAccess" method="get">
                     @if (Model.Searchable)
-                {
+                     {
                     <button class="btn btn-searchable btn-1 btn-1c" name="access" value="false">Make Profile Private</button>
-            }
+                     }
             else if (!Model.Searchable)
             {
                 <button class="btn btn-searchable btn-1 btn-1c" name="access" value="true">Make Profile Public</button>
-        }
+            }
                 </form>
         </div>
     </div>

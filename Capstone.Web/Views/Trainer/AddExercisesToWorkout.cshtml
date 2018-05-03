@@ -28,20 +28,20 @@
                                     <td>Strength</td>
                                 </tr>
                                 @foreach (Exercise e in Model.Workout.GetBig)
-        {
-                        <tr>
-                            <td>@e.Name</td>
-                        </tr>
-}
+                            {
+                                <tr>
+                                    <td>@e.Name</td>
+                                </tr>
+                        }
                                 <tr>
                                     <td>Cardio</td>
                                 </tr>
                                 @foreach (Exercise e in Model.Workout.RunningAndStuff)
-        {
-                        <tr>
-                            <td>@e.Name</td>
-                        </tr>
-}
+                            {
+                                <tr>
+                                    <td>@e.Name</td>
+                                </tr>
+                        }
                             </table>
                         </div>
                         <div class="col-lg-6">
@@ -53,101 +53,103 @@
                 </div>
             </div>
         </div>
-                    
-
-                    <div class="row">
-                        <!--Strength Start ------------------------------------------->
-                        <div class="col-lg-6 text-center">
-                            <div class="card text-white bg-dark mb-3">
-                                <div class="card-header">
-                                    <h1>Add Strength Exercise</h1>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row no-pad-left">
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-
-                                                <select id="strengthExercises" class="form-control btn btn-secondary dropdown-toggle dropdown">
-                                                    @foreach (Exercise exercise in Model.Exercises)
-                                                {
-                                                    if (exercise.Type == 2)
-                                                    {
-                                                        <option value=@exercise.ExerciseID selected="selected">@exercise.Name</option>
-                                                }
-                                            }
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-12 no-pad-left no-pad-right">
-                                                <div class="row no-pad-left">
-                                                    <div class="col-lg-6">
-                                                        <input type="number" placeholder="sets" id="sets" />
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input type="number" placeholder="reps" id="reps" />
-                                                    </div>
-                                                </div>
-                                                <div class="row no-pad-left">
-                                                    <div class="col-lg-12">
-                                                        <br />
-                                                        <button name="strengthExerciseButton" id="exerciseButton" class="button button-thin button-block">Add Exercise</button>
-                                                    </div>
-                                                </div>
 
 
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Cardio Start ------------------------------------------->
-                        <div class="col-lg-6 text-center">
-                            <div class="card text-white bg-dark mb-3">
-                                <div class="card-header">
-                                    <h1>Add Cardio Exercises</h1>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row no-pad-left">
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-
-                                                <select id="cardioExercises" class="form-control btn btn-secondary dropdown-toggle dropdown">
-                                                    @foreach (Exercise exercise in Model.Exercises)
-                                                {
-                                                    if (exercise.Type == 1)
-                                                    {
-                                                        <option value=@exercise.ExerciseID selected="selected">@exercise.Name</option>
-                                                }
-                                            }
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-12 no-pad-left no-pad-right">
-                                                <div class="row no-pad-left">
-                                                    <div class="col-lg-6">
-                                                        <input type="number" placeholder="duration" id="duration" />
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input type="number" placeholder="intensity(1-10)" id="intensity" />
-                                                    </div>
-                                                </div>
-                                                <div class="row no-pad-left">
-                                                    <div class="col-lg-12">
-                                                        <br />
-                                                        <button name="cardioExerciseButton" id="exerciseButton" class="button button-thin button-block">Add Exercise</button>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+        <div class="row">
+            <!--Strength Start ------------------------------------------->
+            <div class="col-lg-6 text-center">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-header">
+                        <h1>Add Strength Exercise</h1>
                     </div>
+                    <div class="card-body">
+                        <div class="row no-pad-left">
+                            <div class="col-lg-12">
+                                <div class="form-group">
 
+                                    <select id="strengthExercises" class="form-control btn btn-secondary dropdown-toggle dropdown">
+                                        @foreach (Exercise exercise in Model.Exercises)
+                                {
+                                    if (exercise.Type == 2)
+                                    {
+                                        <option value=@exercise.ExerciseID selected="selected">@exercise.Name</option>
+                            }
+                        }
+                                    </select>
+                                </div>
+                                <div class="col-lg-12 no-pad-left no-pad-right">
+                                    <div class="row no-pad-left">
+                                        <div class="col-lg-6">
+                                            <input type="number" placeholder="sets" id="sets" />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input type="number" placeholder="reps" id="reps" />
+                                        </div>
+                                    </div>
+                                    <div class="row no-pad-left">
+                                        <div class="col-lg-12">
+                                            <br />
+                                            <button name="strengthExerciseButton" id="exerciseButton" class="button button-thin button-block">Add Exercise</button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <!--Cardio Start ------------------------------------------->
+            <div class="col-lg-6 text-center">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-header">
+                        <h1>Add Cardio Exercises</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="row no-pad-left">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+
+                                    <select id="cardioExercises" class="form-control btn btn-secondary dropdown-toggle dropdown">
+                                        @foreach (Exercise exercise in Model.Exercises)
+                                {
+                                    if (exercise.Type == 1)
+                                    {
+                                        <option value=@exercise.ExerciseID selected="selected">@exercise.Name</option>
+                            }
+                        }
+                                    </select>
+                                </div>
+                                <div class="col-lg-12 no-pad-left no-pad-right">
+                                    <div class="row no-pad-left">
+                                        <div class="col-lg-6">
+                                            <input type="number" placeholder="duration" id="duration" />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input type="number" placeholder="intensity(1-10)" id="intensity" />
+                                        </div>
+                                    </div>
+                                    <div class="row no-pad-left">
+                                        <div class="col-lg-12">
+                                            <br />
+                                            <button name="cardioExerciseButton" id="exerciseButton" class="button button-thin button-block">Add Exercise</button>
+
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row"><button class="btn btn-red btn-1 btn-1c row-center"><a href="@Url.Action("Workouts", "Trainer", new { planId = Model.PlanID})">Update another workout</a></button></div>
+        </div>
+        
+    </div>
             </div>

@@ -133,6 +133,13 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult SubmitExercise(Exercise addExercise)
         {
+
+            if (!addExercise.VideoLink.Contains("youtube"))
+            {
+                TempData["Not-a-valid-link"] = "Not a Youtube Video";
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+
             string[] splitLink = addExercise.VideoLink.Split('=');
             addExercise.VideoLink = "https://www.youtube.com/embed/" + splitLink[1];
             addExercise.TrainerID = ((int)Session[SessionKeys.Trainer_ID]);

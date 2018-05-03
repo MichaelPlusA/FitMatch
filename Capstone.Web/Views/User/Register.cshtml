@@ -28,7 +28,7 @@
                     </div>
                 </div>
 
-                <h1 style="color:lawngreen;">@Html.ValidationMessage("username - exists")</h1>
+                <h4 style="color:lawngreen;">@Html.ValidationMessage("username - exists")</h4>
                 <div class="field-wrap">
                     <label>
                         Email - <span class="req">*</span>
@@ -49,12 +49,12 @@
                     </label>
                     <input type="password" name="Password" required autocomplete="off" />
                 </div>
-                <div style="color:lawngreen;">@Html.ValidationMessageFor(m => m.ConfirmPassword)</div>
+                <h4 style="color:lawngreen;">@Html.ValidationMessage("passwords - don't match")</h4>
                 <div class="field-wrap">
                     <label>
                         Confirm Password<span class="req">*</span>
                     </label>
-                    <input type="password" name="Confirm Password" required autocomplete="off" />
+                    <input type="password" name="ConfirmPassword" required autocomplete="off" />
                 </div>
 
                 <div class="field-wrap">
@@ -83,10 +83,10 @@
 
                                     <div class="field-wrap">
                                         <label>
-                                            Years of Experience                                            
+                                            Years of Experience
                                         </label>
                                         <input type="number" min="0" max="80" textarea class="form-control" name="YearsExp" id="experience" rows="3">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="field-wrap">

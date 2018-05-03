@@ -28,20 +28,20 @@
                                     <td>Strength</td>
                                 </tr>
                                 @foreach (Exercise e in Model.Workout.GetBig)
-                            {
+                                 {
                                 <tr>
                                     <td>@e.Name</td>
                                 </tr>
-                        }
+                                 }
                                 <tr>
                                     <td>Cardio</td>
                                 </tr>
                                 @foreach (Exercise e in Model.Workout.RunningAndStuff)
-                            {
+                                 {
                                 <tr>
                                     <td>@e.Name</td>
                                 </tr>
-                        }
+                                 }
                             </table>
                         </div>
                         <div class="col-lg-6">
@@ -69,12 +69,12 @@
 
                                     <select id="strengthExercises" class="form-control btn btn-secondary dropdown-toggle dropdown">
                                         @foreach (Exercise exercise in Model.Exercises)
-                                {
+                                         {
                                     if (exercise.Type == 2)
                                     {
                                         <option value=@exercise.ExerciseID selected="selected">@exercise.Name</option>
-                            }
-                        }
+                                    }
+                                         }
                                     </select>
                                 </div>
                                 <div class="col-lg-12 no-pad-left no-pad-right">
@@ -92,8 +92,6 @@
                                             <button name="strengthExerciseButton" id="exerciseButton" class="button button-thin button-block">Add Exercise</button>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
 

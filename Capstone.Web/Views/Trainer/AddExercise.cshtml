@@ -4,7 +4,7 @@
 
 <div class="jumbotron search-back">
     @if (TempData["AddExercise"] != null)
-    {
+     {
         if ((bool)TempData["AddExercise"] == true)
         {
             <div class="alert alert-success" role="alert">Successfully Added the Exercise</div>
@@ -13,7 +13,12 @@
         {
             <div class="alert alert-danger" role="alert">Failed to Add the Exercise</div>
         }
-    }
+     }
+
+    @if(TempData["Not-a-valid-link"] != null)
+     {
+            <div class="alert alert-danger" role="alert">@TempData["Not-a-valid-link"]</div>
+     }
 
     <div class="container">
 
@@ -52,7 +57,7 @@
                             <label>
                                 Youtube Link
                             </label>
-                            <textarea class="form-control" name="VideoLink" id="VideoLink" rows="1" required></textarea>
+                            <input class="form-control" name="VideoLink" id="VideoLink" type="text" required>
                         </div>
                     </div>
                 </div>
@@ -71,16 +76,6 @@
                                 @Html.RadioButton("type", "1", new { @checked = true, @class = "radio-type" }) <span></span> Cardio
                             </label>
                         </div>
-                        @*<div>
-                        <label>
-                            @Html.RadioButton("type", "2")Strength
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            @Html.RadioButton("type", "1", new { @checked = true })Cardio
-                        </label>
-                    </div>*@
                     </div>
                 </div>
             </div>

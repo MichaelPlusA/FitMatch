@@ -21,14 +21,14 @@
                             <ul class="list-group list-group-flush">
                                 
                                 @foreach (Workout item in Model.SeveralWorkouts)
-                        {
+                                 {
                             <li class="list-group-item">
 
                                 <span class="badge badge-primary badge-workout"><a href="@("/Trainer/AddExercisesToWorkout?planId=" + item.Plan_Id + "&workoutId=" + item.Id)">Edit</a></span>
                                 <div class="workout-name">@item.Name</div>
                                 @*<a href="@("/Trainer/AddExercisesToWorkout?planId=" + item.Plan_Id + "&workoutId=" + item.Id)">@item.Name</a>*@
                             </li>
-                }
+                                 }
                             </ul>
                         </div>
                     </div>
@@ -61,10 +61,6 @@
             </div>
 
         <br />
-        <h4 class="text-center">Here you can view your current workouts associated with this plan, as well as add additional workouts to the clients plan. If you would like to edit the specific details of an exercise included in a workout, simply click the edit button next to the workout you would like to change.</h4>
-
-
-
-        
+        <h4 class="text-center">Here you can view your current workouts associated with this plan, as well as add additional workouts to the clients plan. If you would like to edit the specific details of an exercise included in a workout, simply click the edit button next to the workout you would like to change.</h4>       
     </div>
 </div>

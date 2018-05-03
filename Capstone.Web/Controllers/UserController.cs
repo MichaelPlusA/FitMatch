@@ -76,6 +76,12 @@ namespace Capstone.Web.Controllers
                 return View("Register", user);
             }
 
+            if(user.Password != user.ConfirmPassword)
+            {
+                ModelState.AddModelError("passwords - don't match", "Those passwords did not match");
+                return View("Register", user);
+            }
+
             if (user.Is_trainer)
             {
                 Trainer newtrainer = new Trainer(user);

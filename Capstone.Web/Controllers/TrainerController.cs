@@ -123,6 +123,7 @@ namespace Capstone.Web.Controllers
         {
             int trainerId = (int)Session[SessionKeys.Trainer_ID];
             PopulatePlanViewModel vm = new PopulatePlanViewModel();
+            vm.PlanID = planId;
             vm.Workout = _workoutDal.GetWorkout(workoutId);
             vm.Exercises = _workoutDal.GetExercisesForTrainer(trainerId);
 

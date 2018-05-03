@@ -27,6 +27,11 @@ namespace Capstone.Web.Controllers
         // GET: Trainee
         public ActionResult Index()
         {
+            if (Session[SessionKeys.UserID] == null)
+            {
+                return Redirect("/User/Login");
+            }
+
             int ID = (int)Session[SessionKeys.UserID];
 
             Plan plan = _dalWorkout.GetTraineePlan(ID);
@@ -41,6 +46,11 @@ namespace Capstone.Web.Controllers
 
         public ActionResult Search(string json)
         {
+            if (Session[SessionKeys.UserID] == null)
+            {
+                return Redirect("/User/Login");
+            }
+
             return View("Search", (object)json);
         }
 
@@ -82,7 +92,12 @@ namespace Capstone.Web.Controllers
 
         public ActionResult TrainerProfile(string id)
         {
-            if(id == null)
+            if (Session[SessionKeys.UserID] == null)
+            {
+                return Redirect("/User/Login");
+            }
+
+            if (id == null)
             {
                 return Redirect("/Trainee/Search");
             }

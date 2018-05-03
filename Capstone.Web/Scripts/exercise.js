@@ -22,6 +22,7 @@
         var service = new ExerciseService();
         service.addCardio(exerciseToAdd, workoutToAddTo, duration, intensity, ExerciseAdded)
         event.preventDefault();
+        location.reload(true);
     })
 
     function ExerciseAdded(exercises) {
@@ -30,14 +31,28 @@
         for (i = 0; i < exercises.RunningAndStuff.length; i++) {
             var item = exercises.RunningAndStuff[i];
             var tr = $("<tr scope='row'>");
-            var resultCell = $("<td>").text(item.Name);
+
+            var clock = $("<i>");
+            clock.addClass("far");
+            clock.addClass("fa-clock");
+            clock.addClass("exercise-icon");
+
+            var resultCell = $("<td>");
+            var title = $("<h3>").text(item.Name);
+            resultCell.addClass("margin-top");
+            resultCell.addClass("padding-top");
+            resultCell.append(title);
+            resultCell.append(clock);
             tr.append(resultCell);
+
             $("#exerciseTable").append(tr);
         }
         for (i = 0; i < exercises.GetBig.length; i++) {
             var item = exercises.GetBig[i];
             var tr = $("<tr scope='row'>");
             var resultCell = $("<td>").text(item.Name);
+            resultCell.addClass("margin-top");
+            resultCell.addClass("padding-top");
             tr.append(resultCell);
             $("#exerciseTable").append(tr);
         }

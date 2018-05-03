@@ -120,6 +120,7 @@ namespace Capstone.Web.Controllers
             return RedirectToAction("Workouts", new { planId = planId });
         }
 
+        [HttpPost]
         public ActionResult Workouts(int planId)
         {
             if (Session[SessionKeys.Trainer_ID] == null)

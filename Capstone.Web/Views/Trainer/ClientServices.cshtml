@@ -7,27 +7,31 @@
 
 <div class="jumbotron search-back">
     <div class="container" id="create-plan">
-        <h2>Modify plan</h2>
-        <form action="/Trainer/Workouts" method="post">
-            <select class="form-control btn btn-secondary dropdown-toggle dropdown" id="clientselect" name="planId">
-                <option name="ForTrainee" id="ForTrainee" selected>Select Client</option>
-                @foreach (User item in Model.ClientsWithPlans)
-                {
-                    <option name="planId" id="ForTrainee" value=@item.PlanId>@item.First_Name @item.Last_Name</option>
-                }
-            </select>
+        @if(Model.ClientsWithPlans.Count > 0)
+        {
+            <h2>Modify plan</h2>
+            <form action="/Trainer/Workouts" method="post">
+                <select class="form-control btn btn-secondary dropdown-toggle dropdown" id="clientselect" name="planId" required>
+                    <option name="ForTrainee" id="ForTrainee" value="">Select Client</option>
+                    @foreach (User item in Model.ClientsWithPlans)
+                    {
+                        <option name="planId" id="ForTrainee" value=@item.PlanId>@item.First_Name @item.Last_Name</option>
+                    }
+                </select>
+                <br />
+                <br />
+                <button type="submit" class="button-huge button-block">Modify Plan</button>
+            </form>
             <br />
             <br />
-            <button type="submit" class="button-huge button-block">Modify Plan</button>
-        </form>
-        <br />
-        <br />
+        }
+        
         <h2>Create a new plan for a client</h2>
         <br />
         <form action="/Trainer/CreatePlan" method="post">
             <div class="form-group">
                 <label for="clientselect">Select Client to Add to Plan</label>
-                <select class="form-control btn btn-secondary dropdown-toggle dropdown" id="clientselect" name="ForTrainee">
+                <select class="form-control btn btn-secondary dropdown-toggle dropdown" id="clientselect" name="ForTrainee" required>
                     @foreach (User item in Model.ClientsWithoutPlans)
                     {
                         <option name="ForTrainee" id="ForTrainee" value=@item.User_ID>@item.First_Name @item.Last_Name</option>

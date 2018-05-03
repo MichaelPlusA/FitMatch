@@ -86,6 +86,29 @@ namespace Capstone.Web.Controllers
             if (user.Is_trainer)
             {
                 Trainer newtrainer = new Trainer(user);
+
+                newtrainer.User_Location = user.User_Location;
+
+                if(newtrainer.Additional_notes == null)
+                {
+                    newtrainer.Additional_notes = "";
+                }
+
+                if (newtrainer.Certifications == null)
+                {
+                    newtrainer.Certifications = "";
+                }
+
+                if (newtrainer.Client_Success_Stories == null)
+                {
+                    newtrainer.Client_Success_Stories = "";
+                }
+
+                if(newtrainer.exercise_Philosophy == null)
+                {
+                    newtrainer.exercise_Philosophy = "";
+                }
+
                 bool isAdded = _dal.RegisterUser(newtrainer);
 
                 if(isAdded)

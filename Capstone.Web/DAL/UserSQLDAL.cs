@@ -50,8 +50,8 @@ namespace Capstone.Web.DAL
 
             bool check;
 
-            string CreateUserSQL = "INSERT INTO user_info (email, password, salt, trainer_id, first_name, last_name) " +
-                "VALUES (@email, @password, @salt, @trainer_id, @first_name, @last_name)";
+            string CreateUserSQL = "INSERT INTO user_info (email, password, salt, trainer_id, first_name, last_name, user_location) " +
+                "VALUES (@email, @password, @salt, @trainer_id, @first_name, @last_name, @user_location)";
 
             string createProfileSQL = "INSERT INTO trainer (price_per_hour, certifications, experience, client_success_stories, exercise_philosophy, additional_notes, searchable) " +
                 "OUTPUT inserted.trainer_id VALUES (@price_per_hour, @certifications, @experience, @client_success_stories, @exercise_philosophy, @additional_notes, 1)";
@@ -78,6 +78,7 @@ namespace Capstone.Web.DAL
                 cmd.Parameters.AddWithValue("@first_name", trainMaster.First_Name);
                 cmd.Parameters.AddWithValue("@last_name", trainMaster.Last_Name);
                 cmd.Parameters.AddWithValue("@trainer_id", mostRecent);
+                cmd.Parameters.AddWithValue("@user_location", trainMaster.User_Location);
 
                 check = cmd.ExecuteNonQuery() > 0 ? true : false;
                    

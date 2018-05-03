@@ -104,10 +104,7 @@ namespace Capstone.Web.Controllers
 
         public ActionResult Detail(int id)
         {
-            if (Session[SessionKeys.Trainer_ID] == null)
-            {
-                return Redirect("/User/Login");
-            }
+     
 
             Exercise exercise = _dal.GetExercise(id);
             return View("Detail", exercise);

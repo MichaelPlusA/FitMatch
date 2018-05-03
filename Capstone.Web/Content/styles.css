@@ -1695,3 +1695,8 @@ section.section2 {
         text-decoration: none;
         color: #393939;
     }
+
+    .row-center{
+        margin: auto;
+        float: right;
+    }

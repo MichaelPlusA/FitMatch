@@ -1308,7 +1308,7 @@ section.section2 {
 
 .search-back {
     background-color: #393939;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 .search-back h2 {
@@ -1574,6 +1574,9 @@ section.section2 {
 #create-plan {
 
 }
+#create-plan h4 {
+    color: white;
+}
 
 #create-plan label {
     color: white;
@@ -1585,6 +1588,7 @@ section.section2 {
     color: #393939;
     font-size: 1.23rem;
     font-weight: bold;
+    padding: 5px 10px;
 }
 
     #create-plan input, #create-plan textarea {
@@ -1636,3 +1640,50 @@ section.section2 {
     width: 48%;
     margin-right: 4%;
 }
+
+.workout-name {
+    font-size: 1.75rem;
+    float: left;
+    margin-right: 1rem;
+}
+
+.badge-workout {
+    background-color: #323232;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+}
+
+    .badge-workout:hover {
+        background-color: #7F97B8;
+    }
+
+    .badge-workout a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+
+    .add-new {
+        margin-top: 1.25rem;
+        margin-bottom: 1.15rem;
+        background-color: #7F97B8;
+    }
+
+    .no-pad-right {
+        padding-right: 0;
+    }
+
+    .button-new {
+        background-color: rgba(19, 35, 47, 0.9);
+    }
+
+        .button-new a {
+            padding-left: 1rem;
+            text-decoration: none;
+            background-color: rgba(19, 35, 47, 0.9);
+        }
+
+    .button-new a:hover {
+        text-decoration: none;
+        color: #393939;
+    }

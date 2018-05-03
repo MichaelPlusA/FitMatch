@@ -86,6 +86,8 @@ namespace Capstone.Web.Controllers
             {
                 Trainer newtrainer = new Trainer(user);
 
+                newtrainer.User_Location = user.User_Location;
+
                 if(newtrainer.Additional_notes == null)
                 {
                     newtrainer.Additional_notes = "";

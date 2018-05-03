@@ -12,7 +12,7 @@ namespace Capstone.Web.Models
 
         private const int SALT_LENGTH = 12;
 
-        public int Rating { get; set; } = 0; //not part of MVP, for future use. Scale of 1-5
+        public int Rating { get; set; } = 5; //not part of MVP, for future use. Scale of 1-5
         public string Additional_notes { get; set; } = ""; //Lengthy
         public int experience { get; set; } = 0;
         public string exercise_Philosophy { get; set; } = "";

@@ -103,6 +103,7 @@ namespace Capstone.Web.Controllers
             }
 
             Trainer Searchedtrainer = _dalUser.GetTrainer(Convert.ToInt32(id));
+            Searchedtrainer.ClientList = _dalUser.GetClients(Convert.ToInt32(id));
             return View("TrainerProfile", Searchedtrainer);
         }
 

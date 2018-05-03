@@ -10,6 +10,7 @@
         var service = new ExerciseService();
         service.addStrength(exerciseToAdd, workoutToAddTo, sets, reps, ExerciseAdded);
         event.preventDefault();
+        location.reload(true);
     })
 
     $("button[name='cardioExerciseButton'").on("click", function (event) {
@@ -57,7 +58,7 @@
                     "reps": reps
                 }
             }).done(function (data) {
-                successCallback(data);
+                //successCallback(data);
             }).fail(function (xhr, status, error) {
                 console.error("Error occured while adding exercise", error);
             })
@@ -74,7 +75,7 @@
                     "intensity": intensity
                 }
             }).done(function (data) {
-                successCallback(data);
+                //successCallback(data);
             }).fail(function (xhr, status, error) {
                 console.error("Error occured while adding exercise", error);
             })

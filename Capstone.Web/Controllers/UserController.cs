@@ -51,6 +51,7 @@ namespace Capstone.Web.Controllers
                 Session[SessionKeys.UserID] = user.User_ID;
                 Session[SessionKeys.Trainer_ID] = user.Trainer_ID;
                 Session[SessionKeys.First_Name] = user.First_Name;
+                Session[SessionKeys.Last_Name] = user.Last_Name;
             }
 
             if(user.Trainer_ID != null)

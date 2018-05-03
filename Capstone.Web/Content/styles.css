@@ -53,6 +53,7 @@
     margin: auto;
     width: 90%;
 }
+
 /*Logo*/
 .brand-container {
     padding: 10px;
@@ -1700,3 +1701,32 @@ section.section2 {
         margin: auto;
         float: right;
     }
+
+    .padding-bottom {
+        padding-bottom: 2rem;
+    }
+
+.padding-top {
+    padding-top: 2rem;
+}
+
+.margin-bottom {
+    margin-bottom: 2rem;
+}
+
+.margin-top {
+    margin-top: 2rem;
+}
+
+.no-margin-top {
+    margin-top: 0 !important;
+}
+
+.no-padding-top {
+    padding-top: 0 !important;
+}
+
+.small-sides {
+    margin-left: 3% !important;
+    margin-right: 3% !important;
+}
